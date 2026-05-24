@@ -54,6 +54,16 @@ once Phase 1 ships, see [`spec/teps/`](./spec/teps/).
     **The three foundational TEPs (0001–0003) now define the complete semantic
     model:** aesthetic intent composes, inherits, and compiles to provider-ready
     requests.
+  - **v0.1 JSON Schemas** in [`spec/schemas/`](./spec/schemas/) encoding the
+    three TEPs + ADR-0005 naming: `common` (shared `$defs`), `composition`,
+    `template`, `modifier`, `palette`, and `capability-manifest`. JSON Schema
+    2020-12 dialect, URN-style `$id`s, snake_case enforcement, `$`-directives
+    (`$extends`/`$unset`/`$revert`) permitted and unknown `$`-keys rejected.
+    The aesthetic vocabulary is left open at v0.1 by design. All six validate
+    against the 2020-12 meta-schema; verified with positive/negative document
+    tests (valid composition accepted; hyphenated/uppercase/unknown-directive/
+    missing-required documents rejected; capability manifest requires a `note`
+    on `approximate`/`emulate` mappings).
 
 - **Naming status.** "Tessera" marked as an internal working codename;
   public-facing name deferred to Phase 6 after brand-collision research

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tessera:schema:0.1:composition",
+  "title": "Tessera Composition",
+  "description": "A use-site assembly: a base template, an ordered list of modifiers, and optional inline overrides. Resolving a composition folds the precedence chain (resolved base ancestry -> base -> modifiers in order -> overrides) via the TEP-0001 merge operation, later-wins. SPDX-License-Identifier: Apache-2.0.",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "description": "Identifies this document as a Tessera composition of a given version.",
+      "type": "string"
+    },
+    "id": {
+      "description": "Optional name for this composition, for reference and provenance.",
+      "$ref": "urn:tessera:schema:0.1:common#/$defs/reference"
+    },
+    "base": {
+      "description": "Reference to the base template. Resolved through its inheritance chain (TEP-0002) before composition. Lowest precedence in the chain.",
+      "$ref": "urn:tessera:schema:0.1:common#/$defs/reference"
+    },
+    "modifiers": {
+      "description": "Ordered list of modifier references. Order is load-bearing: a modifier later in the list has higher precedence (TEP-0001). The order you write is the order that wins.",
+      "type": "array",
+      "items": { "$ref": "urn:tessera:schema:0.1:common#/$defs/reference" },
+      "x-tessera-merge": { "strategy": "replace" }
+    },
+    "overrides": {
+      "description": "Inline aesthetic overrides applied at highest precedence, above all modifiers. Analogous to a CSS style attribute. May use $unset/$revert.",
+      "$ref": "urn:tessera:schema:0.1:common#/$defs/aesthetic_object"
+    }
+  },
+  "required": ["base"],
+  "additionalProperties": false
+}
