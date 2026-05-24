@@ -12,25 +12,64 @@ future-language community implementation — must pass the suite here.
 
 ## Format
 
-Each conformance case is a JSON document containing:
+Each conformance case is a JSON document conforming to
+[`vector.schema.json`](./vector.schema.json). There are two kinds:
 
-- The input — a Tessera composition (schema-conformant).
-- The expected canonical model after parsing, inheritance
-  resolution, modifier merge, and composition.
-- For provider-compilation cases, the expected provider payload
-  output for a specified provider.
-- Any expected validation errors, identified by their normative
-  rule reference.
+**`resolution`** — exercises TEP-0001 (composition) and TEP-0002
+(inheritance):
 
-Runtimes consume these JSON cases directly. There is no host-
-language code in this directory — the entire suite is the
-language-neutral contract that makes Tessera implementations
-substitutable.
+- `registry` — named templates/modifiers/palettes available for
+  reference resolution.
+- `merge_strategies` — per-field list-merge strategy (`replace` /
+  `append` / `merge_by`); schema-declared in real runtimes, carried
+  inline in the vector.
+- `input` + `input_kind` — the composition or template to resolve.
+- `expect` — either `{ canonical: … }` (the expected resolved
+  aesthetic model) or `{ status: "error", error: … }`.
+
+**`compilation`** — exercises TEP-0003 (provider compilation):
+
+- `manifest` — a provider capability manifest.
+- `canonical` — the already-resolved composition to compile.
+- `criticality` — per-construct `required`/`optional`.
+- `expect` — `{ status: "compiled", warnings: [...] }` or
+  `{ status: "error", error: "required_unsupported", construct: … }`.
+
+The **canonical model** is the merge of each precedence layer's
+*aesthetic content* — the structural/identity keys (`id`, `$schema`,
+`$extends`, `base`, `modifiers`, `overrides`) are not aesthetic
+content and do not appear in it. Compilation vectors assert the
+contract *outcome* (compile vs error, and the warning set), not exact
+provider payloads — exact payloads embody adapter-specific rendering
+and are golden-tested with the adapters in Phase 4.
+
+Runtimes consume these JSON cases directly. There is no host-language
+code in this directory — the entire suite is the language-neutral
+contract that makes Tessera implementations substitutable.
+
+## Layout
+
+| Directory | Vectors |
+|-----------|---------|
+| [`resolution/`](./resolution/) | TEP-0001 merge/precedence + TEP-0002 inheritance (0001–0016) |
+| [`compilation/`](./compilation/) | TEP-0003 compilation contract outcomes (0017–0021) |
 
 ## Status
 
-Phase 0b. Scaffold only. The first conformance cases land in Phase 1
-alongside the initial JSON Schemas and TEPs.
+Phase 1 (Specification Genesis). 21 vectors present, covering the
+normative behaviors of all three foundational TEPs: deep/scalar/
+type-mismatch merge, the three list strategies, `$unset`/`$revert`,
+the precedence chain, single inheritance + multi-level chains, the
+inheritance/composition seam, `$revert` and `merge_by` across the
+inheritance boundary, inheritance-cycle and multiple-inheritance
+rejection, and the full compilation criticality × lowering-action
+rule table.
+
+Each vector was verified during authoring against an independent
+reference oracle (the expected output recomputed and matched), the
+vector meta-schema, and the Tessera primitive schemas. The Phase 2
+TypeScript runtime will be the first committed implementation checked
+against this suite.
 
 ## Why this exists
 

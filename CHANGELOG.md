@@ -54,6 +54,19 @@ once Phase 1 ships, see [`spec/teps/`](./spec/teps/).
     **The three foundational TEPs (0001–0003) now define the complete semantic
     model:** aesthetic intent composes, inherits, and compiles to provider-ready
     requests.
+  - **Conformance suite** in [`spec/compliance/`](./spec/compliance/): 21
+    language-agnostic JSON vectors (+ `vector.schema.json` meta-schema)
+    covering the normative behaviors of all three foundational TEPs —
+    deep/scalar/type-mismatch merge, the three list strategies,
+    `$unset`/`$revert`, the precedence chain, single inheritance,
+    multi-level chains, the inheritance/composition seam, `$revert` and
+    `merge_by` across the inheritance boundary, inheritance-cycle and
+    multiple-inheritance rejection, and the full compilation
+    criticality × lowering-action rule table. Each vector verified during
+    authoring against an independent reference oracle, the vector
+    meta-schema, and the Tessera primitive schemas. This is the
+    cross-language correctness contract ADR-0007 requires; the Phase 2
+    runtime will be the first implementation checked against it.
   - **v0.1 JSON Schemas** in [`spec/schemas/`](./spec/schemas/) encoding the
     three TEPs + ADR-0005 naming: `common` (shared `$defs`), `composition`,
     `template`, `modifier`, `palette`, and `capability-manifest`. JSON Schema
