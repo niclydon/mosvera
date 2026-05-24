@@ -4,6 +4,14 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # Tessera
 
+> **Working codename.** "Tessera" is the internal name used during
+> incubation. The public-facing name is deferred to Phase 6 (public
+> unlock) and will be selected through proper brand-collision research
+> per Doctrines 5 and 6. The original word "Tessera" is not acquirable
+> for an open standard (existing brands hold the namespace), so the
+> name in this repo is provisional. Reference it in conversation; do
+> not treat it as the final brand.
+
 **A declarative runtime for aesthetic intent in AI-native systems.**
 
 Tessera defines aesthetic primitives — templates, palettes,

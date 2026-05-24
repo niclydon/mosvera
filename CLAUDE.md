@@ -2,11 +2,19 @@
 
 Guidance for Claude and other coding agents working in this repository.
 
+> **Naming status.** "Tessera" is the internal **working codename** used
+> during incubation. Brand-collision research confirmed the name is not
+> acquirable for an open standard. The public-facing name is deferred to
+> Phase 6 (public unlock) and will be selected through the full
+> brand-availability process (Google + USPTO + social handles + domains,
+> per Doctrine 5/6) — not just a domain DNS check. Until then, prose in
+> this repo uses "Tessera" as a placeholder.
+
 ---
 
 ## Primary Doctrines
 
-These five doctrines are the operating constitution for every action taken in
+These six doctrines are the operating constitution for every action taken in
 this repo. Read them before doing any work. When two paths exist and the
 doctrines point to one, that one wins — even if the other is more convenient.
 
@@ -73,6 +81,53 @@ The default position on any design, architecture, or systems decision is to
   research-grounded decision.
 - This applies especially to choices that already feel "obvious."
   Comfortable assumptions are exactly the ones most worth verifying.
+
+### 6. Academic-grade documentation
+
+All substantive Tessera documentation — specification prose, MANIFESTO,
+guides, TEPs, ADRs, glossary entries, READMEs that introduce concepts,
+and any longform — meets an academic-rigor bar. Documentation is not a
+wrapper around the work; it is part of the work.
+
+- **Inline citations.** Non-obvious claims cite their sources where the
+  claim is made, not just in a trailing bibliography. Where multiple
+  sources are relevant, all are cited. Sources are authoritative:
+  standards documents, peer-reviewed literature, comparable
+  open-standard projects' own publications, primary technical
+  documentation.
+- **Term precision.** Every introduced term has a precise definition —
+  either inline at first use, or by reference to the
+  [Glossary](./GLOSSARY.md). Marketing-tone vocabulary that lacks a
+  defined meaning is not used.
+- **Explicit limitations.** Every substantive claim states its
+  boundaries. If a claim holds only under certain conditions, the
+  conditions are named. If a claim is unverified, that is said.
+  Unfalsifiable claims are restated falsifiably or removed.
+- **Engaged counter-positions.** Where the project takes a position
+  against an alternative (snake_case over camelCase, BDFL over premature
+  TSC, OpenAI+FLUX over alternative provider pairings), the alternative
+  is fairly represented, not strawmanned.
+- **Normative vs informative language.** Specification prose uses
+  [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119) keywords
+  (MUST, SHOULD, MAY) to mark normative requirements. Informative
+  commentary is clearly distinguished from normative text.
+- **Document metadata.** Substantive documents carry date, version, and
+  stable identifiers where applicable, so external work can cite
+  Tessera precisely.
+- **Sources section.** Every substantive document ends with a Sources
+  or References section enumerating every cited work, even when sources
+  are already inlined in the body.
+
+This doctrine raises the cost of producing documentation. That cost is
+intentional: the project is staking a claim to define a missing
+infrastructure layer, and the documentation that surrounds the claim is
+part of the credibility surface. Documentation that does not meet this
+bar will be revised or rejected at review.
+
+Doctrine 6 binds going forward. It does not retroactively invalidate
+existing documentation, but documentation **updated** after this
+doctrine lands must meet the bar; new documents must meet it on first
+authoring.
 
 ---
 
