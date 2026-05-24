@@ -23,30 +23,41 @@ a rewrite. The
 [conformance suite](../spec/compliance/) is the cross-language
 correctness contract.
 
-## Responsibilities
+## Modules (v0.1)
+
+The semantic core is **pure functions with zero runtime dependencies**, so the
+committed Python port is a translation rather than a rewrite (ADR-0007).
 
 | Module | Responsibility |
 |--------|---------------|
-| `src/parser` | Load and validate spec documents (YAML/JSON → typed AST). |
-| `src/resolver` | Walk inheritance chains; detect cycles. |
-| `src/merger` | Apply modifier merge semantics per MEP. |
-| `src/composer` | Produce a canonical composition object. |
-| `src/validator` | Runtime-level structural validation. |
-| `src/compiler` | Translate canonical model → provider payloads (with adapters). |
+| [`src/merge.ts`](./src/merge.ts) | The merge algebra (MEP-0001): deep merge, list strategies (`replace`/`append`/`merge_by`), `$unset`/`$revert`. The single operation the system folds over. |
+| [`src/resolve.ts`](./src/resolve.ts) | Inheritance resolution (MEP-0002): single-inheritance `$extends` chain, cycle detection, multiple-inheritance rejection. |
+| [`src/compose.ts`](./src/compose.ts) | Composition resolution (MEP-0001): folds the precedence chain (base lineage → base → modifiers → overrides) into the canonical model. |
+| [`src/compile.ts`](./src/compile.ts) | Provider compilation contract rule engine (MEP-0003): criticality × lowering-action → compile / warn / error. Payload emission lives in adapters (Phase 4). |
+| [`src/types.ts`](./src/types.ts) | Shared types and `ResolutionError`. |
+| [`src/index.ts`](./src/index.ts) | Public API. |
+
+Deferred: a `parser`/`validator` layer (JSON Schema validation of input
+documents against [`spec/schemas/`](../spec/schemas/)) — the conformance suite
+exercises the semantic core, which does not require schema validation to run.
 
 ## Status
 
-Phase 0b. Scaffold only. The runtime lands in Phase 2 per
-[`ROADMAP.md`](../ROADMAP.md#phase-2--reference-runtime-typescript)
-once Phase 1 (Specification Genesis) freezes the spec primitives.
+Phase 2 (in progress). The semantic core is implemented and **passes all 21
+conformance vectors** in [`spec/compliance/`](../spec/compliance/) plus a
+strict typecheck. Run `npm test` and `npm run typecheck`.
+
+This is independent cross-implementation agreement: the conformance vectors
+were authored and verified against a separate reference oracle, and this TS
+runtime now reproduces the same canonical models and compilation outcomes for
+every vector — the ADR-0007 contract in action.
 
 ## Layout
 
 | Directory | Purpose |
 |-----------|---------|
-| `src/` | Source code. |
-| `tests/` | Unit tests for runtime semantics (inheritance, merge, cycle detection, validation). |
-| `examples/` | Runtime-scoped examples (end-to-end examples live in `../examples/`). |
+| `src/` | The pure semantic core. |
+| `test/` | The conformance runner (loads and runs every vector from `../spec/compliance/`). |
 
 ## License
 

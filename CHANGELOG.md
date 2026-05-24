@@ -17,6 +17,23 @@ once Phase 1 ships, see [`spec/meps/`](./spec/meps/).
 
 ### Added
 
+- **Phase 2 — Reference runtime (in progress).** The TypeScript reference
+  runtime ([`runtime/`](./runtime/)), per
+  [ADR-0007](./docs/decisions/0007-reference-runtime-language.md). A pure,
+  zero-runtime-dependency semantic core: `merge` (the MEP-0001 algebra —
+  deep merge, `replace`/`append`/`merge_by` list strategies, `$unset`/
+  `$revert`), `resolve` (MEP-0002 single-inheritance chains + cycle
+  detection), `compose` (the precedence-chain fold), and `compile` (the
+  MEP-0003 criticality × lowering-action rule engine). A conformance runner
+  loads every vector from [`spec/compliance/`](./spec/compliance/) and the
+  runtime **passes all 21**, under a strict TypeScript typecheck. This is
+  independent cross-implementation agreement: the TS runtime reproduces the
+  same canonical models and compilation outcomes that the reference oracle
+  produced during vector authoring — the ADR-0007 cross-language contract.
+  Tooling: TypeScript + vitest; semantic core has no runtime dependencies so
+  the committed Python port is a translation.
+
+
 - **Phase 1 — Specification Genesis (in progress).** Specification
   proposals:
   - [MEP-0001: Composition Semantics](./spec/meps/0001-composition-semantics.md)

@@ -1,0 +1,20 @@
+{
+  "name": "@mosvera/runtime",
+  "version": "0.1.0",
+  "description": "Reference runtime for Mosvera — a declarative runtime for aesthetic intent. Parses, resolves inheritance, merges modifiers, composes primitives, and applies the provider compilation contract. Zero runtime dependencies; pure semantic core.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8",
+    "@types/node": "^22.10.2"
+  }
+}
