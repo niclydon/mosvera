@@ -296,14 +296,18 @@ Tessera eventually becomes:
 - a declarative orchestration substrate
 
 Potential future integrations:
-- Forge
-- Broadside
 - ComfyUI
 - local inference systems
 - multimodal agent runtimes
 - AI-native publishing systems
 - video generation systems
 - UI generation systems
+
+> _Editorial note (2026-05-24): two references to private internal
+> projects from the original draft of this strategic plan have been
+> removed under [Doctrine 1 (Public-first)](../../CLAUDE.md#1-public-first).
+> The plan otherwise stands as the historical record that produced
+> the project._
 
 ---
 
