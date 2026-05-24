@@ -2,9 +2,9 @@
 SPDX-License-Identifier: CC-BY-4.0
 -->
 
-# Tessera Roadmap
+# Mosvera Roadmap
 
-Phased plan for Tessera's incubation through first public release.
+Phased plan for Mosvera's incubation through first public release.
 This roadmap is the living revision of the project plan first written
 during Phase 0 and updated against the research-grounded decisions
 recorded in [`docs/decisions/`](./docs/decisions/).
@@ -46,12 +46,12 @@ Outputs:
   `CODE_OF_CONDUCT.md`, `SECURITY.md`, `CHANGELOG.md`
 - Scaffold directories with stub READMEs: `spec/`, `runtime/`, `mcp/`,
   `providers/`, `examples/`, `docs/`
-- `spec/teps/` with the TEP template and process README per
+- `spec/meps/` with the MEP template and process README per
   [ADR-0003](./docs/decisions/0003-rfc-and-proposal-format.md)
 
 ### Phase 1 — Specification Genesis
 
-The specification is Tessera's long-term center of gravity. Phase 1
+The specification is Mosvera's long-term center of gravity. Phase 1
 defines the primitives, the inheritance and composition semantics,
 and the provider compilation contract — before any reference runtime
 locks behavior.
@@ -65,7 +65,7 @@ Outputs in `spec/`:
   - `palette.schema.json`
   - `modifier.schema.json`
   - `composition.schema.json`
-- `spec/teps/` — initial TEPs covering composition semantics,
+- `spec/meps/` — initial MEPs covering composition semantics,
   inheritance rules, and the provider compilation contract
 - `spec/compliance/` — conformance test vectors in JSON, runnable
   against any conforming runtime (foundation for the cross-language
@@ -86,7 +86,7 @@ structures. No providers yet.
 Outputs in `runtime/`:
 - `runtime/src/parser` — load and validate spec documents
 - `runtime/src/resolver` — walk inheritance chains, detect cycles
-- `runtime/src/merger` — modifier merge semantics per TEP
+- `runtime/src/merger` — modifier merge semantics per MEP
 - `runtime/src/composer` — produce a canonical composition object
 - `runtime/src/validator` — runtime-level structural validation
 - Test coverage on inheritance, merge, cycle detection, validation
@@ -100,7 +100,7 @@ clever TS-only patterns in the semantic core.
 ### Phase 3 — MCP Surface
 
 Expose Phase 2 runtime capabilities as a strict MCP server. Aligns
-Tessera with AI-native orchestration from day one.
+Mosvera with AI-native orchestration from day one.
 
 Outputs in `mcp/`:
 - `mcp/src/server` — MCP server skeleton (TS SDK), shares types with
@@ -124,7 +124,7 @@ Specifies the pairing locked in
 
 Outputs in `providers/`:
 - `providers/_base/` — shared adapter contract derived from the
-  provider compilation TEP
+  provider compilation MEP
 - `providers/openai/` — `gpt-image-1` adapter (sync POST, enum-coded
   quality, server-side moderation)
 - `providers/flux/` — `flux-2-pro` adapter via the BFL hosted API
@@ -146,7 +146,7 @@ Outputs in `examples/` and `providers/`:
 - `examples/cinematic-editorial/`
 - `examples/dashboard-minimalism/`
 - `examples/documentary-realism/`
-- Each example: a Tessera composition file, a README explaining the
+- Each example: a Mosvera composition file, a README explaining the
   aesthetic intent, and rendered outputs from at least two providers
   showing the abstraction holds
 - `providers/sdxl/` — SDXL via Replicate, the first community
@@ -158,15 +158,15 @@ Triggered when Phases 1–5 feel durable, not on a date. The strategic
 plan's Phase 2/3 sequence.
 
 Outputs:
-- Namespace acquisition (`tessera` GitHub org, `tessera.dev`,
-  `tessera.ai`)
+- Namespace acquisition (`mosvera` GitHub org, `mosvera.dev`,
+  `mosvera.ai`)
 - Manifesto publication on a separate public surface ("Infrastructure-
   as-Style")
-- Transfer this repo (or split) into `github.com/tessera/spec` first
+- Transfer this repo (or split) into `github.com/mosvera/spec` first
   as the public flagship
 - `runtime`, `mcp`, `providers`, `examples` follow as separate repos
   per the eventual split signaled in ADR-0002
-- Open TEP process — `spec/teps/` becomes externally contributable
+- Open MEP process — `spec/meps/` becomes externally contributable
 - Governance transition: BDFL → small Technical Committee per
   [ADR-0004](./docs/decisions/0004-governance.md)
 - Foundation evaluation begins (CNCF / Linux Foundation / Joint
@@ -183,7 +183,7 @@ port is published.
 
 ### Phase 8 — Motion Surface and Runway Adapter
 
-Tessera introduces motion/temporal primitives and adds the Runway
+Mosvera introduces motion/temporal primitives and adds the Runway
 adapter per ADR-0008's deferral. Same composition compiles to image
 providers (Phase 4) and video providers (Phase 8) — the strongest
 demonstration of the abstraction's reach.

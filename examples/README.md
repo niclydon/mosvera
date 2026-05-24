@@ -4,8 +4,8 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # examples/
 
-End-to-end Tessera examples — concrete aesthetic systems expressed
-as Tessera compositions, rendered through multiple provider
+End-to-end Mosvera examples — concrete aesthetic systems expressed
+as Mosvera compositions, rendered through multiple provider
 adapters to demonstrate that the abstraction holds.
 
 People understand infrastructure through examples. This directory is
@@ -20,7 +20,7 @@ Each example is a self-contained directory:
 ```text
 examples/<example-name>/
 ├── README.md                 # Aesthetic intent in prose, what this example demonstrates
-├── composition.yaml          # The Tessera composition document
+├── composition.yaml          # The Mosvera composition document
 ├── templates/                # Templates this composition references
 ├── palettes/                 # Palettes this composition references
 ├── modifiers/                # Modifiers this composition uses
@@ -31,7 +31,7 @@ examples/<example-name>/
 
 Each example must compile successfully through **all reference
 provider adapters available at the example's release time**. An
-example that only compiles to one provider is not a valid Tessera
+example that only compiles to one provider is not a valid Mosvera
 example.
 
 ## Planned examples (Phase 5)
@@ -63,5 +63,5 @@ output license).
 ## Eventual repo split
 
 This directory is the seed of a future standalone repository at
-`github.com/tessera/examples` per
+`github.com/mosvera/examples` per
 [ADR-0002](../docs/decisions/0002-top-level-repository-layout.md).

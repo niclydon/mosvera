@@ -4,9 +4,9 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # Glossary
 
-Canonical terms used across Tessera's specification, runtime, MCP
+Canonical terms used across Mosvera's specification, runtime, MCP
 surface, and provider adapters. This is `v0.1` — terminology will
-firm up as the specification stabilizes through the TEP process. Each
+firm up as the specification stabilizes through the MEP process. Each
 term's definition is grounded against prior art where it exists,
 following [Doctrine 5 (Research-first)](./CLAUDE.md#5-research-first).
 
@@ -27,7 +27,7 @@ See [Provider adapter](#provider-adapter).
 ### Aesthetic intent
 
 The semantic meaning behind a generative call, expressed as a
-structural model rather than as a free-text prompt. The unit Tessera
+structural model rather than as a free-text prompt. The unit Mosvera
 operates on. Aesthetic intent is provider-neutral, language-neutral,
 and composable.
 
@@ -36,7 +36,7 @@ and composable.
 A small, well-defined building block of aesthetic intent —
 [Template](#template), [Palette](#palette), [Modifier](#modifier),
 [Composition](#composition). The primitives are the nouns and verbs
-of Tessera's vocabulary; the specification defines them precisely
+of Mosvera's vocabulary; the specification defines them precisely
 enough that two implementations produce the same canonical model from
 the same input.
 
@@ -48,7 +48,7 @@ per Michael Nygard's
 [original definition](https://martinfowler.com/bliki/ArchitectureDecisionRecord.html).
 ADRs live in [`docs/decisions/`](./docs/decisions/) and are numbered
 monotonically. ADRs are **not** the mechanism for proposing changes
-to the public specification — that is what [TEPs](#tep) are for. See
+to the public specification — that is what [MEPs](#mep) are for. See
 [ADR-0003](./docs/decisions/0003-rfc-and-proposal-format.md) for the
 two-document distinction.
 
@@ -56,7 +56,7 @@ two-document distinction.
 
 ### Canonical model
 
-The intermediate representation produced by Tessera's runtime after
+The intermediate representation produced by Mosvera's runtime after
 parsing a composition, resolving its inheritance chain, and merging
 its modifiers. The canonical model is provider-neutral; provider
 adapters compile *from* the canonical model into provider-specific
@@ -71,7 +71,7 @@ templates extended by modifiers, with optional scoped overrides.
 Compositions are the user-facing artifact: what gets authored, what
 gets versioned, what gets compiled to provider calls. Compositions
 inherit and resolve through documented rules (see
-[`spec/teps/`](./spec/teps/) once Phase 1 lands).
+[`spec/meps/`](./spec/meps/) once Phase 1 lands).
 
 ### Compiler / Compilation
 
@@ -79,7 +79,7 @@ The translation from a canonical model into a provider-specific
 payload (e.g., an OpenAI `gpt-image-1` request body or a Black Forest
 Labs FLUX async polling request). Each provider adapter implements
 the compilation contract defined by the
-[Provider compilation TEP](./spec/teps/). Conceptually analogous to
+[Provider compilation MEP](./spec/meps/). Conceptually analogous to
 [Style Dictionary's transforms](https://github.com/style-dictionary/style-dictionary)
 for design tokens, but with generative providers as the output
 targets instead of CSS variables — see
@@ -97,7 +97,7 @@ lives in [`spec/compliance/`](./spec/compliance/).
 
 ### DCO (Developer Certificate of Origin)
 
-The lightweight contribution-attestation mechanism Tessera adopted
+The lightweight contribution-attestation mechanism Mosvera adopted
 per [ADR-0004](./docs/decisions/0004-governance.md). Contributors
 sign commits with `git commit -s`, certifying they have the right to
 contribute the code under the project's license. Adopted in
@@ -109,10 +109,10 @@ CNCF/Linux Foundation ecosystem norms. Reference:
 
 The W3C Community Group responsible for the
 [Design Tokens Format Module](https://www.designtokens.org/tr/drafts/format/).
-Closest prior art for Tessera's primitives in the static design-token
-lane. Tessera aims for DTCG compatibility at the color-token export
+Closest prior art for Mosvera's primitives in the static design-token
+lane. Mosvera aims for DTCG compatibility at the color-token export
 boundary per
-[ADR-0006](./docs/decisions/0006-prior-art-survey.md). Tessera picks
+[ADR-0006](./docs/decisions/0006-prior-art-survey.md). Mosvera picks
 up where DTCG stops: generative-target compilation, composition
 semantics over the primitives, runtime evaluation.
 
@@ -123,9 +123,9 @@ semantics over the primitives, runtime evaluation.
 The mechanism by which a template extends another template, picking
 up its primitives and behavior. Resolution rules — how conflicts are
 detected, how overrides take precedence, how cycles are prevented —
-are defined in the inheritance TEP (Phase 1). Closest analog in
+are defined in the inheritance MEP (Phase 1). Closest analog in
 prior art is IBM Carbon's core-tokens / component-tokens / theme-
-overrides pattern, which Tessera's inheritance semantics will be
+overrides pattern, which Mosvera's inheritance semantics will be
 examined against rather than reinvented.
 
 ## M
@@ -133,7 +133,7 @@ examined against rather than reinvented.
 ### MCP (Model Context Protocol)
 
 The Anthropic-defined protocol for AI-native systems to invoke
-standardized tools. Tessera ships an MCP server as a first-class
+standardized tools. Mosvera ships an MCP server as a first-class
 surface (Phase 3) so agents, editors, and automated pipelines can
 call `list_templates`, `resolve_composition`, `compile_generation`,
 `get_palette`, and `validate_schema` as tool calls. See the
@@ -162,10 +162,10 @@ the export boundary is DTCG-compatible per
 
 ### Provider
 
-A generative execution system that Tessera can compile to — OpenAI,
+A generative execution system that Mosvera can compile to — OpenAI,
 Black Forest Labs (FLUX), Stability (SDXL), Runway, etc. Providers
 have divergent parameter surfaces, transport models, moderation
-policies, and modality coverage. Tessera's value is that aesthetic
+policies, and modality coverage. Mosvera's value is that aesthetic
 intent expressed in the canonical model can be compiled to any
 conforming provider.
 
@@ -183,17 +183,17 @@ ships `providers/openai/` and `providers/flux/` per
 
 ### Reference runtime
 
-The canonical implementation of Tessera's parsing, resolution,
+The canonical implementation of Mosvera's parsing, resolution,
 merging, composition, validation, and compilation behavior. The
 reference runtime is in TypeScript per
 [ADR-0007](./docs/decisions/0007-reference-runtime-language.md); a
 Python port is committed-to as a binding follow-on. Other-language
 runtimes are welcome from the community and must pass the conformance
-suite to be called Tessera-conforming.
+suite to be called Mosvera-conforming.
 
 ### Resolution
 
-The step in which Tessera's runtime walks an inheritance chain,
+The step in which Mosvera's runtime walks an inheritance chain,
 detects cycles, merges modifiers, and produces the canonical model.
 Resolution is deterministic; the same input always produces the same
 canonical model.
@@ -202,7 +202,7 @@ canonical model.
 
 ### Schema
 
-A JSON Schema definition of one of Tessera's aesthetic primitives.
+A JSON Schema definition of one of Mosvera's aesthetic primitives.
 Schemas are normative, machine-readable, and language-agnostic.
 Schema field names use `snake_case` per
 [ADR-0005](./docs/decisions/0005-schema-naming-conventions.md);
@@ -212,7 +212,7 @@ Schema's own precedent. Schemas live in
 
 ### Specification
 
-The normative prose definition of Tessera's primitives, behavior, and
+The normative prose definition of Mosvera's primitives, behavior, and
 contracts. The specification is the long-term center of gravity per
 the [Manifesto](./MANIFESTO.md). It is language-agnostic and ships
 under CC-BY-4.0 per
@@ -229,19 +229,19 @@ A reusable starting point for aesthetic compositions — e.g., a
 through [Inheritance](#inheritance) and can be combined with
 [Modifiers](#modifier) inside a [Composition](#composition).
 
-### TEP (Tessera Enhancement Proposal)
+### MEP (Mosvera Enhancement Proposal)
 
-A long-form proposal for a change to Tessera's public specification.
+A long-form proposal for a change to Mosvera's public specification.
 Modeled on
 [OpenTelemetry Enhancement Proposals (OTEPs)](https://github.com/open-telemetry/oteps),
 which themselves borrow from
 [Rust RFCs](https://rust-lang.github.io/rfcs/) and
 [Kubernetes Enhancement Proposals](https://www.kubernetes.dev/resources/keps/).
-TEPs live in [`spec/teps/`](./spec/teps/) and follow the lifecycle
+MEPs live in [`spec/meps/`](./spec/meps/) and follow the lifecycle
 defined in
 [ADR-0003](./docs/decisions/0003-rfc-and-proposal-format.md):
 `provisional → accepted → implementable → implemented → final` (plus
-`deferred / rejected / withdrawn / superseded`). TEPs are the
+`deferred / rejected / withdrawn / superseded`). MEPs are the
 mechanism for changing the public spec; [ADRs](#adr-architecture-decision-record)
 are the mechanism for recording repository-level decisions. The two
 do not overlap.
@@ -250,7 +250,7 @@ do not overlap.
 
 ### Wire format
 
-The on-the-wire serialization of Tessera artifacts — JSON or YAML
+The on-the-wire serialization of Mosvera artifacts — JSON or YAML
 documents conforming to the published schemas. Wire-format field
 names use `snake_case` per
 [ADR-0005](./docs/decisions/0005-schema-naming-conventions.md).

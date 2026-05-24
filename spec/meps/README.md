@@ -2,15 +2,15 @@
 SPDX-License-Identifier: CC-BY-4.0
 -->
 
-# Tessera Enhancement Proposals (TEPs)
+# Mosvera Enhancement Proposals (MEPs)
 
-TEPs are the mechanism for proposing changes to Tessera's public
+MEPs are the mechanism for proposing changes to Mosvera's public
 specification. The process is defined in
 [ADR-0003](../../docs/decisions/0003-rfc-and-proposal-format.md) and
 modeled on OpenTelemetry Enhancement Proposals (OTEPs), which in
 turn borrow from Rust RFCs and Kubernetes Enhancement Proposals.
 
-**TEPs ≠ ADRs.** TEPs propose changes to the public spec. ADRs
+**MEPs ≠ ADRs.** MEPs propose changes to the public spec. ADRs
 record repository-architecture decisions. The two systems do not
 overlap — see [ADR-0003](../../docs/decisions/0003-rfc-and-proposal-format.md)
 for the full distinction.
@@ -24,8 +24,8 @@ Future possibilities.
 
 ## Numbering
 
-TEPs are numbered by the **PR number at merge time**, four-digit
-zero-padded (`TEP-0017`). Before merge, a discussion PR is
+MEPs are numbered by the **PR number at merge time**, four-digit
+zero-padded (`MEP-0017`). Before merge, a discussion PR is
 referenced by descriptive slug (`teps/inheritance-resolution.md`).
 
 ## Lifecycle
@@ -40,7 +40,7 @@ referenced by descriptive slug (`teps/inheritance-resolution.md`).
 | `deferred` | Paused, may resume. |
 | `rejected` | Declined. |
 | `withdrawn` | Author withdrew. |
-| `superseded` | Replaced by a later TEP (carries `superseded-by: TEP-NNNN`). |
+| `superseded` | Replaced by a later MEP (carries `superseded-by: MEP-NNNN`). |
 
 ## Review
 
@@ -52,7 +52,7 @@ once the maintainer pool exceeds 4 (matching OTel).
 ## Status
 
 Phase 0b. The template and process documentation are in place; the
-first real TEPs land in Phase 1 (Specification Genesis) covering:
+first real MEPs land in Phase 1 (Specification Genesis) covering:
 
 - Composition semantics
 - Inheritance rules
@@ -63,13 +63,13 @@ for the full Phase 1 plan.
 
 ## Index
 
-| TEP | Title | Status |
+| MEP | Title | Status |
 |-----|-------|--------|
 | [0001](./0001-composition-semantics.md) | Composition Semantics | provisional |
 | [0002](./0002-inheritance-rules.md) | Inheritance Rules | provisional |
 | [0003](./0003-provider-compilation-contract.md) | Provider Compilation Contract | provisional |
 
-The three foundational TEPs above define the full semantic model: how
+The three foundational MEPs above define the full semantic model: how
 aesthetic intent composes (0001), inherits (0002), and compiles to
 provider payloads (0003). Together they take a declaration of aesthetic
 intent all the way to a provider-ready request.

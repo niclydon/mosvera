@@ -1,7 +1,7 @@
 {
   "id": "0006-list-merge-by",
   "description": "merge_by correlates by key (identity, not index): matched elements deep-merge, new appended.",
-  "tep": "TEP-0001",
+  "mep": "MEP-0001",
   "rule": "list/merge-by-key",
   "kind": "resolution",
   "input_kind": "composition",

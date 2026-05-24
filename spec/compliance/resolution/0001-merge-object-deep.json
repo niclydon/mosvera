@@ -1,7 +1,7 @@
 {
   "id": "0001-merge-object-deep",
   "description": "Nested objects deep-merge; untouched keys preserved.",
-  "tep": "TEP-0001",
+  "mep": "MEP-0001",
   "rule": "merge/object-deep",
   "kind": "resolution",
   "input_kind": "composition",

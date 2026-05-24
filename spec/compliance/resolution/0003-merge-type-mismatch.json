@@ -1,7 +1,7 @@
 {
   "id": "0003-merge-type-mismatch",
   "description": "Type mismatch (scalar base, object overlay): overlay replaces.",
-  "tep": "TEP-0001",
+  "mep": "MEP-0001",
   "rule": "merge/type-mismatch-replace",
   "kind": "resolution",
   "input_kind": "composition",

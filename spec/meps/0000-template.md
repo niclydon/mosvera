@@ -2,7 +2,7 @@
 SPDX-License-Identifier: CC-BY-4.0
 -->
 
-# TEP-NNNN: <Title>
+# MEP-NNNN: <Title>
 
 **Status:** provisional
 **Author(s):** @your-github-handle
@@ -44,14 +44,14 @@ cite at least three authoritative sources.>
 
 ## Open questions
 
-<What is genuinely undecided as this TEP enters review. Each
+<What is genuinely undecided as this MEP enters review. Each
 open question should be addressable through PR discussion or
 follow-on work, not by hand-waving.>
 
 ## Future possibilities
 
 <What this change enables that's out of scope right now. Hooks
-for future TEPs.>
+for future MEPs.>
 
 ## Sources
 

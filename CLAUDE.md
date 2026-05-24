@@ -2,13 +2,15 @@
 
 Guidance for Claude and other coding agents working in this repository.
 
-> **Naming status.** "Tessera" is the internal **working codename** used
-> during incubation. Brand-collision research confirmed the name is not
-> acquirable for an open standard. The public-facing name is deferred to
-> Phase 6 (public unlock) and will be selected through the full
-> brand-availability process (Google + USPTO + social handles + domains,
-> per Doctrine 5/6) — not just a domain DNS check. Until then, prose in
-> this repo uses "Tessera" as a placeholder.
+> **Naming status.** The project name is **Mosvera**, selected after a
+> full brand-availability process (web search for commercial collisions +
+> domains + GitHub org + npm scope + social handles, per Doctrines 5/6 —
+> not just a domain DNS check, which was the methodology failure that
+> sank the earlier "Tessera" name). Mosvera is clean across
+> `.com`/`.io`/`.dev`/`.org`, the GitHub org, the npm scope, and Bluesky,
+> with no commercial brand collision. The name is settled; the project
+> remains in quiet incubation with public launch deferred to Phase 6. See
+> [ADR-0009](./docs/decisions/0009-project-name-selection.md).
 
 ---
 
@@ -20,7 +22,7 @@ doctrines point to one, that one wins — even if the other is more convenient.
 
 ### 1. Public-first
 
-Tessera is built for strangers, not the author.
+Mosvera is built for strangers, not the author.
 
 - No internal naming, no references to any author's personal platforms,
   systems, side projects, or in-jokes.
@@ -41,7 +43,7 @@ what's familiar or already on hand.
 - "We already have this set up" is not a reason. "This is what comparable open
   standards do" is.
 - If two paths exist, prefer the one that maximizes the chance an unrelated
-  developer or organization picks Tessera up — even when it requires more work.
+  developer or organization picks Mosvera up — even when it requires more work.
 
 ### 3. Spec-neutrality
 
@@ -54,7 +56,7 @@ The specification is language-agnostic.
   justification documented in an ADR.
 - Provider-specific prompt hacks, parameters, or assets never leak into core
   spec definitions. They live exclusively in provider adapters and trace back
-  to the canonical Tessera representation.
+  to the canonical Mosvera representation.
 
 ### 4. Comparable-class framing
 
@@ -84,8 +86,8 @@ The default position on any design, architecture, or systems decision is to
 
 ### 6. Academic-grade documentation
 
-All substantive Tessera documentation — specification prose, MANIFESTO,
-guides, TEPs, ADRs, glossary entries, READMEs that introduce concepts,
+All substantive Mosvera documentation — specification prose, MANIFESTO,
+guides, MEPs, ADRs, glossary entries, READMEs that introduce concepts,
 and any longform — meets an academic-rigor bar. Documentation is not a
 wrapper around the work; it is part of the work.
 
@@ -113,7 +115,7 @@ wrapper around the work; it is part of the work.
   commentary is clearly distinguished from normative text.
 - **Document metadata.** Substantive documents carry date, version, and
   stable identifiers where applicable, so external work can cite
-  Tessera precisely.
+  Mosvera precisely.
 - **Sources section.** Every substantive document ends with a Sources
   or References section enumerating every cited work, even when sources
   are already inlined in the body.
@@ -133,7 +135,7 @@ authoring.
 
 ## Project Identity
 
-Tessera is an open aesthetic infrastructure standard and runtime.
+Mosvera is an open aesthetic infrastructure standard and runtime.
 
 Treat it as a declarative infrastructure layer for aesthetic intent in
 AI-native systems. Do not collapse it into a startup app, SaaS product, image
@@ -148,7 +150,7 @@ Preferred framing:
 - Reusable multimodal identity systems
 - Runtime composition for aesthetic primitives
 
-Avoid framing Tessera as:
+Avoid framing Mosvera as:
 
 - AI image tooling
 - Prompt engineering
@@ -172,7 +174,7 @@ choices behind every structural decision in the repo.
 
 ## Incubation Posture
 
-Assume Tessera is in quiet incubation unless explicitly told otherwise.
+Assume Mosvera is in quiet incubation unless explicitly told otherwise.
 
 The goal is to discover the abstraction correctly before public exposure
 freezes weak concepts too early. Do not add launch copy, marketing pages,
@@ -281,7 +283,7 @@ providers/runway
 ```
 
 Do not bake provider-specific prompt hacks into the core semantic model.
-Keep adapter mappings traceable back to the canonical Tessera representation.
+Keep adapter mappings traceable back to the canonical Mosvera representation.
 
 ## Examples
 

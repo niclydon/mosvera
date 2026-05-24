@@ -1,7 +1,7 @@
 {
   "id": "0019-approximate-warn",
   "description": "An approximate mapping compiles with a warning recording the approximation.",
-  "tep": "TEP-0003",
+  "mep": "MEP-0003",
   "rule": "compile/approximate-warns",
   "kind": "compilation",
   "manifest": {

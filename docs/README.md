@@ -4,7 +4,7 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # docs/
 
-Narrative documentation, guides, and decision records for Tessera.
+Narrative documentation, guides, and decision records for Mosvera.
 
 The substantive root-level documents — `MANIFESTO.md`, `ROADMAP.md`,
 `GLOSSARY.md`, `README.md`, and the governance files (`CONTRIBUTING`,
@@ -26,10 +26,10 @@ directory holds the longer-form supporting material.
 | Type | Location | Purpose | Mutability |
 |------|----------|---------|------------|
 | **ADR** | `docs/decisions/` | Repo architecture decisions | Immutable once accepted |
-| **TEP** | [`spec/teps/`](../spec/teps/) | Spec changes | Tracked through a lifecycle |
+| **MEP** | [`spec/meps/`](../spec/meps/) | Spec changes | Tracked through a lifecycle |
 | **Guide** | `docs/guides/` | How-tos and concept guides for users | Living, updated as software evolves |
 
-The TEP/ADR distinction is binding — see
+The MEP/ADR distinction is binding — see
 [ADR-0003](./decisions/0003-rfc-and-proposal-format.md).
 
 ## License

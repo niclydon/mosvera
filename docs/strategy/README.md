@@ -4,12 +4,12 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # docs/strategy/
 
-Long-form strategic documents that frame Tessera's positioning,
+Long-form strategic documents that frame Mosvera's positioning,
 incubation posture, and eventual ecosystem trajectory.
 
 | File | Purpose |
 |------|---------|
-| [`strategic-plan.md`](./strategic-plan.md) | The original strategic ecosystem plan that informed Tessera's repository structure, naming strategy, and incubation sequence. |
+| [`strategic-plan.md`](./strategic-plan.md) | The original strategic ecosystem plan that informed Mosvera's repository structure, naming strategy, and incubation sequence. |
 
 ## Relationship to other documents
 
@@ -21,7 +21,7 @@ incubation posture, and eventual ecosystem trajectory.
   thinking. The "where the project ends up if it succeeds" material.
 
 The strategic plan is treated as a historical anchor: it captures
-the framing that produced Tessera. Updates to strategic direction
+the framing that produced Mosvera. Updates to strategic direction
 go through new documents in this directory rather than rewriting
 the existing one, preserving the chronological record of how the
 project's thinking evolved.

@@ -6,7 +6,7 @@
 
 ## Context
 
-Tessera's wire format (schema field names that appear in YAML/JSON/MCP payloads) will be consumed by runtimes in multiple languages — TypeScript, Python, Rust, Go at minimum — and by humans authoring schemas by hand. The choice of casing convention for field names is a one-way door once external implementations exist: changing it is a breaking-change avalanche across every runtime and provider adapter.
+Mosvera's wire format (schema field names that appear in YAML/JSON/MCP payloads) will be consumed by runtimes in multiple languages — TypeScript, Python, Rust, Go at minimum — and by humans authoring schemas by hand. The choice of casing convention for field names is a one-way door once external implementations exist: changing it is a breaking-change avalanche across every runtime and provider adapter.
 
 Three questions:
 1. What conventions do the comparable-class specs use, and why?
@@ -42,16 +42,16 @@ Every language has an idiomatic, well-trodden path for either camelCase or snake
 
 ## Decision
 
-**Tessera schemas use `snake_case` for wire-format field names.**
+**Mosvera schemas use `snake_case` for wire-format field names.**
 
 Justification, in priority order:
 1. **Spec-neutrality doctrine.** snake_case is the convention most clearly *not* native to any one host language. camelCase telegraphs "JavaScript/Java first." snake_case is native to Python, Rust, Terraform, Protobuf wire — a more neutral home.
-2. **Lossless bidirectional mapping.** snake_case → camelCase is mechanical and unambiguous; the reverse is not (`apiVersion` → `api_version` or `apiv_ersion`?). Protobuf chose snake_case for exactly this reason; Tessera inherits the same constraint as a multi-language spec.
+2. **Lossless bidirectional mapping.** snake_case → camelCase is mechanical and unambiguous; the reverse is not (`apiVersion` → `api_version` or `apiv_ersion`?). Protobuf chose snake_case for exactly this reason; Mosvera inherits the same constraint as a multi-language spec.
 3. **Human readability for aesthetic primitives.** Field names like `color_palette`, `lighting_intent`, `motion_signature`, `provider_override` are more legible in snake_case than `colorPalette` / `colorpalette`. Aesthetic vocabulary tends toward multi-word terms; the separator helps.
-4. **YAML-first authoring.** Many Tessera schemas will be hand-authored in YAML (the aesthetic templates, the inheritance examples). snake_case is the YAML community's dominant convention for hand-authored config (Ansible, Kubernetes manifests-in-YAML notwithstanding, Terraform, dbt, GitHub Actions).
+4. **YAML-first authoring.** Many Mosvera schemas will be hand-authored in YAML (the aesthetic templates, the inheritance examples). snake_case is the YAML community's dominant convention for hand-authored config (Ansible, Kubernetes manifests-in-YAML notwithstanding, Terraform, dbt, GitHub Actions).
 5. **Doesn't preclude camelCase elsewhere.** Runtimes are expected to expose idiomatic accessors per Protobuf precedent (see below).
 
-**Reserved prefix:** `$`-prefixed keys are reserved for Tessera spec directives, following JSON Schema's precedent (`$schema`, `$id`, `$ref`, `$extends`, `$compose`). User-defined field names MUST NOT begin with `$`. This gives the spec a safe namespace for evolution without future field-name collisions.
+**Reserved prefix:** `$`-prefixed keys are reserved for Mosvera spec directives, following JSON Schema's precedent (`$schema`, `$id`, `$ref`, `$extends`, `$compose`). User-defined field names MUST NOT begin with `$`. This gives the spec a safe namespace for evolution without future field-name collisions.
 
 **Forbidden characters:** ASCII lowercase, digits, and underscore only — `[a-z][a-z0-9_]*`. No hyphens (breaks JS dot-notation), no uppercase (case-sensitivity surprises across protocols, per the CloudEvents rationale), no dots (reserved for path traversal in MCP queries).
 
@@ -66,11 +66,11 @@ Justification, in priority order:
 | Rust runtime accessors | snake_case (native, serde aliased) | `template.color_palette` |
 | Go runtime accessors | PascalCase, struct-tagged | `template.ColorPalette` |
 
-This explicit split is normative: **the wire format is the contract; idiomatic accessors are a runtime convenience and SHOULD be provided by every Tessera runtime.**
+This explicit split is normative: **the wire format is the contract; idiomatic accessors are a runtime convenience and SHOULD be provided by every Mosvera runtime.**
 
 ## Consequences
 
-- Hand-authored Tessera schema files read naturally and consistently across the comparable class of declarative-infra projects (Terraform, K8s YAML manifests, dbt).
+- Hand-authored Mosvera schema files read naturally and consistently across the comparable class of declarative-infra projects (Terraform, K8s YAML manifests, dbt).
 - TypeScript runtime requires a translation layer (or a `rename_all`-style helper) to expose camelCase accessors. This is solved territory (libraries like `humps`, `change-case`, or schema-codegen handle it) and the cost is one-time, runtime-side.
 - The wire format is portable across protocols that vary in case-sensitivity (HTTP headers, MQTT topics, MCP JSON-RPC) without surprises — snake_case is unambiguous in all of them.
 - The `$`-prefix reservation gives the spec headroom for evolution; future spec directives won't collide with aesthetic-vocabulary field names users invent.
@@ -79,10 +79,10 @@ This explicit split is normative: **the wire format is the contract; idiomatic a
 
 ## Sources
 
-1. [Kubernetes API Conventions](https://github.com/kubernetes/community/blob/main/contributors/devel/sig-architecture/api-conventions.md) — Established camelCase as the dominant choice for one major comparable; Tessera diverges deliberately on spec-neutrality grounds.
-2. [Vacuum OpenAPI Linter — camel-case-properties rule](https://quobix.com/vacuum/rules/schemas/camel-case-properties/) — Documented the OpenAPI ecosystem's camelCase rationale (codegen compatibility, JS dot-notation access) which Tessera weighed and rejected as JS-centric.
-3. [UN/CEFACT OpenAPI Naming and Design Rules](https://unece.org/sites/default/files/2023-07/API-TECH-SPEC_OpenAPI_NDR_version1p0.pdf) — Formal standards-body OpenAPI guidance reinforcing camelCase as the OpenAPI norm, the convention Tessera is consciously not adopting.
-4. [JSON Schema Core Specification](https://github.com/json-schema-org/json-schema-spec/blob/main/specs/jsonschema-core.md) — Source of the `$`-prefix reservation pattern Tessera adopts for spec directives.
-5. [Protocol Buffers Style Guide](https://protobuf.dev/programming-guides/style/) — Primary precedent for snake_case wire format with language-idiomatic codegen translation; the model Tessera's wire/runtime split follows.
-6. [CloudEvents Specification](https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md) — Source of the case-sensitivity-across-protocols rationale that led Tessera to forbid uppercase in wire-format field names.
-7. [CloudEvents SDK Java Issue #32 — Spec lowercase vs JSON camelCase](https://github.com/cloudevents/sdk-java/issues/32) — Real-world evidence of the friction caused when wire-format and language-idiomatic conventions aren't explicitly bridged; informed Tessera's explicit normative mapping table.
+1. [Kubernetes API Conventions](https://github.com/kubernetes/community/blob/main/contributors/devel/sig-architecture/api-conventions.md) — Established camelCase as the dominant choice for one major comparable; Mosvera diverges deliberately on spec-neutrality grounds.
+2. [Vacuum OpenAPI Linter — camel-case-properties rule](https://quobix.com/vacuum/rules/schemas/camel-case-properties/) — Documented the OpenAPI ecosystem's camelCase rationale (codegen compatibility, JS dot-notation access) which Mosvera weighed and rejected as JS-centric.
+3. [UN/CEFACT OpenAPI Naming and Design Rules](https://unece.org/sites/default/files/2023-07/API-TECH-SPEC_OpenAPI_NDR_version1p0.pdf) — Formal standards-body OpenAPI guidance reinforcing camelCase as the OpenAPI norm, the convention Mosvera is consciously not adopting.
+4. [JSON Schema Core Specification](https://github.com/json-schema-org/json-schema-spec/blob/main/specs/jsonschema-core.md) — Source of the `$`-prefix reservation pattern Mosvera adopts for spec directives.
+5. [Protocol Buffers Style Guide](https://protobuf.dev/programming-guides/style/) — Primary precedent for snake_case wire format with language-idiomatic codegen translation; the model Mosvera's wire/runtime split follows.
+6. [CloudEvents Specification](https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md) — Source of the case-sensitivity-across-protocols rationale that led Mosvera to forbid uppercase in wire-format field names.
+7. [CloudEvents SDK Java Issue #32 — Spec lowercase vs JSON camelCase](https://github.com/cloudevents/sdk-java/issues/32) — Real-world evidence of the friction caused when wire-format and language-idiomatic conventions aren't explicitly bridged; informed Mosvera's explicit normative mapping table.

@@ -1,7 +1,7 @@
 {
   "id": "0002-merge-scalar-override",
   "description": "Later layer's scalar overrides; other fields preserved.",
-  "tep": "TEP-0001",
+  "mep": "MEP-0001",
   "rule": "merge/scalar-override",
   "kind": "resolution",
   "input_kind": "composition",

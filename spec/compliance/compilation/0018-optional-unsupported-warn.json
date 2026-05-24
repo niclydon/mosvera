@@ -1,7 +1,7 @@
 {
   "id": "0018-optional-unsupported-warn",
   "description": "An optional construct the adapter cannot represent compiles with a warning (dropped), never silently.",
-  "tep": "TEP-0003",
+  "mep": "MEP-0003",
   "rule": "compile/optional-unsupported-warns",
   "kind": "compilation",
   "manifest": {

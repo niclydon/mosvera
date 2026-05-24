@@ -1,7 +1,7 @@
 {
   "id": "0005-list-append",
   "description": "append strategy concatenates overlay onto base list.",
-  "tep": "TEP-0001",
+  "mep": "MEP-0001",
   "rule": "list/append",
   "kind": "resolution",
   "input_kind": "composition",

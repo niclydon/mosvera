@@ -4,7 +4,7 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # runtime/
 
-The Tessera reference runtime — parses schemas, resolves
+The Mosvera reference runtime — parses schemas, resolves
 inheritance, merges modifiers, composes primitives, validates
 structures, and compiles provider outputs.
 
@@ -29,7 +29,7 @@ correctness contract.
 |--------|---------------|
 | `src/parser` | Load and validate spec documents (YAML/JSON → typed AST). |
 | `src/resolver` | Walk inheritance chains; detect cycles. |
-| `src/merger` | Apply modifier merge semantics per TEP. |
+| `src/merger` | Apply modifier merge semantics per MEP. |
 | `src/composer` | Produce a canonical composition object. |
 | `src/validator` | Runtime-level structural validation. |
 | `src/compiler` | Translate canonical model → provider payloads (with adapters). |
@@ -56,5 +56,5 @@ Apache-2.0 per
 ## Eventual repo split
 
 This directory is the seed of a future standalone repository at
-`github.com/tessera/runtime` per
+`github.com/mosvera/runtime` per
 [ADR-0002](../docs/decisions/0002-top-level-repository-layout.md).

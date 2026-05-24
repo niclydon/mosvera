@@ -2,7 +2,7 @@
 SPDX-License-Identifier: CC-BY-4.0
 -->
 
-# TEP-0003: Provider Compilation Contract
+# MEP-0003: Provider Compilation Contract
 
 **Status:** provisional
 **Author(s):** Founding maintainer
@@ -12,18 +12,18 @@ SPDX-License-Identifier: CC-BY-4.0
 **Superseded by:** —
 
 > **Numbering note.** Provisional number `0003` during solo incubation, per
-> the convention established in [TEP-0001](./0001-composition-semantics.md).
+> the convention established in [MEP-0001](./0001-composition-semantics.md).
 
 ## Motivation
 
-[TEP-0001](./0001-composition-semantics.md) and
-[TEP-0002](./0002-inheritance-rules.md) define how aesthetic intent resolves
+[MEP-0001](./0001-composition-semantics.md) and
+[MEP-0002](./0002-inheritance-rules.md) define how aesthetic intent resolves
 into a single, deterministic, provider-neutral **canonical resolved
-composition**. This TEP closes the loop: it defines how that canonical model
+composition**. This MEP closes the loop: it defines how that canonical model
 is **compiled into provider-specific payloads** by provider adapters —
 turning intent into an actual OpenAI or FLUX request.
 
-This is the contract that makes Tessera's central claim falsifiable. The
+This is the contract that makes Mosvera's central claim falsifiable. The
 project asserts that one declaration of aesthetic intent can target multiple
 genuinely different execution surfaces. The proof is a worked compilation of
 the same canonical composition to two providers whose APIs diverge on every
@@ -34,19 +34,19 @@ moderation vs FLUX's client-tunable `safety_tolerance`), and image input
 (OpenAI's multimodal input vs FLUX's `input_image`). These divergences are
 documented in [ADR-0008](../../docs/decisions/0008-provider-adapter-pairing.md).
 If a single canonical model compiles cleanly to both, the abstraction is
-real; if it only works for one, Tessera is an OpenAI wrapper with extra steps.
+real; if it only works for one, Mosvera is an OpenAI wrapper with extra steps.
 
-The hard problem this TEP must solve is **lossy compilation**: the canonical
+The hard problem this MEP must solve is **lossy compilation**: the canonical
 model can express intent a given provider cannot exactly fulfill. The contract
 must define, precisely and in the spec rather than per-implementer, what
 happens then — map, approximate, emulate, warn, or error — so that loss is
 never silent.
 
-This TEP does **not** define:
+This MEP does **not** define:
 
 - The merge algebra, inheritance, or how the canonical model is produced —
-  [TEP-0001](./0001-composition-semantics.md) and
-  [TEP-0002](./0002-inheritance-rules.md).
+  [MEP-0001](./0001-composition-semantics.md) and
+  [MEP-0002](./0002-inheritance-rules.md).
 - The concrete field schemas of aesthetic primitives —
   [`spec/schemas/`](../schemas/).
 - The wire-level details of any specific provider API beyond what the worked
@@ -143,7 +143,7 @@ The two rules that matter most:
   ([Pandoc #6797](https://github.com/jgm/pandoc/issues/6797)). OpenTelemetry,
   by contrast, specifies coercion-then-drop in normative SHOULD/MUST terms
   ([OTel Prometheus compatibility](https://opentelemetry.io/docs/specs/otel/compatibility/prometheus_and_openmetrics/));
-  Tessera follows OTel.
+  Mosvera follows OTel.
 
 ### The compiled artifact
 
@@ -160,7 +160,7 @@ compiled_artifact:
 
 The `provenance` map traces each emitted payload field back to the canonical
 construct that produced it and the precedence layer that won it (the modifier
-or ancestor, per TEP-0001's legible precedence order). Like LLVM's debug-info
+or ancestor, per MEP-0001's legible precedence order). Like LLVM's debug-info
 channel, which marks a variable location "unavailable" once it is folded away
 ([LLVM Source Level Debugging](https://llvm.org/docs/SourceLevelDebugging.html)),
 the provenance map MUST record where a construct was approximated or dropped,
@@ -213,7 +213,7 @@ The determinism boundary sits precisely at the **payload emission line**:
   ([SQLAlchemy Connections](https://docs.sqlalchemy.org/en/20/core/connections.html)).
 - **Generation is explicitly NOT deterministic.** Once the payload is
   submitted, the provider's model, seed handling, sampler, and server-side
-  moderation govern the output. That non-determinism is outside Tessera's
+  moderation govern the output. That non-determinism is outside Mosvera's
   guarantee and is the provider's domain.
 
 The compiled artifact (payload + warnings + provenance) is therefore a
@@ -229,7 +229,7 @@ the client polls until ready) is **entirely the adapter's concern**. The
 runtime sees one interface: submit a compiled artifact, receive a result (or a
 handle that resolves to one). Transport divergence MUST NOT leak into the
 canonical model or the runtime's composition logic. This is why transport
-appears nowhere in TEP-0001/0002 — it is a rendering concern, fenced inside the
+appears nowhere in MEP-0001/0002 — it is a rendering concern, fenced inside the
 adapter, exactly as LLVM keeps calling-convention and scheduling details inside
 the target backend.
 
@@ -242,7 +242,7 @@ format-tagged raw blocks
 ([Pandoc Manual](https://pandoc.org/MANUAL.html)). Such a construct:
 
 1. MUST be explicitly tagged with the target provider it applies to.
-2. MUST be treated as opaque by the canonical merge (TEP-0001) — it
+2. MUST be treated as opaque by the canonical merge (MEP-0001) — it
    participates in precedence but its contents are never interpreted by the
    core.
 3. MUST be consumed only by the matching adapter and MUST emit a warning if it
@@ -252,12 +252,12 @@ format-tagged raw blocks
 Escape hatches are a controlled concession, not an encouraged pattern. Their
 existence MUST NOT become a reason to leave intent unmodeled; recurring use of
 a passthrough is a signal to promote that capability into the canonical model
-via a TEP.
+via a MEP.
 
 ## Worked example: one composition, two providers
 
 The canonical resolved composition (illustrative; produced by resolving a
-template + modifiers per TEP-0001/0002):
+template + modifiers per MEP-0001/0002):
 
 ```yaml
 # canonical resolved composition (provider-neutral)
@@ -337,7 +337,7 @@ not negotiable.
 - **Escape hatches risk becoming a dumping ground.** A provider-tagged
   passthrough could be abused to avoid modeling intent canonically.
   **Mitigation:** passthroughs are fenced, warned on mismatch, and explicitly
-  flagged as a signal to promote the capability via a TEP — not a sanctioned
+  flagged as a signal to promote the capability via a MEP — not a sanctioned
   long-term home for unmodeled intent.
 
 ## Prior art and alternatives
@@ -347,7 +347,7 @@ precedents:
 
 - **LLVM IR + target backends** — the canonical one-IR-many-targets compiler.
   Source of the enumerated lowering-action model (`setOperationAction`:
-  Expand/Promote/Custom → Tessera's `native`/`approximate`/`emulate`/`unsupported`),
+  Expand/Promote/Custom → Mosvera's `native`/`approximate`/`emulate`/`unsupported`),
   the queryable target-capability description, the semantics-vs-rendering
   boundary, and the debug-info provenance channel that honestly marks where
   traceability degrades.
@@ -367,7 +367,7 @@ precedents:
 - **OpenTelemetry exporters + semantic conventions** — the project's namesake.
   Source of "define the canonical model against a lossless reference (OTLP),
   not the lowest-common-denominator backend," and of normative SHOULD-coerce /
-  MUST-drop loss rules. Tessera improves on OTel by making the capability
+  MUST-drop loss rules. Mosvera improves on OTel by making the capability
   manifest machine-readable rather than prose-only.
   ([OTel Semantic Conventions](https://opentelemetry.io/docs/concepts/semantic-conventions/),
   [Collector](https://opentelemetry.io/docs/collector/),
@@ -376,11 +376,11 @@ precedents:
   (design tokens → divergent platform outputs), proving the
   neutral-model/platform-transform split works in an aesthetic domain. Also a
   cautionary case: it silently passes unexpressible tokens through unchanged.
-  Tessera does the opposite — no silent passthrough.
+  Mosvera does the opposite — no silent passthrough.
   ([Style Dictionary Transforms](https://styledictionary.com/reference/hooks/transforms/))
 - **Pandoc** — source of honest-degradation discipline (format-tagged raw
   passthrough, warn-on-drop) and a cautionary case of silent raw-block drops
-  when target-matching is fuzzy. Tessera's escape hatch adopts the fenced,
+  when target-matching is fuzzy. Mosvera's escape hatch adopts the fenced,
   warned form and requires exact target matching.
   ([Pandoc Manual](https://pandoc.org/MANUAL.html),
   [Pandoc #6797](https://github.com/jgm/pandoc/issues/6797))
@@ -396,25 +396,25 @@ intersection of supported providers.** This would guarantee every construct
 compiles everywhere with no loss — and would gut the abstraction, because the
 canonical model could express only what the least-capable provider supports.
 OpenTelemetry's lesson is decisive: define the model against a lossless
-reference and let weaker targets be lossy consumers. Tessera models the full
+reference and let weaker targets be lossy consumers. Mosvera models the full
 aesthetic intent and lets adapters degrade, with declared criticality
 governing whether degradation is an error or a warning.
 
 **Alternative considered and rejected: silent best-effort compilation.** The
 simplest implementation maps what it can and ignores the rest. Rejected
 outright — it is the single most-cited failure mode across the survey (Style
-Dictionary, Pandoc), and it violates the legibility commitment Tessera made in
-TEP-0001. Loss must always be visible.
+Dictionary, Pandoc), and it violates the legibility commitment Mosvera made in
+MEP-0001. Loss must always be visible.
 
 ## Open questions
 
-1. **Composition-level criticality override.** This TEP says a composition MAY
+1. **Composition-level criticality override.** This MEP says a composition MAY
    elevate an optional construct to required. The directive form (e.g.
-   `$require: [field, …]`) and its interaction with the TEP-0001 merge need a
+   `$require: [field, …]`) and its interaction with the MEP-0001 merge need a
    worked example before being specified normatively.
 2. **Approximation-profile conformance.** Should `approximate` mappings (e.g.
    the quality→steps/guidance profile) be conformance-tested against reference
-   outputs, or left to adapter authors? Likely a later, separate TEP once
+   outputs, or left to adapter authors? Likely a later, separate MEP once
    there is generation experience.
 3. **Capability-manifest format.** The manifest is required to be
    machine-readable; its concrete schema (a JSON Schema in

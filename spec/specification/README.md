@@ -4,7 +4,7 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # spec/specification/
 
-Normative prose specification for Tessera, versioned per the
+Normative prose specification for Mosvera, versioned per the
 comparable-class pattern (OpenAPI's `versions/`, OpenTelemetry's
 `specification/`).
 
@@ -12,7 +12,7 @@ comparable-class pattern (OpenAPI's `versions/`, OpenTelemetry's
 
 | Directory | Purpose |
 |-----------|---------|
-| `draft/` | Work-in-progress next version. The current draft is the one TEPs target when they reach `accepted` status. |
+| `draft/` | Work-in-progress next version. The current draft is the one MEPs target when they reach `accepted` status. |
 | `0.1/`, `0.2/`, … | Ratified, immutable versioned specifications. Once a version is cut, its directory contents do not change except for non-normative editorial fixes. |
 
 ## Status

@@ -4,7 +4,7 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # mcp/
 
-The Tessera Model Context Protocol (MCP) server. Exposes the
+The Mosvera Model Context Protocol (MCP) server. Exposes the
 [runtime](../runtime/)'s capabilities as standardized MCP tools so
 AI-native systems — agents, copilots, editors, automated content
 pipelines — can resolve and compile aesthetic compositions without
@@ -18,7 +18,7 @@ re-implementing the runtime.
 | `resolve_composition` | Walk inheritance, merge modifiers, return the canonical model for a composition. |
 | `compile_generation` | Compile a canonical model to a provider-specific payload via the named provider adapter. |
 | `get_palette` | Resolve a palette by name, returning its semantic roles and color values. |
-| `validate_schema` | Validate a Tessera document against the published schemas; return structured errors. |
+| `validate_schema` | Validate a Mosvera document against the published schemas; return structured errors. |
 
 Each tool ships with a strict JSON schema for inputs and outputs
 and well-defined error responses. No do-everything calls — small,
@@ -52,5 +52,5 @@ Apache-2.0 per
 ## Eventual repo split
 
 This directory is the seed of a future standalone repository at
-`github.com/tessera/mcp` per
+`github.com/mosvera/mcp` per
 [ADR-0002](../docs/decisions/0002-top-level-repository-layout.md).

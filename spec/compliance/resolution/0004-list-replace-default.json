@@ -1,7 +1,7 @@
 {
   "id": "0004-list-replace-default",
   "description": "Default list strategy is replace (whole list).",
-  "tep": "TEP-0001",
+  "mep": "MEP-0001",
   "rule": "list/replace-default",
   "kind": "resolution",
   "input_kind": "composition",

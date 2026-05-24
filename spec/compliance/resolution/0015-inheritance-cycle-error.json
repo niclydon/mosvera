@@ -1,7 +1,7 @@
 {
   "id": "0015-inheritance-cycle-error",
   "description": "A cyclic $extends graph MUST error; no resolved template emitted.",
-  "tep": "TEP-0002",
+  "mep": "MEP-0002",
   "rule": "inheritance/cycle-detection",
   "kind": "resolution",
   "input_kind": "template",

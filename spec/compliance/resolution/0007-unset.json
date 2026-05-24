@@ -1,7 +1,7 @@
 {
   "id": "0007-unset",
   "description": "$unset removes an inherited field; no null overloading.",
-  "tep": "TEP-0001",
+  "mep": "MEP-0001",
   "rule": "directive/unset",
   "kind": "resolution",
   "input_kind": "composition",

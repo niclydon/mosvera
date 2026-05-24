@@ -4,7 +4,7 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # Manifesto
 
-Tessera is a declarative runtime for aesthetic intent.
+Mosvera is a declarative runtime for aesthetic intent.
 
 It is not a prompt manager. It is not an image generator. It is not a
 branding tool, a creator app, or a single-vendor workflow. It is the
@@ -46,7 +46,7 @@ inherited, composed, and compiled. It is the structural model of a
 visual or multimodal identity that holds across providers, models,
 and time.
 
-Tessera models aesthetic intent as a small set of primitives:
+Mosvera models aesthetic intent as a small set of primitives:
 
 - **Templates** define reusable starting points (a cinematic editorial
   template, a documentary-realism template, a dashboard-minimalism
@@ -103,7 +103,7 @@ that won the long run modeled their domain *above* the provider layer
 and let the providers compete on execution beneath it. OpenAPI did
 this for HTTP services. OpenTelemetry did this for instrumentation.
 Terraform did this for infrastructure. CloudEvents did this for event
-metadata. The shape of Tessera is the same shape, applied to
+metadata. The shape of Mosvera is the same shape, applied to
 aesthetic intent.
 
 This is not theoretical. The same brand identity should be expressible
@@ -127,7 +127,7 @@ explicitly rather than swallowed silently.
 The composition substrate has to be a runtime — not a build step,
 not a code generator — because aesthetic systems are *evaluated* by
 AI agents and creative tools at the moment of generation. The MCP
-surface that exposes Tessera's primitives to AI-native systems is
+surface that exposes Mosvera's primitives to AI-native systems is
 how aesthetic intent becomes addressable infrastructure: an agent
 asks for a composition, the runtime resolves it, the compiler emits
 the provider call, the execution happens. No string-glue in between.
@@ -145,7 +145,7 @@ The only known way to make a multimodal identity coherent across
 that surface is to declare it once, structurally, and compile it
 per-modality. UI design systems learned this lesson with design
 tokens; the W3C Design Tokens Format Module is the formalization of
-that learning for the UI side. Tessera is the equivalent move on the
+that learning for the UI side. Mosvera is the equivalent move on the
 *generative* side: a declarative representation of multimodal
 aesthetic identity, with a compiler that emits the per-provider,
 per-modality calls.
@@ -166,33 +166,33 @@ share an authentication vocabulary, a logging vocabulary, an API
 vocabulary. This is not glamorous infrastructure. It is necessary
 infrastructure.
 
-## Where Tessera sits among adjacent work
+## Where Mosvera sits among adjacent work
 
-Tessera is being built with explicit awareness of adjacent prior art:
+Mosvera is being built with explicit awareness of adjacent prior art:
 
 - The W3C Design Tokens Community Group (DTCG) formalizes a
   vendor-neutral exchange format for static design primitives. Where
-  Tessera's primitives overlap (color, dimension, typography),
-  Tessera aims to be DTCG-compatible at the export boundary. Tessera
+  Mosvera's primitives overlap (color, dimension, typography),
+  Mosvera aims to be DTCG-compatible at the export boundary. Mosvera
   picks up where DTCG stops: generative-target compilation,
   composition semantics over the primitives, runtime evaluation.
 - Style Dictionary is the canonical pattern for "tokens → multi-
-  platform transforms." Tessera's compiler contract is structurally
+  platform transforms." Mosvera's compiler contract is structurally
   the same idea applied to generative provider payloads instead of
   CSS variables.
 - DSPy, BAML, and the broader declarative-prompt research line cover
-  composition and optimization for *text-LLM* pipelines. Tessera
+  composition and optimization for *text-LLM* pipelines. Mosvera
   intentionally does not redo this work; the target is multimodal
   aesthetic intent, not text-completion pipelines.
 
-Tessera's claim is narrow and specific: a provider-neutral, MCP-
+Mosvera's claim is narrow and specific: a provider-neutral, MCP-
 native runtime for declarative aesthetic intent targeting generative
 multimodal output. Nobody else is currently in that intersection.
 The gap is real. The doctrine is to fill it without overclaiming.
 
 ## What this project is, and what it isn't
 
-Tessera is:
+Mosvera is:
 
 - A specification (long-term center of gravity)
 - A reference runtime (TypeScript first; Python committed)
@@ -200,7 +200,7 @@ Tessera is:
 - A provider adapter set (OpenAI, FLUX at minimum, more by community)
 - A growing example corpus
 
-Tessera is not:
+Mosvera is not:
 
 - A SaaS product
 - A creator-facing UI
@@ -209,7 +209,7 @@ Tessera is not:
 - A branding agency tool
 - A single-vendor workflow
 
-If you are looking for any of those, Tessera is the substrate they
+If you are looking for any of those, Mosvera is the substrate they
 should be built on top of. It is not those things itself.
 
 ## What "done" looks like

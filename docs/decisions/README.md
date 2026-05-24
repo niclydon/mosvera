@@ -1,6 +1,6 @@
 # Architecture Decision Records (ADRs)
 
-This directory holds Architecture Decision Records for Tessera's repository
+This directory holds Architecture Decision Records for Mosvera's repository
 architecture, infrastructure choices, and governance decisions.
 
 ADRs follow the [Nygard format](https://martinfowler.com/bliki/ArchitectureDecisionRecord.html):
@@ -8,17 +8,17 @@ short, immutable, retrospective records of decisions already made. Once
 accepted, an ADR is **never edited** — it is superseded by a later ADR if the
 decision changes.
 
-## ADRs vs TEPs
+## ADRs vs MEPs
 
-Tessera uses **two distinct document types**:
+Mosvera uses **two distinct document types**:
 
 | Type | Location | Purpose | Mutability |
 |------|----------|---------|------------|
 | **ADR** | `docs/decisions/` | Repo architecture, license, layout, naming, governance | Immutable once accepted |
-| **TEP** | `spec/teps/` | Tessera Enhancement Proposals — changes to the public spec | Tracked through a lifecycle (provisional → accepted → implementable → implemented → final) |
+| **MEP** | `spec/meps/` | Mosvera Enhancement Proposals — changes to the public spec | Tracked through a lifecycle (provisional → accepted → implementable → implemented → final) |
 
 See [ADR-0003](./0003-rfc-and-proposal-format.md) for the full distinction
-and the TEP process design.
+and the MEP process design.
 
 ## Format
 
@@ -52,3 +52,4 @@ Required sections:
 | [0006](./0006-prior-art-survey.md) | Prior art survey for aesthetic infrastructure | Accepted |
 | [0007](./0007-reference-runtime-language.md) | Reference runtime language | Accepted |
 | [0008](./0008-provider-adapter-pairing.md) | Phase 4 provider adapter pairing | Accepted |
+| [0009](./0009-project-name-selection.md) | Project name selection — Mosvera | Accepted |

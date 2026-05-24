@@ -6,7 +6,7 @@
 
 ## Context
 
-Tessera Phase 4 ships two provider adapters as the first interoperability proof. The purpose of the pair is to demonstrate that a single canonical aesthetic composition compiles cleanly into two genuinely different provider parameter surfaces — i.e., to prove the abstraction is real and not an OpenAI-shaped DSL with extra steps.
+Mosvera Phase 4 ships two provider adapters as the first interoperability proof. The purpose of the pair is to demonstrate that a single canonical aesthetic composition compiles cleanly into two genuinely different provider parameter surfaces — i.e., to prove the abstraction is real and not an OpenAI-shaped DSL with extra steps.
 
 Selection criteria:
 - **Surface divergence** — the two providers should expose meaningfully different parameter shapes so the modifier/inheritance model is stressed.
@@ -54,9 +54,9 @@ This pairing is confirmed because:
 1. **Maximum surface divergence among the practical candidates.** Sync request/response vs async polling-URL transport, enum-coded quality vs numeric steps/guidance, fundamentally different moderation models, different image-input semantics. The compiler must reconcile genuinely different shapes — exactly the stress the abstraction needs.
 2. **Lowest contributor friction.** Both providers have self-service API keys, no waitlist, sane error responses, official documentation, and first-party Python + TS SDKs the adapters can sit on top of.
 3. **No licensing obstacles.** Both adapter implementations target hosted APIs under standard commercial TOS that explicitly permits programmatic use.
-4. **Useful market coverage.** OpenAI is the default for AI-native app developers; FLUX is the strongest non-OpenAI hosted image API in late 2025 / 2026 and the credible alternative for teams who explicitly want non-OpenAI lineage. Demonstrating Tessera against both addresses the two largest hosted-image audiences.
-5. **Open-weights coverage deferred but not abandoned.** SDXL via Replicate will land as the **first community adapter** post-Phase-4 (target: Phase 5), giving us the closed/open axis without overloading Phase 4. FLUX.2 `klein` (Apache 2.0) is a candidate for a future *local-weights* adapter, which would let Tessera demonstrate the same composition compiling to a self-hosted execution surface.
-6. **Runway Gen-4 deferred to Phase 6 (motion).** Runway is the natural adapter for when Tessera introduces motion/temporal primitives. Adding it in Phase 4 would dilute the image-generation demonstration.
+4. **Useful market coverage.** OpenAI is the default for AI-native app developers; FLUX is the strongest non-OpenAI hosted image API in late 2025 / 2026 and the credible alternative for teams who explicitly want non-OpenAI lineage. Demonstrating Mosvera against both addresses the two largest hosted-image audiences.
+5. **Open-weights coverage deferred but not abandoned.** SDXL via Replicate will land as the **first community adapter** post-Phase-4 (target: Phase 5), giving us the closed/open axis without overloading Phase 4. FLUX.2 `klein` (Apache 2.0) is a candidate for a future *local-weights* adapter, which would let Mosvera demonstrate the same composition compiling to a self-hosted execution surface.
+6. **Runway Gen-4 deferred to Phase 6 (motion).** Runway is the natural adapter for when Mosvera introduces motion/temporal primitives. Adding it in Phase 4 would dilute the image-generation demonstration.
 7. **Midjourney explicitly excluded** until/unless a broadly available official API ships. Unofficial integrations are a license-doctrine violation.
 
 The provisional OpenAI + Flux pick **survives research, with FLUX.2-pro specified as the FLUX target** (not FLUX.1-pro) since FLUX.2 is the current generation as of the November 2025 launch and ships an image-editing surface (`input_image`) that's interesting to model in the spec.
@@ -69,8 +69,8 @@ The provisional OpenAI + Flux pick **survives research, with FLUX.2-pro specifie
 - Adapter implementations should sit on top of each provider's official SDK, not raw HTTP, to inherit error semantics and retry behavior.
 - Examples in the Phase 4 release must include at least one composition that compiles successfully to *both* adapters with visibly comparable output, to make the abstraction claim concretely demonstrable.
 - The Phase 5 plan should land the SDXL-via-Replicate adapter to introduce the open-weights / community-aggregator axis.
-- The Phase 6 plan should land the Runway adapter once Tessera's motion primitives are designed.
-- We must add a documented exclusion policy: Tessera will not accept provider adapters that rely on unofficial / reverse-engineered APIs (closes the door on Midjourney via third parties).
+- The Phase 6 plan should land the Runway adapter once Mosvera's motion primitives are designed.
+- We must add a documented exclusion policy: Mosvera will not accept provider adapters that rely on unofficial / reverse-engineered APIs (closes the door on Midjourney via third parties).
 
 ## Sources
 

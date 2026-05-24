@@ -4,7 +4,7 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # Governance
 
-This document records how Tessera makes decisions today and how the
+This document records how Mosvera makes decisions today and how the
 project will transition its governance model as it grows. It is the
 honest record of where the project actually is — not where it aspires
 to be.
@@ -14,7 +14,7 @@ The decisions in this document are grounded in
 
 ## Current model: Benevolent Dictator (BDFL)
 
-Tessera is currently maintained by a single author who holds final
+Mosvera is currently maintained by a single author who holds final
 decision authority on the specification, the reference runtime, the
 MCP surface, and the in-tree provider adapters. This is the honest,
 comparable-class-recognized default for a project at this stage. We
@@ -37,9 +37,9 @@ During incubation:
   format. Each ADR cites at least three authoritative sources per
   [Doctrine 5 (Research-first)](./CLAUDE.md#5-research-first).
 - **Specification changes** go through the
-  [Tessera Enhancement Proposal (TEP)](./spec/teps/) process defined
+  [Mosvera Enhancement Proposal (MEP)](./spec/meps/) process defined
   in [ADR-0003](./docs/decisions/0003-rfc-and-proposal-format.md).
-  TEPs require at minimum 2 maintainer approvals during incubation
+  MEPs require at minimum 2 maintainer approvals during incubation
   (raising to 4 once the maintainer pool exceeds 4), with a 7-day
   Final Comment Period before merge.
 - **Provider adapter additions** are subject to the exclusion policy
@@ -54,7 +54,7 @@ During incubation:
 We welcome contributors. Becoming a maintainer is a deliberate step
 documented in [MAINTAINERS.md](./MAINTAINERS.md). Criteria:
 
-- Sustained contribution over at least 3 months (code, TEPs, ADRs,
+- Sustained contribution over at least 3 months (code, MEPs, ADRs,
   documentation, examples — any meaningful surface).
 - Sponsored by an existing maintainer who can speak to the
   contributor's judgment and reliability.
@@ -69,26 +69,26 @@ about identity.
 
 ## Contribution mechanism
 
-Tessera uses the [Developer Certificate of Origin (DCO)](https://developercertificate.org/),
+Mosvera uses the [Developer Certificate of Origin (DCO)](https://developercertificate.org/),
 not a Contributor License Agreement (CLA). Contributors sign each
 commit with `git commit -s`, certifying they have the right to
 contribute the work under the project's license.
 
 Rationale: DCO is the lower-friction default for vendor-neutral
 projects and aligns with the CNCF / Linux Foundation ecosystem
-Tessera will likely join. See
+Mosvera will likely join. See
 [ADR-0004](./docs/decisions/0004-governance.md) and
 [CONTRIBUTING.md](./CONTRIBUTING.md) for full details.
 
 ## Code of conduct
 
-Tessera adopts [Contributor Covenant 2.1](https://www.contributor-covenant.org/version/2/1/code_of_conduct/)
+Mosvera adopts [Contributor Covenant 2.1](https://www.contributor-covenant.org/version/2/1/code_of_conduct/)
 as its code of conduct. See [`CODE_OF_CONDUCT.md`](./CODE_OF_CONDUCT.md)
 for the full text and the reporting mechanism.
 
 ## Target model at 1.0
 
-At the first public release (1.0), Tessera will transition to a
+At the first public release (1.0), Mosvera will transition to a
 small Technical Committee modeled on the
 [OpenTelemetry Technical Committee](https://github.com/open-telemetry/community/blob/main/tech-committee-charter.md)
 pattern, with the following adaptations for a smaller-pool project:
@@ -104,12 +104,12 @@ pattern, with the following adaptations for a smaller-pool project:
   OpenTelemetry SIGs — autonomous within their scope; the TC
   adjudicates cross-cutting issues.
 
-TEPs at that stage will require 2 TC approvals (raising to 4 once the
+MEPs at that stage will require 2 TC approvals (raising to 4 once the
 TC has 5 or more members).
 
 ## Foundation evaluation
 
-Tessera will evaluate foundation hosting at the 1.0 milestone, **not
+Mosvera will evaluate foundation hosting at the 1.0 milestone, **not
 before**, and the evaluation is gated on having at least one external
 provider implementation in production. Vendor-neutrality has to be
 true before it is claimed — premature foundation hosting locks in
@@ -127,15 +127,15 @@ Candidate foundations (in alphabetical order):
 
 ## Transparency
 
-This document, the ADRs, the TEPs, and the CHANGELOG are the
-public-facing record of how Tessera evolves. Nothing important
+This document, the ADRs, the MEPs, and the CHANGELOG are the
+public-facing record of how Mosvera evolves. Nothing important
 happens off-record. Decisions reversed or revised supersede prior
 ADRs rather than rewriting them; the historical record stays intact.
 
 ## What this document does not claim
 
-- That Tessera has a TSC today.
-- That Tessera is foundation-hosted or seeking hosting imminently.
+- That Mosvera has a TSC today.
+- That Mosvera is foundation-hosted or seeking hosting imminently.
 - That there is a multi-vendor maintainer pool today.
 
 Honesty about the incubation reality is itself a credibility signal.

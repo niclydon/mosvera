@@ -4,7 +4,7 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # spec/compliance/
 
-Conformance test vectors for Tessera.
+Conformance test vectors for Mosvera.
 [ADR-0007](../../docs/decisions/0007-reference-runtime-language.md)
 makes language-portable conformance a requirement: every conforming
 runtime — TypeScript reference, Python committed port, and any
@@ -15,7 +15,7 @@ future-language community implementation — must pass the suite here.
 Each conformance case is a JSON document conforming to
 [`vector.schema.json`](./vector.schema.json). There are two kinds:
 
-**`resolution`** — exercises TEP-0001 (composition) and TEP-0002
+**`resolution`** — exercises MEP-0001 (composition) and MEP-0002
 (inheritance):
 
 - `registry` — named templates/modifiers/palettes available for
@@ -27,7 +27,7 @@ Each conformance case is a JSON document conforming to
 - `expect` — either `{ canonical: … }` (the expected resolved
   aesthetic model) or `{ status: "error", error: … }`.
 
-**`compilation`** — exercises TEP-0003 (provider compilation):
+**`compilation`** — exercises MEP-0003 (provider compilation):
 
 - `manifest` — a provider capability manifest.
 - `canonical` — the already-resolved composition to compile.
@@ -45,19 +45,19 @@ and are golden-tested with the adapters in Phase 4.
 
 Runtimes consume these JSON cases directly. There is no host-language
 code in this directory — the entire suite is the language-neutral
-contract that makes Tessera implementations substitutable.
+contract that makes Mosvera implementations substitutable.
 
 ## Layout
 
 | Directory | Vectors |
 |-----------|---------|
-| [`resolution/`](./resolution/) | TEP-0001 merge/precedence + TEP-0002 inheritance (0001–0016) |
-| [`compilation/`](./compilation/) | TEP-0003 compilation contract outcomes (0017–0021) |
+| [`resolution/`](./resolution/) | MEP-0001 merge/precedence + MEP-0002 inheritance (0001–0016) |
+| [`compilation/`](./compilation/) | MEP-0003 compilation contract outcomes (0017–0021) |
 
 ## Status
 
 Phase 1 (Specification Genesis). 21 vectors present, covering the
-normative behaviors of all three foundational TEPs: deep/scalar/
+normative behaviors of all three foundational MEPs: deep/scalar/
 type-mismatch merge, the three list strategies, `$unset`/`$revert`,
 the precedence chain, single inheritance + multi-level chains, the
 inheritance/composition seam, `$revert` and `merge_by` across the
@@ -67,7 +67,7 @@ rule table.
 
 Each vector was verified during authoring against an independent
 reference oracle (the expected output recomputed and matched), the
-vector meta-schema, and the Tessera primitive schemas. The Phase 2
+vector meta-schema, and the Mosvera primitive schemas. The Phase 2
 TypeScript runtime will be the first committed implementation checked
 against this suite.
 

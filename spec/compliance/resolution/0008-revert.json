@@ -1,7 +1,7 @@
 {
   "id": "0008-revert",
   "description": "$revert discards this layer's own contribution, keeping the pre-layer value (m2's 99 reverted, m1's 9 kept).",
-  "tep": "TEP-0001",
+  "mep": "MEP-0001",
   "rule": "directive/revert",
   "kind": "resolution",
   "input_kind": "composition",

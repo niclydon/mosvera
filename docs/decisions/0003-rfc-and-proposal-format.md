@@ -6,14 +6,14 @@
 
 ## Context
 
-Tessera is a declarative runtime for aesthetic intent. Its long-term center of gravity is the **specification**, not any single implementation. To attract multi-vendor implementations and stay provider-neutral, the project needs a public, repeatable proposal process *before* the spec freezes — comparable to how OpenTelemetry, GraphQL, Kubernetes, Rust, and Python evolve their specs through structured enhancement proposals.
+Mosvera is a declarative runtime for aesthetic intent. Its long-term center of gravity is the **specification**, not any single implementation. To attract multi-vendor implementations and stay provider-neutral, the project needs a public, repeatable proposal process *before* the spec freezes — comparable to how OpenTelemetry, GraphQL, Kubernetes, Rust, and Python evolve their specs through structured enhancement proposals.
 
 Three questions need answers:
 1. What does a proposal document look like (template / sections)?
 2. What's the lifecycle (state machine)?
 3. How are proposals numbered, reviewed, and merged?
 
-This ADR also needs to distinguish **TEPs (Tessera Enhancement Proposals)** — long-form, spec-mutating proposals — from **ADRs**, which are the immutable, retrospective decision log used inside this repository (Nygard's format). ADRs record decisions already made; TEPs propose changes the project hasn't yet committed to.
+This ADR also needs to distinguish **MEPs (Mosvera Enhancement Proposals)** — long-form, spec-mutating proposals — from **ADRs**, which are the immutable, retrospective decision log used inside this repository (Nygard's format). ADRs record decisions already made; MEPs propose changes the project hasn't yet committed to.
 
 ## Research
 
@@ -35,11 +35,11 @@ The dominant pattern across all four spec-class projects (Rust, OTel, Kubernetes
 
 ## Decision
 
-Tessera adopts a **two-document system**:
+Mosvera adopts a **two-document system**:
 
-**1. TEPs (Tessera Enhancement Proposals)** — long-form, spec-mutating proposals. Modeled directly on the OTEP process, because OTEPs were themselves designed by borrowing from Rust RFCs and Kubernetes KEPs and represent the closest comparable: a vendor-neutral, multi-language, spec-first project hosted under a foundation-like posture.
+**1. MEPs (Mosvera Enhancement Proposals)** — long-form, spec-mutating proposals. Modeled directly on the OTEP process, because OTEPs were themselves designed by borrowing from Rust RFCs and Kubernetes KEPs and represent the closest comparable: a vendor-neutral, multi-language, spec-first project hosted under a foundation-like posture.
 
-Location: `spec/teps/` (path stable through eventual repo split).
+Location: `spec/meps/` (path stable through eventual repo split).
 
 Template sections (verbatim from OTEP, adapted terminology):
 - Motivation
@@ -59,9 +59,9 @@ Lifecycle states (adapted from Kubernetes KEPs, which are richer than Rust's and
 - `deferred` — paused, may resume
 - `rejected` — declined
 - `withdrawn` — author withdrew
-- `superseded` — replaced by a later TEP (carries `superseded-by: TEP-NNNN`)
+- `superseded` — replaced by a later MEP (carries `superseded-by: MEP-NNNN`)
 
-Numbering: the **PR number at merge time**, four-digit zero-padded (`TEP-0017`). Matches Rust/OTel; avoids the race condition that monotonic-ID schemes create.
+Numbering: the **PR number at merge time**, four-digit zero-padded (`MEP-0017`). Matches Rust/OTel; avoids the race condition that monotonic-ID schemes create.
 
 Review: GitHub PR. Minimum **2 maintainer approvals** during incubation (raises to 4, OTel-style, when the maintainer pool is >4). FCP of 7 calendar days before merge once approvals land.
 
@@ -71,22 +71,22 @@ Location: `docs/decisions/`.
 Template: Title, Status, Date, Doctrines invoked, Context, Research, Decision, Consequences, Sources.
 Numbering: monotonic (`0001-`, `0002-`, …). Acceptable here because ADRs are written sequentially by a small group, not by PR contributors racing for IDs.
 
-**Hard rule:** Spec changes go through TEPs. Repo-architecture decisions go in ADRs. The two systems do not overlap.
+**Hard rule:** Spec changes go through MEPs. Repo-architecture decisions go in ADRs. The two systems do not overlap.
 
 ## Consequences
 
-- Public contributors can propose spec changes via a clear, comparable-class process the moment Tessera goes public. The TEP template is recognizable to anyone familiar with OTel, Rust, or Kubernetes.
-- During incubation (solo author), TEPs are over-engineering for most internal changes — that's why ADRs exist for repo-level decisions. The TEP machinery sits ready but doesn't add ceremony to day-zero work.
+- Public contributors can propose spec changes via a clear, comparable-class process the moment Mosvera goes public. The MEP template is recognizable to anyone familiar with OTel, Rust, or Kubernetes.
+- During incubation (solo author), MEPs are over-engineering for most internal changes — that's why ADRs exist for repo-level decisions. The MEP machinery sits ready but doesn't add ceremony to day-zero work.
 - The rich state machine (provisional → implementable → implemented → final) creates a natural staging area for ideas that aren't ready to bind the spec, mirroring Kubernetes' alpha/beta/stable graduation in a spec-first context.
 - Numbering by PR ID means there is no canonical numbering until merge — discussion PRs are referenced by descriptive slug (`teps/inheritance-resolution.md`) until they land.
-- When repos eventually split (per ADR-0002), `spec/teps/` moves to the `/spec` repo unchanged. Path stability is preserved.
+- When repos eventually split (per ADR-0002), `spec/meps/` moves to the `/spec` repo unchanged. Path stability is preserved.
 
 ## Sources
 
-1. [Rust RFC 0002 — RFC Process](https://rust-lang.github.io/rfcs/0002-rfc-process.html) — Defined the canonical "open a PR against a template, FCP, merge to mark active" loop that Tessera's TEP review mirrors.
-2. [OpenTelemetry OTEPs — Template](https://github.com/open-telemetry/oteps/blob/main/0000-template.md) — Source of the seven-section template Tessera adopts verbatim (Motivation through Future possibilities).
-3. [OpenTelemetry OTEPs — Process README](https://github.com/open-telemetry/opentelemetry-specification/blob/main/oteps/README.md) — Confirmed the OTEP process borrows from Rust RFCs and Kubernetes KEPs, validating the lineage Tessera is plugging into.
-4. [Kubernetes Enhancement Proposals](https://www.kubernetes.dev/resources/keps/) — Source of the richer lifecycle states (provisional / implementable / implemented / deferred / rejected / withdrawn / replaced) Tessera adopts in place of Rust's simpler active/complete/inactive.
-5. [PEP 1 — PEP Purpose and Guidelines](https://peps.python.org/pep-0001/) — Showed the most granular state machine in the comparable class; informed which states Tessera kept (final, superseded) and which it dropped (active, provisional-as-distinct-from-accepted).
-6. [Martin Fowler — Architecture Decision Record](https://martinfowler.com/bliki/ArchitectureDecisionRecord.html) — Anchored ADRs as the immutable, retrospective decision-log artifact, distinct from forward-looking TEPs.
+1. [Rust RFC 0002 — RFC Process](https://rust-lang.github.io/rfcs/0002-rfc-process.html) — Defined the canonical "open a PR against a template, FCP, merge to mark active" loop that Mosvera's MEP review mirrors.
+2. [OpenTelemetry OTEPs — Template](https://github.com/open-telemetry/oteps/blob/main/0000-template.md) — Source of the seven-section template Mosvera adopts verbatim (Motivation through Future possibilities).
+3. [OpenTelemetry OTEPs — Process README](https://github.com/open-telemetry/opentelemetry-specification/blob/main/oteps/README.md) — Confirmed the OTEP process borrows from Rust RFCs and Kubernetes KEPs, validating the lineage Mosvera is plugging into.
+4. [Kubernetes Enhancement Proposals](https://www.kubernetes.dev/resources/keps/) — Source of the richer lifecycle states (provisional / implementable / implemented / deferred / rejected / withdrawn / replaced) Mosvera adopts in place of Rust's simpler active/complete/inactive.
+5. [PEP 1 — PEP Purpose and Guidelines](https://peps.python.org/pep-0001/) — Showed the most granular state machine in the comparable class; informed which states Mosvera kept (final, superseded) and which it dropped (active, provisional-as-distinct-from-accepted).
+6. [Martin Fowler — Architecture Decision Record](https://martinfowler.com/bliki/ArchitectureDecisionRecord.html) — Anchored ADRs as the immutable, retrospective decision-log artifact, distinct from forward-looking MEPs.
 7. [Joel Parker Henderson — Nygard ADR Template](https://github.com/joelparkerhenderson/architecture-decision-record/blob/main/locales/en/templates/decision-record-template-by-michael-nygard/index.md) — Canonical Nygard template (Status/Context/Decision/Consequences) that the ADR side of this two-document system follows.

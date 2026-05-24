@@ -1,7 +1,7 @@
 {
   "id": "0020-native-clean",
   "description": "All-native compilation produces no warnings.",
-  "tep": "TEP-0003",
+  "mep": "MEP-0003",
   "rule": "compile/native-clean",
   "kind": "compilation",
   "manifest": {

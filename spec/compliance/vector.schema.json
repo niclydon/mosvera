@@ -1,13 +1,13 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:tessera:schema:0.1:compliance-vector",
-  "title": "Tessera Conformance Vector",
+  "$id": "urn:mosvera:schema:0.1:compliance-vector",
+  "title": "Mosvera Conformance Vector",
   "description": "A single language-agnostic conformance test case. A conforming runtime MUST produce the expected result for every vector. SPDX-License-Identifier: CC-BY-4.0.",
   "type": "object",
   "properties": {
     "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
     "description": { "type": "string" },
-    "tep": { "type": "string", "pattern": "^TEP-[0-9]{4}$" },
+    "mep": { "type": "string", "pattern": "^MEP-[0-9]{4}$" },
     "rule": { "type": "string", "description": "Short slug naming the normative rule under test." },
     "kind": { "type": "string", "enum": ["resolution", "compilation"] },
     "registry": {
@@ -100,6 +100,6 @@
       ]
     }
   },
-  "required": ["id", "description", "tep", "rule", "kind", "expect"],
+  "required": ["id", "description", "mep", "rule", "kind", "expect"],
   "additionalProperties": false
 }

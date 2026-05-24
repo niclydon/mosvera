@@ -2,9 +2,9 @@
 SPDX-License-Identifier: CC-BY-4.0
 -->
 
-# Contributing to Tessera
+# Contributing to Mosvera
 
-Thanks for your interest. Tessera is in quiet incubation — small,
+Thanks for your interest. Mosvera is in quiet incubation — small,
 focused, and deliberately careful about freezing abstractions before
 they are correct — but contributions are welcome.
 
@@ -28,22 +28,22 @@ on changes that conflict with the project's direction (see
 
 ### Use the right artifact type
 
-Tessera has two distinct documentation artifacts. Pick the one
+Mosvera has two distinct documentation artifacts. Pick the one
 that fits what you are proposing:
 
 | You want to… | Use |
 |--------------|-----|
-| Propose a change to the public specification (new primitive, new modifier behavior, new compilation rule) | [TEP](./spec/teps/) — Tessera Enhancement Proposal |
+| Propose a change to the public specification (new primitive, new modifier behavior, new compilation rule) | [MEP](./spec/meps/) — Mosvera Enhancement Proposal |
 | Propose a change to repo architecture, governance, license, layout, or naming | [ADR](./docs/decisions/) — Architecture Decision Record |
 | Fix a bug, write a test, improve documentation, add an example | Pull request |
 | Discuss a half-formed idea | GitHub issue or discussion |
 
-The full distinction between TEPs and ADRs is in
+The full distinction between MEPs and ADRs is in
 [ADR-0003](./docs/decisions/0003-rfc-and-proposal-format.md).
 
 ### Sign your commits (DCO)
 
-Tessera uses the
+Mosvera uses the
 [Developer Certificate of Origin (DCO)](https://developercertificate.org/),
 not a Contributor License Agreement. Every commit must be signed
 off with `git commit -s`, which appends a `Signed-off-by` trailer
@@ -58,15 +58,15 @@ A pre-merge check will reject unsigned commits.
 
 ### Follow the doctrines
 
-Tessera operates under five [Primary Doctrines](./CLAUDE.md#primary-doctrines).
+Mosvera operates under five [Primary Doctrines](./CLAUDE.md#primary-doctrines).
 The two most likely to affect contributions:
 
-- **Doctrine 1 (Public-first).** Tessera is built for strangers. No
+- **Doctrine 1 (Public-first).** Mosvera is built for strangers. No
   internal naming, no references to private platforms or in-jokes,
   no examples drawn from contributors' private context.
 - **Doctrine 5 (Research-first).** For any non-trivial design or
   architecture decision, look up what comparable projects do and
-  cite the sources in your ADR or TEP. At least three authoritative
+  cite the sources in your ADR or MEP. At least three authoritative
   sources is the floor.
 
 ## Development workflow
@@ -75,13 +75,13 @@ The two most likely to affect contributions:
 
 - `main` is the integration branch.
 - Open a topic branch for your work: `feat/short-description`,
-  `fix/short-description`, `tep/short-description`, etc.
+  `fix/short-description`, `mep/short-description`, etc.
 
 ### Pull requests
 
 - Each PR should be focused on one change. Unrelated cleanup goes
   in a separate PR.
-- The PR description should link to the issue or ADR/TEP it
+- The PR description should link to the issue or ADR/MEP it
   addresses.
 - All commits must be DCO-signed.
 - Tests are required for runtime behavior changes.
@@ -123,7 +123,7 @@ style. ESLint and Prettier configurations live in `runtime/`.
 
 ### Style of writing
 
-Tessera's prose targets infrastructure clarity. Aim for the tone of
+Mosvera's prose targets infrastructure clarity. Aim for the tone of
 OpenTelemetry, GraphQL, or CloudEvents documentation: precise,
 neutral, unhyped. Avoid marketing voice in any committed file.
 
@@ -137,12 +137,12 @@ neutral, unhyped. Avoid marketing voice in any committed file.
 ## Where to ask questions
 
 During incubation, GitHub Discussions (when enabled) is the
-primary venue. Specific questions about TEP review or ADR scope
+primary venue. Specific questions about MEP review or ADR scope
 can be raised on the relevant PR or issue.
 
 ## License
 
-By contributing to Tessera, you agree that your contributions are
+By contributing to Mosvera, you agree that your contributions are
 licensed under the project's licenses (Apache-2.0 for code and
 schemas; CC-BY-4.0 for documentation and specification prose) as
 documented in [`LICENSE`](./LICENSE) and the

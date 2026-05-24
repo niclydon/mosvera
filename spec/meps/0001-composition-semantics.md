@@ -2,7 +2,7 @@
 SPDX-License-Identifier: CC-BY-4.0
 -->
 
-# TEP-0001: Composition Semantics
+# MEP-0001: Composition Semantics
 
 **Status:** provisional
 **Author(s):** Founding maintainer
@@ -12,52 +12,52 @@ SPDX-License-Identifier: CC-BY-4.0
 **Superseded by:** —
 
 > **Numbering note.** Per [ADR-0003](../../docs/decisions/0003-rfc-and-proposal-format.md),
-> TEPs are numbered by PR number at merge time. During solo incubation
-> this TEP is committed directly and carries the provisional number
+> MEPs are numbered by PR number at merge time. During solo incubation
+> this MEP is committed directly and carries the provisional number
 > `0001` (matching the roadmap's reference to composition-semantics as
 > the first specification proposal). The number will be reconciled with
 > the PR-based process at public unlock.
 
 ## Motivation
 
-Tessera models aesthetic intent as a small set of primitives — templates,
+Mosvera models aesthetic intent as a small set of primitives — templates,
 palettes, modifiers, and compositions (see [`GLOSSARY.md`](../../GLOSSARY.md)).
 These primitives are only useful if they **combine** predictably. A
 composition is the assembly of a base template with an ordered set of
 modifiers; the runtime must resolve that assembly into a single canonical
 model that a provider adapter can compile (deferred to
-[TEP-0003](./0003-provider-compilation-contract.md)).
+[MEP-0003](./0003-provider-compilation-contract.md)).
 
 Composition is the foundational operation of the entire system. Inheritance
 between templates (deferred to
-[TEP-0002](./0002-inheritance-rules.md)) reuses the same merge algebra
-defined here. Provider compilation consumes the canonical model this TEP
+[MEP-0002](./0002-inheritance-rules.md)) reuses the same merge algebra
+defined here. Provider compilation consumes the canonical model this MEP
 produces. Every downstream surface — runtime, MCP, providers, examples —
 binds to the semantics defined in this document. Getting it right, and
 getting it precise, is the highest-leverage decision in the specification.
 
 The free-text-prompt status quo composes poorly: you cannot meaningfully
 merge two prompt strings, you cannot express "remove this aspect," and you
-cannot reason about which fragment wins when two conflict. This TEP defines
+cannot reason about which fragment wins when two conflict. This MEP defines
 a merge algebra with explicit, total, legible precedence so that aesthetic
 intent becomes a structural artifact rather than a string.
 
-This TEP does **not** define:
+This MEP does **not** define:
 
 - How templates inherit from other templates (the `$extends` mechanism) —
-  that is [TEP-0002](./0002-inheritance-rules.md), which reuses the merge
+  that is [MEP-0002](./0002-inheritance-rules.md), which reuses the merge
   operation defined here.
 - How a resolved composition compiles to provider-specific payloads — that
-  is [TEP-0003](./0003-provider-compilation-contract.md).
+  is [MEP-0003](./0003-provider-compilation-contract.md).
 - The concrete field schemas of templates, palettes, and modifiers — those
   live in [`spec/schemas/`](../schemas/) and reference the merge-strategy
-  declarations this TEP requires.
+  declarations this MEP requires.
 
 ## Explanation
 
 ### The aesthetic object
 
-Every Tessera primitive is, at the structural level, a JSON/YAML object
+Every Mosvera primitive is, at the structural level, a JSON/YAML object
 with `snake_case` field names and `$`-prefixed directive keys, per
 [ADR-0005](../../docs/decisions/0005-schema-naming-conventions.md). The
 composition semantics operate on these objects without privileged
@@ -71,7 +71,7 @@ and may carry inline overrides:
 
 ```yaml
 # composition document (illustrative; field schemas are defined elsewhere)
-$schema: tessera/composition/v0.1
+$schema: mosvera/composition/v0.1
 base: cinematic-editorial          # reference to a template
 modifiers:                         # ordered; later entries take precedence
   - magic-hour
@@ -92,7 +92,7 @@ Resolving a composition yields a **canonical resolved composition**: a
 single, fully-merged aesthetic object with every reference resolved and
 every modifier applied, in deterministic precedence order. This canonical
 model is the contract handed to provider adapters in
-[TEP-0003](./0003-provider-compilation-contract.md).
+[MEP-0003](./0003-provider-compilation-contract.md).
 
 ### The precedence chain
 
@@ -124,12 +124,12 @@ spawned the `tailwind-merge` workaround,
 
 ### No un-overridable importance flag
 
-Tessera deliberately provides **no** `!important`-equivalent — no flag that
+Mosvera deliberately provides **no** `!important`-equivalent — no flag that
 makes a value win regardless of precedence. CSS's `!important` short-circuits
 specificity and produces escalation wars where the only way to beat
 `!important` is more `!important`
 ([MDN: Cascade](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade)).
-Precedence in Tessera is always determined by position in the chain, which is
+Precedence in Mosvera is always determined by position in the chain, which is
 always overridable by a later position. There is no escape hatch, by design.
 
 ## Internal details
@@ -169,7 +169,7 @@ format's two documented weaknesses: array blindness and `null`-overloading.
 
 ### List merge
 
-Lists are where merge algebras most often fail (see Prior art). Tessera
+Lists are where merge algebras most often fail (see Prior art). Mosvera
 requires that the merge behavior of every list-valued field be **explicitly
 determined by its schema** — never inferred, never silently defaulted in a
 way the author cannot see. This follows the Kubernetes Strategic Merge Patch
@@ -198,7 +198,7 @@ to keyed merging.
 
 ### Deletion and rollback directives
 
-Deletion requires a dedicated primitive. Tessera does **not** overload any
+Deletion requires a dedicated primitive. Mosvera does **not** overload any
 legal aesthetic value (e.g. `null`) as a deletion sentinel — RFC 7396 did,
 and had to warn in its own text that the format is "not appropriate" for
 documents that use real `null`
@@ -286,7 +286,7 @@ can see, applied in the order they wrote them.
   SHOULD warn when a list field plausibly wants `merge_by` but declares none.
 
 - **No `!important` escape hatch.** Some users will want "this value wins no
-  matter what." Tessera refuses, because that flag is an escalation weapon
+  matter what." Mosvera refuses, because that flag is an escalation weapon
   (the CSS `!important` war). **Mitigation:** precedence is always
   expressible by position — put the value in a later modifier or in
   `overrides`. There is no scenario requiring an un-overridable flag.
@@ -312,37 +312,37 @@ surveyed in depth. The full comparison and citations are preserved in the
 project's research record; the load-bearing precedents:
 
 - **CSS Cascade & Inheritance** — the canonical aesthetic composition system.
-  Tessera adopts its commitment to a *total* precedence order with an explicit
-  final tiebreaker, and its `revert`-style partial rollback. Tessera
+  Mosvera adopts its commitment to a *total* precedence order with an explicit
+  final tiebreaker, and its `revert`-style partial rollback. Mosvera
   deliberately rejects its `!important` escalation mechanism.
   ([CSS Cascading and Inheritance Level 4](https://www.w3.org/TR/css-cascade-4/),
   [Selectors Level 4 §15](https://www.w3.org/TR/selectors-4/#specificity-rules))
-- **JSON Merge Patch (RFC 7396)** — the deep-merge object model Tessera's
-  `merge` operation is built on. Tessera rejects its two documented
+- **JSON Merge Patch (RFC 7396)** — the deep-merge object model Mosvera's
+  `merge` operation is built on. Mosvera rejects its two documented
   weaknesses: array blindness (cannot edit list elements) and `null`
   overloading (deletion sentinel collides with real `null`).
   ([RFC 7396](https://datatracker.ietf.org/doc/html/rfc7396))
-- **JSON Patch (RFC 6902)** — the operation-based alternative. Tessera does
+- **JSON Patch (RFC 6902)** — the operation-based alternative. Mosvera does
   not adopt its imperative model (less legible for aesthetic deltas) but
   takes the lesson that positional list edits are fragile.
   ([RFC 6902](https://datatracker.ietf.org/doc/html/rfc6902))
 - **Kubernetes Strategic Merge Patch** — the source of `merge_by` keyed list
   merging and the principle that merge strategy belongs in the schema, never
-  inferred. Tessera adopts both, and heeds the cautionary failure: SMP
+  inferred. Mosvera adopts both, and heeds the cautionary failure: SMP
   silently replaces whole lists when schema metadata is missing.
   ([Kubernetes SMP](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-api-machinery/strategic-merge-patch.md))
-- **Design Tokens Format Module (DTCG)** — Tessera's nearest domain neighbor.
-  Source of lazy reference resolution and mandatory cycle detection. Tessera
+- **Design Tokens Format Module (DTCG)** — Mosvera's nearest domain neighbor.
+  Source of lazy reference resolution and mandatory cycle detection. Mosvera
   aims for DTCG compatibility at the palette/color-token boundary per
   [ADR-0006](../../docs/decisions/0006-prior-art-survey.md).
   ([DTCG Format Module](https://www.designtokens.org/tr/drafts/format/))
 - **Tailwind CSS** — a cautionary case: composition order decoupled from
-  output precedence required the `tailwind-merge` band-aid. Tessera
+  output precedence required the `tailwind-merge` band-aid. Mosvera
   guarantees authoring order *is* precedence order.
   ([Tailwind states](https://tailwindcss.com/docs/hover-focus-and-other-states),
   [tailwind-merge](https://github.com/dcastil/tailwind-merge))
 - **Sass `@extend`** — a cautionary case: non-local, action-at-a-distance
-  precedence. Tessera keeps composition local — the result depends only on
+  precedence. Mosvera keeps composition local — the result depends only on
   the inputs you can see, in the order you provide them.
   ([Sass @extend](https://sass-lang.com/documentation/at-rules/extend/))
 - **Terraform** — source of the "total, documented precedence ladder with
@@ -358,19 +358,19 @@ as operation sequences, and legibility is a first-class goal
 and directive mechanisms recover the needed expressiveness.
 
 **Alternative considered: specificity-based resolution (CSS shape).**
-Rejected because specificity is a function of selector structure, and Tessera
+Rejected because specificity is a function of selector structure, and Mosvera
 compositions have no selector layer — precedence by explicit position is
 simpler and sufficient, and avoids reproducing CSS's specificity-war dynamics.
 
 ## Open questions
 
-1. **Default for `merge_by` absence.** This TEP defaults undeclared list
+1. **Default for `merge_by` absence.** This MEP defaults undeclared list
    fields to `replace`. Should the schema linter (a future tool) treat a
    list-of-objects with a plausible identity field but no `merge_by`
    declaration as a warning, an error, or neither? Deferred to the linter's
    own design.
 2. **Type-mismatch handling.** When `base[key]` is a scalar and
-   `overlay[key]` is an object (or vice versa), this TEP specifies "overlay
+   `overlay[key]` is an object (or vice versa), this MEP specifies "overlay
    replaces." Should a conforming runtime additionally *warn* on type
    mismatch, since it often indicates an authoring error? Likely yes;
    spec'd as SHOULD in a later revision after runtime experience.
@@ -379,24 +379,24 @@ simpler and sufficient, and avoids reproducing CSS's specificity-war dynamics.
    worked example and possibly a dedicated directive form. Deferred until a
    concrete example exercises it.
 4. **Palette/color interpolation.** Some aesthetic merges may want to *blend*
-   values (e.g. interpolate between two colors) rather than replace. This TEP
+   values (e.g. interpolate between two colors) rather than replace. This MEP
    defines replace-on-conflict only. Whether a blending strategy belongs in
    the merge algebra or in a provider-compilation transform is an open
-   question for [TEP-0003](./0003-provider-compilation-contract.md).
+   question for [MEP-0003](./0003-provider-compilation-contract.md).
 
 ## Future possibilities
 
-- **TEP-0002 (Inheritance Rules)** reuses `merge` to define how templates
+- **MEP-0002 (Inheritance Rules)** reuses `merge` to define how templates
   extend other templates, adding the `$extends` mechanism and inheritance-
   chain resolution. The DAG requirement and cycle detection defined here
   extend naturally to the inheritance graph.
-- **TEP-0003 (Provider Compilation Contract)** consumes the canonical
-  resolved composition this TEP produces and defines the mapping to provider
+- **MEP-0003 (Provider Compilation Contract)** consumes the canonical
+  resolved composition this MEP produces and defines the mapping to provider
   payloads, including how canonical `quality`/`safety` modifiers map across
   divergent provider surfaces (per
   [ADR-0008](../../docs/decisions/0008-provider-adapter-pairing.md)).
 - A **conformance test vector** in [`spec/compliance/`](../compliance/) for
-  every normative MUST in this TEP, so any runtime (TypeScript reference,
+  every normative MUST in this MEP, so any runtime (TypeScript reference,
   Python port, community implementations) can be checked against identical
   expected canonical models (per
   [ADR-0007](../../docs/decisions/0007-reference-runtime-language.md)).
@@ -408,7 +408,7 @@ simpler and sufficient, and avoids reproducing CSS's specificity-war dynamics.
 
 1. [CSS Cascading and Inheritance Level 4 (W3C)](https://www.w3.org/TR/css-cascade-4/) — total cascade sort order (§6.1), importance, `revert`/`unset` keywords (§7.3); model for total precedence and partial rollback.
 2. [Selectors Level 4 §15 — Specificity (W3C)](https://www.w3.org/TR/selectors-4/#specificity-rules) — specificity arithmetic; considered and rejected as a resolution basis.
-3. [RFC 7396 — JSON Merge Patch (IETF)](https://datatracker.ietf.org/doc/html/rfc7396) — recursive deep-merge object model; documented array blindness and `null`-overloading weaknesses Tessera avoids.
+3. [RFC 7396 — JSON Merge Patch (IETF)](https://datatracker.ietf.org/doc/html/rfc7396) — recursive deep-merge object model; documented array blindness and `null`-overloading weaknesses Mosvera avoids.
 4. [RFC 6902 — JSON Patch (IETF)](https://datatracker.ietf.org/doc/html/rfc6902) — operation-based merge; positional-edit fragility lesson.
 5. [Kubernetes Strategic Merge Patch (SIG API-machinery)](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-api-machinery/strategic-merge-patch.md) — keyed list merging (`patchMergeKey`), schema-declared strategy, silent-replace-fallback cautionary failure.
 6. [Design Tokens Format Module (DTCG)](https://www.designtokens.org/tr/drafts/format/) — lazy reference resolution (§7.2), mandatory cycle detection (§7.2.3); nearest domain prior art.

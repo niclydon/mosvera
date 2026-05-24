@@ -1,7 +1,7 @@
 {
   "id": "0016-multiple-inheritance-rejected",
   "description": "$extends as a list (multiple inheritance) MUST be rejected at v0.1.",
-  "tep": "TEP-0002",
+  "mep": "MEP-0002",
   "rule": "inheritance/single-only",
   "kind": "resolution",
   "input_kind": "template",

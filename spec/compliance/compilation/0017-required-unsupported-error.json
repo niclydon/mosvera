@@ -1,7 +1,7 @@
 {
   "id": "0017-required-unsupported-error",
   "description": "A required construct the adapter marks unsupported is a hard compile error before any provider call.",
-  "tep": "TEP-0003",
+  "mep": "MEP-0003",
   "rule": "compile/required-unsupported-errors",
   "kind": "compilation",
   "manifest": {

@@ -1,7 +1,7 @@
 {
   "id": "0011-extends-multilevel",
   "description": "Multi-level chain root->mid->leaf folds with later (more-derived) winning.",
-  "tep": "TEP-0002",
+  "mep": "MEP-0002",
   "rule": "inheritance/linear-chain",
   "kind": "resolution",
   "input_kind": "template",

@@ -4,7 +4,7 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # Security Policy
 
-Tessera is in quiet incubation and has not yet produced executable
+Mosvera is in quiet incubation and has not yet produced executable
 code, network surfaces, or processed external data. Once the
 reference runtime (Phase 2) and MCP server (Phase 3) land, this
 policy describes how to report vulnerabilities and what response to
@@ -54,7 +54,7 @@ We credit reporters by name in the corresponding advisory and the
 
 In scope:
 
-- Tessera specification ambiguities that lead to security-relevant
+- Mosvera specification ambiguities that lead to security-relevant
   divergence between conforming runtimes.
 - Vulnerabilities in the reference runtime, MCP server, and
   in-tree provider adapters under `providers/`.
@@ -78,7 +78,7 @@ Out of scope:
 
 ## Supported versions
 
-Tessera does not yet have released versions. Once the
+Mosvera does not yet have released versions. Once the
 specification reaches 1.0, this section will list the supported
 specification and runtime versions and their security-fix windows
 in alignment with the project's [governance model](./GOVERNANCE.md).
@@ -98,4 +98,4 @@ This security policy is informed by the
 [CNCF Security TAG vulnerability handling guidance](https://github.com/cncf/tag-security/blob/main/community/resources/security-disclosures/README.md)
 and patterns established by comparable open-standard projects
 (OpenTelemetry, CloudEvents). It will be revised against those
-sources as Tessera matures.
+sources as Mosvera matures.

@@ -6,7 +6,7 @@
 
 ## Context
 
-Tessera's strategic plan calls for an eventual split into focused repositories (`/spec`, `/runtime`, `/mcp`, `/providers`, `/examples`) under an organization namespace. While in quiet incubation, all surfaces should live in one repository to enable fast, coordinated iteration on the abstraction. The layout chosen now must (a) be legible to a stranger landing on the repo for the first time, (b) match conventions of comparable open-standard projects so contributors arrive with the right mental model, and (c) decompose cleanly into separate repositories when the split happens — no rename churn, no path rewrites, no contributor confusion.
+Mosvera's strategic plan calls for an eventual split into focused repositories (`/spec`, `/runtime`, `/mcp`, `/providers`, `/examples`) under an organization namespace. While in quiet incubation, all surfaces should live in one repository to enable fast, coordinated iteration on the abstraction. The layout chosen now must (a) be legible to a stranger landing on the repo for the first time, (b) match conventions of comparable open-standard projects so contributors arrive with the right mental model, and (c) decompose cleanly into separate repositories when the split happens — no rename churn, no path rewrites, no contributor confusion.
 
 The provisional layout is `spec/ runtime/ mcp/ providers/ examples/ docs/`. This ADR validates that against research and adds the supporting structures the comparable class consistently uses.
 
@@ -28,13 +28,13 @@ The provisional layout is `spec/ runtime/ mcp/ providers/ examples/ docs/`. This
 4. Root-level governance files: `CONTRIBUTING.md`, `GOVERNANCE.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`.
 5. **Reference implementations live in separate repositories from day one** for every project that has reached graduation/maturity. Spec-and-impl monorepos are an incubation-only pattern.
 
-**OpenTelemetry-collector** is the model for an implementation that has internal pluggability matching what Tessera's runtime+providers need: a multi-module Go repository with top-level `receiver/`, `processor/`, `exporter/`, `extension/`, `connector/` directories, plus a sibling `opentelemetry-collector-contrib` repository for community/third-party components. The core/contrib split is how the project enforces a small, stable core surface while letting the long tail of integrations move independently. Tessera's `providers/` will hit the same dynamic: a small set of reference providers in core, an open-ended set of third-party providers eventually living in a `providers-contrib` companion repo.
+**OpenTelemetry-collector** is the model for an implementation that has internal pluggability matching what Mosvera's runtime+providers need: a multi-module Go repository with top-level `receiver/`, `processor/`, `exporter/`, `extension/`, `connector/` directories, plus a sibling `opentelemetry-collector-contrib` repository for community/third-party components. The core/contrib split is how the project enforces a small, stable core surface while letting the long tail of integrations move independently. Mosvera's `providers/` will hit the same dynamic: a small set of reference providers in core, an open-ended set of third-party providers eventually living in a `providers-contrib` companion repo.
 
 **ADR/decision-record convention.** The dominant pattern is `docs/adr/` or `docs/decisions/`. Some teams favor "decisions" over "adr" because the directory naturally accretes non-architecture decisions (vendor, scheduling, naming) and the broader name invites broader use. ADRs are numbered monotonically (`0001-`, `0002-`), lowercase-dashed, present-tense imperative titles, Markdown. MADR (`adr.github.io/madr`) and Joel Parker Henderson's templates are the most cited references.
 
 **Monorepo-to-multirepo transition.** The path that minimizes churn:
 
-- Use directory names that match the eventual repo names. `spec/` becomes `tessera-spec`, `runtime/` becomes `tessera-runtime`, etc. Reverse is messy.
+- Use directory names that match the eventual repo names. `spec/` becomes `mosvera-spec`, `runtime/` becomes `mosvera-runtime`, etc. Reverse is messy.
 - Keep each surface self-contained: its own README, CHANGELOG, examples within `examples/` keyed by surface.
 - Don't create cross-surface imports the runtime can't satisfy after a split (the runtime can read schemas from `spec/`, but should consume them via a published package once split, not via relative paths).
 - Governance and decision records stay at the root throughout incubation and follow whichever repository becomes the "meta" repo at split time (typically the spec or a dedicated community/governance repo, following the CNCF and AsyncAPI pattern).
@@ -44,8 +44,8 @@ The provisional layout is `spec/ runtime/ mcp/ providers/ examples/ docs/`. This
 Adopt this top-level layout:
 
 ```text
-tessera/
-├── README.md                    # what Tessera is, status, links to each surface
+mosvera/
+├── README.md                    # what Mosvera is, status, links to each surface
 ├── MANIFESTO.md                 # the why; the abstraction being defined
 ├── ROADMAP.md                   # phased plan; current status
 ├── GLOSSARY.md                  # canonical terms used across spec + runtime + providers
@@ -65,8 +65,8 @@ tessera/
 │   │   ├── 0.1/
 │   │   └── draft/
 │   ├── schemas/                 # JSON Schema definitions (normative, machine-readable)
-│   ├── teps/                    # Tessera Enhancement Proposals (see ADR-0003)
-│   │   ├── README.md            # TEP process
+│   ├── teps/                    # Mosvera Enhancement Proposals (see ADR-0003)
+│   │   ├── README.md            # MEP process
 │   │   └── 0000-template.md
 │   └── compliance/              # conformance matrix + test vectors
 ├── runtime/                     # reference runtime (parse, resolve, merge, compose, validate, compile)
@@ -98,12 +98,12 @@ tessera/
 **Specific choices and their rationale:**
 
 - **`spec/` not `specification/` at root.** Three of five comparable projects use a short top-level name (`spec/`, `cloudevents/`); only OpenTelemetry uses the long form, and only because their repo is dedicated solely to the spec. For a multi-surface monorepo, `spec/` matches CloudEvents and AsyncAPI precedent and reads cleanly.
-- **`spec/teps/` named "TEPs" (Tessera Enhancement Proposals).** See [ADR-0003](./0003-rfc-and-proposal-format.md) for the rationale — modeled on OpenTelemetry's OTEPs, which in turn borrowed from Rust RFCs and Kubernetes KEPs. The directory name follows OTEP precedent (`oteps/` → `teps/`).
+- **`spec/meps/` named "MEPs" (Mosvera Enhancement Proposals).** See [ADR-0003](./0003-rfc-and-proposal-format.md) for the rationale — modeled on OpenTelemetry's OTEPs, which in turn borrowed from Rust RFCs and Kubernetes KEPs. The directory name follows OTEP precedent (`oteps/` → `teps/`).
 - **`spec/schemas/` as a first-class peer of prose.** Every comparable project either does this in-repo (OpenTelemetry) or splits schemas to a sibling repo (AsyncAPI's `spec-json-schemas`). In-repo at incubation; can split later without renaming.
 - **`docs/decisions/` not `docs/adr/`.** Following the documented preference for the broader name. ADR-style format inside, but the folder accommodates non-architecture decisions (naming, governance, vendor) as the project grows.
-- **`providers/` in-tree at incubation; reserve `tessera-providers-contrib` for later.** Direct analog to opentelemetry-collector + opentelemetry-collector-contrib. Core providers ship with the runtime; long-tail community providers move to a contrib repo once the contract stabilizes.
+- **`providers/` in-tree at incubation; reserve `mosvera-providers-contrib` for later.** Direct analog to opentelemetry-collector + opentelemetry-collector-contrib. Core providers ship with the runtime; long-tail community providers move to a contrib repo once the contract stabilizes.
 - **`MANIFESTO.md`, `ROADMAP.md`, `GLOSSARY.md` at the root.** A stranger landing on the repo should reach the "what is this and why" in one hop. The glossary at root signals that terminology discipline is a first-class concern.
-- **Directory names match anticipated repo names.** At split time: `tessera-spec`, `tessera-runtime`, `tessera-mcp`, `tessera-providers`, `tessera-examples`, `tessera-docs`. No directory renaming required — only relocation.
+- **Directory names match anticipated repo names.** At split time: `mosvera-spec`, `mosvera-runtime`, `mosvera-mcp`, `mosvera-providers`, `mosvera-examples`, `mosvera-docs`. No directory renaming required — only relocation.
 
 The provisional layout (`spec/ runtime/ mcp/ providers/ examples/ docs/`) is **validated** and adopted with the additions above (root governance files, `LICENSES/` directory, internal structure within `spec/` and `docs/`).
 
@@ -112,7 +112,7 @@ The provisional layout (`spec/ runtime/ mcp/ providers/ examples/ docs/`) is **v
 **Enables:**
 - A new contributor can land on the repo and locate any surface in one directory hop. The structure is legible without a tour.
 - Each surface (`spec/`, `runtime/`, `mcp/`, `providers/`) has its own README and can be extracted to its own repository by `git filter-repo` without path renames or import rewrites.
-- Schemas and TEPs are first-class, signaling that the spec is not just prose.
+- Schemas and MEPs are first-class, signaling that the spec is not just prose.
 - The ADR folder is in place from commit one, enabling the documentary-style decision record the project's tone policy already requires.
 - The core/contrib split is pre-baked: providers in-tree are the reference/core set; future third-party providers go to a contrib repo without disturbing the canonical layout.
 
@@ -133,7 +133,7 @@ The provisional layout (`spec/ runtime/ mcp/ providers/ examples/ docs/`) is **v
 3. [OpenTelemetry GitHub organization](https://github.com/open-telemetry) — Multi-repo split (spec, proto, collector, collector-contrib, language SDKs, semantic-conventions, operator, demo). Validates spec-monorepo → multi-repo as the maturity trajectory.
 4. [AsyncAPI/spec repository](https://github.com/asyncapi/spec) — `spec/asyncapi.md`, `examples/`, `assets/`, `scripts/`; JSON schemas split to sibling `spec-json-schemas` repo. Confirms the schema-as-peer pattern and the eventual split.
 5. [OpenAPI-Specification repository](https://github.com/OAI/OpenAPI-Specification) — `versions/`, `proposals/`, `tests/`, plus root-level `GOVERNANCE.md`, `EDITORS.md`, `IMPLEMENTATIONS.md`, `CONTRIBUTING.md`. Source for the governance-file root convention.
-6. [OpenTelemetry Collector receiver README](https://github.com/open-telemetry/opentelemetry-collector/blob/main/receiver/README.md) — Core/contrib split (collector vs. collector-contrib) as model for tessera's providers/ in-tree vs. eventual providers-contrib.
+6. [OpenTelemetry Collector receiver README](https://github.com/open-telemetry/opentelemetry-collector/blob/main/receiver/README.md) — Core/contrib split (collector vs. collector-contrib) as model for mosvera's providers/ in-tree vs. eventual providers-contrib.
 7. [joelparkerhenderson/architecture-decision-record](https://github.com/joelparkerhenderson/architecture-decision-record) — ADR templates, numbering convention (monotonic 0001-), lowercase-dashed filenames, present-tense imperative titles.
 8. [MADR (Markdown ADR)](https://adr.github.io/madr/) — `docs/adr/` vs. `docs/decisions/` convention discussion; rationale for preferring "decisions" as the broader, more self-documenting name.
 9. [npryce/adr-tools](https://github.com/npryce/adr-tools) — De facto tooling for ADR workflows; defaults to `doc/adr` but supports configuration, informing our `docs/decisions/` choice.

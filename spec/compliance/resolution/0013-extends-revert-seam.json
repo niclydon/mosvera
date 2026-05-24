@@ -1,7 +1,7 @@
 {
   "id": "0013-extends-revert-seam",
   "description": "$revert at the inheritance seam keeps the inherited value, discarding the child's own contribution.",
-  "tep": "TEP-0002",
+  "mep": "MEP-0002",
   "rule": "inheritance/revert-at-seam",
   "kind": "resolution",
   "input_kind": "template",

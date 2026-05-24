@@ -4,7 +4,7 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # spec/
 
-The Tessera specification — the long-term center of gravity of the
+The Mosvera specification — the long-term center of gravity of the
 project per [`MANIFESTO.md`](../MANIFESTO.md) and the strategic plan.
 The specification is language-agnostic, ships under CC-BY-4.0 (with
 schemas under Apache-2.0) per
@@ -18,7 +18,7 @@ structured per
 |-----------|---------|
 | `specification/` | Normative prose specification, versioned. `draft/` holds work-in-progress; numbered subdirectories (`0.1/`, `0.2/`) hold ratified versions. |
 | `schemas/` | JSON Schema definitions for the primitives — normative, machine-readable. Field names use `snake_case` per [ADR-0005](../docs/decisions/0005-schema-naming-conventions.md). |
-| `teps/` | [Tessera Enhancement Proposals](./teps/) — long-form proposals for spec changes. See [ADR-0003](../docs/decisions/0003-rfc-and-proposal-format.md) for the process. |
+| `teps/` | [Mosvera Enhancement Proposals](./meps/) — long-form proposals for spec changes. See [ADR-0003](../docs/decisions/0003-rfc-and-proposal-format.md) for the process. |
 | `compliance/` | Conformance test vectors in JSON, runnable against any conforming runtime. Required by [ADR-0007](../docs/decisions/0007-reference-runtime-language.md). |
 
 ## Status
@@ -30,7 +30,7 @@ content lands in Phase 1 (Specification Genesis) per
 ## Eventual repo split
 
 This directory is the seed of a future standalone repository at
-`github.com/tessera/spec` per
+`github.com/mosvera/spec` per
 [ADR-0002](../docs/decisions/0002-top-level-repository-layout.md).
 The directory layout here matches the eventual repository layout to
 make the split a relocation, not a rename.

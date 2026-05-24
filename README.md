@@ -2,27 +2,29 @@
 SPDX-License-Identifier: CC-BY-4.0
 -->
 
-# Tessera
+# Mosvera
 
-> **Working codename.** "Tessera" is the internal name used during
-> incubation. The public-facing name is deferred to Phase 6 (public
-> unlock) and will be selected through proper brand-collision research
-> per Doctrines 5 and 6. The original word "Tessera" is not acquirable
-> for an open standard (existing brands hold the namespace), so the
-> name in this repo is provisional. Reference it in conversation; do
-> not treat it as the final brand.
+> **Name selected: Mosvera.** Chosen through a full brand-availability
+> process (web search for commercial collisions + domains + GitHub org +
+> npm scope + social handles, per Doctrines 5 and 6). Mosvera is clean
+> across `.com`, `.io`, `.dev`, `.org`, the GitHub org, the npm scope,
+> and Bluesky, with no commercial brand collision in any vertical. The
+> project remains in **quiet incubation** — public launch is deferred to
+> Phase 6 — but the name is settled. See
+> [ADR-0009](./docs/decisions/0009-project-name-selection.md) for the
+> full selection record.
 
 **A declarative runtime for aesthetic intent in AI-native systems.**
 
-Tessera defines aesthetic primitives — templates, palettes,
+Mosvera defines aesthetic primitives — templates, palettes,
 modifiers, compositions — and compiles them into provider-specific
 outputs (OpenAI, FLUX, SDXL, Runway, …) through a provider-neutral
-canonical model. AI-native systems consume Tessera through its MCP
+canonical model. AI-native systems consume Mosvera through its MCP
 server, the same way they consume any other standardized tool
 surface.
 
 If "prompts plus a folder of JSON" is the AI-native era's assembly
-language, Tessera is one layer above: a structural representation of
+language, Mosvera is one layer above: a structural representation of
 aesthetic intent that can be versioned, inherited, composed,
 validated, and compiled — the way infrastructure became code with
 Terraform, the way instrumentation became standardized with
@@ -50,7 +52,7 @@ provider pairing — are recorded as ADRs in
 
 | Directory | What it is | Status |
 |-----------|------------|--------|
-| [`spec/`](./spec/) | The Tessera specification — schemas, RFCs (TEPs), prose, conformance vectors. Long-term center of gravity. | Phase 0b scaffold |
+| [`spec/`](./spec/) | The Mosvera specification — schemas, RFCs (MEPs), prose, conformance vectors. Long-term center of gravity. | Phase 0b scaffold |
 | [`runtime/`](./runtime/) | Reference runtime (TypeScript first; Python committed). Parses, resolves, merges, composes, validates, compiles. | Phase 2 |
 | [`mcp/`](./mcp/) | MCP server exposing the runtime's operations as standardized tools. | Phase 3 |
 | [`providers/`](./providers/) | Provider adapters — OpenAI and FLUX at Phase 4, more by community thereafter. | Phase 4 |
@@ -59,7 +61,7 @@ provider pairing — are recorded as ADRs in
 
 ## Doctrines
 
-Tessera operates under five [Primary Doctrines](./CLAUDE.md#primary-doctrines):
+Mosvera operates under five [Primary Doctrines](./CLAUDE.md#primary-doctrines):
 
 1. **Public-first** — built for strangers, not the author.
 2. **Adoption-over-convenience** — every choice judged by external
@@ -76,7 +78,7 @@ These doctrines are binding. They shape every decision recorded in
 
 ## What this project isn't
 
-Tessera is infrastructure, not a product. It is:
+Mosvera is infrastructure, not a product. It is:
 
 - **Not** an image generator.
 - **Not** a SaaS.
@@ -89,15 +91,15 @@ It is the substrate those things should be built on top of.
 
 ## Prior art
 
-Tessera is positioned with explicit awareness of adjacent work — the
+Mosvera is positioned with explicit awareness of adjacent work — the
 [W3C Design Tokens Community Group](https://www.designtokens.org/),
 [Style Dictionary](https://github.com/style-dictionary/style-dictionary),
 [Carbon](https://carbondesignsystem.com/), and declarative-prompt
 research like [DSPy](https://github.com/stanfordnlp/dspy) and
-[BAML](https://github.com/BoundaryML/baml). The specific gap Tessera
+[BAML](https://github.com/BoundaryML/baml). The specific gap Mosvera
 fills, and the reasoning for filling it, is documented in
 [ADR-0006](./docs/decisions/0006-prior-art-survey.md). If the gap
-turns out to be smaller than the spec claims, Tessera should fold
+turns out to be smaller than the spec claims, Mosvera should fold
 into adjacent ecosystems rather than ship competing surface — per
 Doctrine 2.
 
@@ -105,13 +107,13 @@ Doctrine 2.
 
 See [`CONTRIBUTING.md`](./CONTRIBUTING.md). The short version:
 
-- TEPs go in [`spec/teps/`](./spec/teps/) for spec changes.
+- MEPs go in [`spec/meps/`](./spec/meps/) for spec changes.
 - ADRs go in [`docs/decisions/`](./docs/decisions/) for repo
   architecture.
 - Pull requests for everything else, with `git commit -s` for the
   Developer Certificate of Origin.
 
-Tessera uses [Contributor Covenant 2.1](./CODE_OF_CONDUCT.md).
+Mosvera uses [Contributor Covenant 2.1](./CODE_OF_CONDUCT.md).
 
 ## License
 
@@ -128,9 +130,9 @@ follows the [REUSE](https://reuse.software/) convention.
 
 ## Acknowledgements
 
-Tessera takes structural inspiration from a small set of
+Mosvera takes structural inspiration from a small set of
 comparable-class open standards: OpenTelemetry, GraphQL,
 CloudEvents, OpenAPI, Terraform, Kubernetes. Where those projects
-shipped patterns that solved problems Tessera also faces, Tessera
+shipped patterns that solved problems Mosvera also faces, Mosvera
 adopts the pattern and cites the source. The full inventory of
 those choices lives in [`docs/decisions/`](./docs/decisions/).

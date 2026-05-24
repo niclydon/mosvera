@@ -4,12 +4,12 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # Maintainers
 
-This file lists current Tessera maintainers and the criteria for
+This file lists current Mosvera maintainers and the criteria for
 becoming one.
 
 ## Active maintainers
 
-Tessera is in quiet incubation with a single active maintainer. The
+Mosvera is in quiet incubation with a single active maintainer. The
 target governance model at the first public release (1.0) is a small
 Technical Committee — see
 [`GOVERNANCE.md`](./GOVERNANCE.md#target-model-at-10) and
@@ -25,13 +25,13 @@ private incubation phase. At public unlock (Phase 6 in
 
 ## Becoming a maintainer
 
-Tessera welcomes new maintainers. The criteria are deliberate and
+Mosvera welcomes new maintainers. The criteria are deliberate and
 documented so the path is legible to any contributor.
 
 To become a maintainer, you need:
 
 1. **Sustained contribution over at least 3 months.** This can be
-   code, TEPs, ADRs, documentation, examples, or review activity —
+   code, MEPs, ADRs, documentation, examples, or review activity —
    any meaningful surface of the project. The intent is to
    demonstrate reliability and engaged judgment, not to hit a
    specific quota.
@@ -51,7 +51,7 @@ responsibilities are:
 
 - **Review pull requests** in your scope. Reviewers approve or
   request changes; they do not block trivially.
-- **Shepherd TEPs and ADRs** through the process. This includes
+- **Shepherd MEPs and ADRs** through the process. This includes
   asking the research-grounded questions Doctrine 5 expects.
 - **Hold the doctrines.** Public-first, adoption-over-convenience,
   spec-neutrality, comparable-class framing, research-first. If a

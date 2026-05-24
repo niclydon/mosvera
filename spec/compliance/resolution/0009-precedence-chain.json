@@ -1,7 +1,7 @@
 {
   "id": "0009-precedence-chain",
   "description": "Total precedence: base < m1 < m2 < overrides. Later always wins.",
-  "tep": "TEP-0001",
+  "mep": "MEP-0001",
   "rule": "precedence/later-wins",
   "kind": "resolution",
   "input_kind": "composition",

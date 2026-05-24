@@ -1,7 +1,7 @@
 {
   "id": "0012-inheritance-then-composition",
   "description": "A base template's inheritance is resolved first, then composition modifiers apply on top.",
-  "tep": "TEP-0002",
+  "mep": "MEP-0002",
   "rule": "inheritance/resolved-before-composition",
   "kind": "resolution",
   "input_kind": "composition",

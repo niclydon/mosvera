@@ -1,7 +1,7 @@
 {
   "id": "0010-extends-single-override",
   "description": "Single inheritance: child overrides parent; inherited fields preserved.",
-  "tep": "TEP-0002",
+  "mep": "MEP-0002",
   "rule": "inheritance/child-overrides-parent",
   "kind": "resolution",
   "input_kind": "template",

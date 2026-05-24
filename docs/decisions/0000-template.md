@@ -17,8 +17,8 @@ requires at least three authoritative sources per ADR.>
 
 ## Decision
 
-<The concrete choice, stated unambiguously. Use definite language: "Tessera
-adopts X" rather than "Tessera will probably use X.">
+<The concrete choice, stated unambiguously. Use definite language: "Mosvera
+adopts X" rather than "Mosvera will probably use X.">
 
 ## Consequences
 

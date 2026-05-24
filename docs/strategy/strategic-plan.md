@@ -1,13 +1,13 @@
-# Tessera — Strategic Open Source Ecosystem Plan
+# Mosvera — Strategic Open Source Ecosystem Plan
 
 ## Namespace Strategy
 
 Acquire and secure:
 
-- github.com/tessera
-- tessera.dev
-- tessera.ai
-- tessera.run (optional)
+- github.com/mosvera
+- mosvera.dev
+- mosvera.ai
+- mosvera.run (optional)
 
 The namespace itself matters enormously if this evolves into a real ecosystem or standard.
 
@@ -24,7 +24,7 @@ The ideal path is quiet incubation first.
 # Recommended GitHub Organization Structure
 
 ```text
-github.com/tessera
+github.com/mosvera
 ```
 
 Initial repositories:
@@ -50,7 +50,7 @@ The architecture is still emerging, and premature OSS exposure can freeze weak a
 This becomes:
 
 ```text
-Tessera Specification
+Mosvera Specification
 ```
 
 This is the most important repository long term.
@@ -92,7 +92,7 @@ Machine-readable aesthetic infrastructure interface.
 This becomes:
 
 ```text
-Tessera MCP
+Mosvera MCP
 ```
 
 Potential capabilities:
@@ -152,7 +152,7 @@ Examples should include:
 
 # Development Philosophy
 
-The recommendation is NOT to launch Tessera immediately as:
+The recommendation is NOT to launch Mosvera immediately as:
 - a startup
 - a SaaS platform
 - an AI image tool
@@ -161,7 +161,7 @@ The recommendation is NOT to launch Tessera immediately as:
 
 That would collapse the abstraction too early.
 
-Instead, Tessera should initially position itself as:
+Instead, Mosvera should initially position itself as:
 
 > an open aesthetic infrastructure standard/runtime.
 
@@ -237,7 +237,7 @@ This is fundamentally a category-definition move.
 Publicly launch:
 
 ```text
-github.com/tessera/spec
+github.com/mosvera/spec
 ```
 
 This is likely the real ecosystem unlock moment.
@@ -248,7 +248,7 @@ At this stage:
 - runtime semantics become public
 - composition systems become formalized
 
-This is where Tessera starts feeling like:
+This is where Mosvera starts feeling like:
 - OpenTelemetry
 - GraphQL
 - Terraform
@@ -263,7 +263,7 @@ rather than:
 
 The strongest framing remains:
 
-> Tessera is a declarative runtime for aesthetic intent.
+> Mosvera is a declarative runtime for aesthetic intent.
 
 Or more broadly:
 
@@ -286,7 +286,7 @@ The important abstraction is:
 
 # Long-Term Vision
 
-Tessera eventually becomes:
+Mosvera eventually becomes:
 
 - a specification
 - a runtime
@@ -315,7 +315,7 @@ Potential future integrations:
 
 The strongest conclusion is this:
 
-Tessera no longer feels like:
+Mosvera no longer feels like:
 > “a clever prompt management idea.”
 
 It increasingly resembles:

@@ -4,7 +4,7 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # docs/guides/
 
-How-to guides and concept guides for Tessera. Content lands as the
+How-to guides and concept guides for Mosvera. Content lands as the
 runtime, MCP server, and provider adapters ship — there's nothing
 useful to guide a reader through until those exist.
 
@@ -19,7 +19,7 @@ useful to guide a reader through until those exist.
 - **Running the MCP server** — stdio setup, tool invocation from
   agents and editors.
 - **Migrating from prompts to compositions** — how to express an
-  existing prompt-based workflow as a Tessera composition.
+  existing prompt-based workflow as a Mosvera composition.
 
 ## What goes here vs elsewhere
 
@@ -30,5 +30,5 @@ useful to guide a reader through until those exist.
   not here.
 - **Roadmap and changelog** live at the [repository root](../../).
 
-Guides explain *how to use* Tessera. They do not redefine what
-Tessera is.
+Guides explain *how to use* Mosvera. They do not redefine what
+Mosvera is.

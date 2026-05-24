@@ -6,9 +6,9 @@
 
 ## Context
 
-Tessera is a multi-surface project: a specification (provider-neutral semantic model for aesthetic intent), a reference runtime, an MCP server, provider adapters compiled from the canonical model, and examples. For an open standard to attract independent provider implementations — particularly from commercial AI providers (image, video, motion vendors) — the license must (a) be familiar to enterprise legal review, (b) carry an explicit patent grant, and (c) impose no copyleft obligation on downstream provider code that consumes or implements the spec.
+Mosvera is a multi-surface project: a specification (provider-neutral semantic model for aesthetic intent), a reference runtime, an MCP server, provider adapters compiled from the canonical model, and examples. For an open standard to attract independent provider implementations — particularly from commercial AI providers (image, video, motion vendors) — the license must (a) be familiar to enterprise legal review, (b) carry an explicit patent grant, and (c) impose no copyleft obligation on downstream provider code that consumes or implements the spec.
 
-Tessera also has a spec/runtime split similar to the comparable class: the spec is normative prose + schemas; the runtime/MCP/providers are executable code. The decision must address whether to use a single license for the whole repository or split spec vs. code licenses, and whether to follow the CNCF dual-license convention (Apache-2.0 code + CC-BY-4.0 documentation) or the GraphQL OWFa pattern.
+Mosvera also has a spec/runtime split similar to the comparable class: the spec is normative prose + schemas; the runtime/MCP/providers are executable code. The decision must address whether to use a single license for the whole repository or split spec vs. code licenses, and whether to follow the CNCF dual-license convention (Apache-2.0 code + CC-BY-4.0 documentation) or the GraphQL OWFa pattern.
 
 ## Research
 
@@ -26,7 +26,7 @@ Tessera also has a spec/runtime split similar to the comparable class: the spec 
 
 **Outliers and what they teach us:**
 
-- **GraphQL** uses OWFa 1.0 (Open Web Foundation Agreement, Patent and Copyright Grants) for the spec and MIT for graphql-js/Relay. The OWFa exists specifically to govern implementations of a standard across many vendors. It was chosen after Facebook's earlier patent-clause controversy; the article's author frames OWFa as "designed for collaborative open standards." OWFa is excellent for a multi-vendor working group, but it is unfamiliar to enterprise legal teams compared to Apache-2.0 and adds review friction for a project at Tessera's stage.
+- **GraphQL** uses OWFa 1.0 (Open Web Foundation Agreement, Patent and Copyright Grants) for the spec and MIT for graphql-js/Relay. The OWFa exists specifically to govern implementations of a standard across many vendors. It was chosen after Facebook's earlier patent-clause controversy; the article's author frames OWFa as "designed for collaborative open standards." OWFa is excellent for a multi-vendor working group, but it is unfamiliar to enterprise legal teams compared to Apache-2.0 and adds review friction for a project at Mosvera's stage.
 - **JSON Schema** uses BSD-3-Clause + Academic Free License v3.0 (dual). This is a legacy IETF-adjacent pattern, not a model the modern comparable class follows.
 - **Terraform** is the cautionary tale: relicensed from MPL-2.0 to BSL 1.1 in August 2023, immediately forked to OpenTofu under Linux Foundation. Source-available is not open-source and triggers ecosystem flight. Confirms that any non-OSI license — including BSL, SSPL, or "fair source" variants — is disqualifying for an open standard.
 
@@ -34,7 +34,7 @@ Tessera also has a spec/runtime split similar to the comparable class: the spec 
 
 ## Decision
 
-Tessera adopts a **CNCF-style dual-license**:
+Mosvera adopts a **CNCF-style dual-license**:
 
 - **Code** (runtime, MCP server, provider adapters, tooling, examples): **Apache-2.0**.
 - **Documentation and specification prose** (spec text, RFCs, glossary, narrative docs, READMEs, decision records): **CC-BY-4.0**.
@@ -42,12 +42,12 @@ Tessera adopts a **CNCF-style dual-license**:
 
 Repository declares `SPDX-License-Identifier: Apache-2.0 AND CC-BY-4.0` at the root. Both full license texts ship in a `LICENSES/` directory per the REUSE convention. Per-file SPDX headers on code; per-file SPDX headers on Markdown where practical.
 
-A single OWFa-style spec license is **rejected**. OWFa is purpose-built for multi-vendor standards bodies but is unfamiliar to commercial legal review and undersells the project's posture at the incubation stage. If Tessera later forms a formal working group with multiple vendor members co-authoring the spec, OWFa can be revisited as a non-breaking re-license of the spec text only (CC-BY-4.0 → OWFa would be a directional change worth re-deciding).
+A single OWFa-style spec license is **rejected**. OWFa is purpose-built for multi-vendor standards bodies but is unfamiliar to commercial legal review and undersells the project's posture at the incubation stage. If Mosvera later forms a formal working group with multiple vendor members co-authoring the spec, OWFa can be revisited as a non-breaking re-license of the spec text only (CC-BY-4.0 → OWFa would be a directional change worth re-deciding).
 
 ## Consequences
 
 **Enables:**
-- Commercial providers can ship Tessera adapters without copyleft contagion.
+- Commercial providers can ship Mosvera adapters without copyleft contagion.
 - Apache-2.0 patent grant removes a category of adoption objection from enterprise legal review.
 - CC-BY-4.0 on spec prose matches CNCF/OpenAPI convention; downstream documentation sites, books, and tutorials can quote and remix the spec with attribution.
 - Future donation to a foundation (CNCF, Linux Foundation, OpenJS) is friction-free — licensing already matches their defaults.

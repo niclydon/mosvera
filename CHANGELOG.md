@@ -4,14 +4,14 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # Changelog
 
-All notable changes to Tessera are documented here. The format follows
+All notable changes to Mosvera are documented here. The format follows
 [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.1.0/), and
 this project will adhere to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html)
 once it ships its first release.
 
 For deeper context on architectural changes, see
 [`docs/decisions/`](./docs/decisions/). For specification changes
-once Phase 1 ships, see [`spec/teps/`](./spec/teps/).
+once Phase 1 ships, see [`spec/meps/`](./spec/meps/).
 
 ## [Unreleased]
 
@@ -19,7 +19,7 @@ once Phase 1 ships, see [`spec/teps/`](./spec/teps/).
 
 - **Phase 1 — Specification Genesis (in progress).** Specification
   proposals:
-  - [TEP-0001: Composition Semantics](./spec/teps/0001-composition-semantics.md)
+  - [MEP-0001: Composition Semantics](./spec/meps/0001-composition-semantics.md)
     — defines the core merge algebra (deep-merge object model, schema-declared
     keyed list merging via `merge_by`, `$unset`/`$revert` directives), the
     total precedence chain (base → ordered modifiers → inline overrides),
@@ -27,9 +27,9 @@ once Phase 1 ships, see [`spec/teps/`](./spec/teps/).
     legibility guarantees. Grounded in a cited survey of CSS cascade, JSON
     Merge Patch (RFC 7396), JSON Patch (RFC 6902), Kubernetes Strategic Merge
     Patch, DTCG, Tailwind, Sass, and Terraform. Status: provisional.
-  - [TEP-0002: Inheritance Rules](./spec/teps/0002-inheritance-rules.md)
+  - [MEP-0002: Inheritance Rules](./spec/meps/0002-inheritance-rules.md)
     — defines the `$extends` mechanism as **single inheritance** (one parent),
-    resolved as a linear ancestor chain folded with TEP-0001's `merge` (child
+    resolved as a linear ancestor chain folded with MEP-0001's `merge` (child
     wins). Extends cycle detection to the inheritance graph. Unifies
     inheritance + composition into one total precedence order
     (`ancestors → self → modifiers → overrides`). Multiple inheritance + C3
@@ -37,7 +37,7 @@ once Phase 1 ships, see [`spec/teps/`](./spec/teps/).
     survey of C3/Python MRO, Jinja2/Twig/JS prototype chains, Scala/Ruby/PHP
     traits, JSON Schema `allOf`, CUE unification, Dhall, and the
     composition-over-inheritance doctrine. Status: provisional.
-  - [TEP-0003: Provider Compilation Contract](./spec/teps/0003-provider-compilation-contract.md)
+  - [MEP-0003: Provider Compilation Contract](./spec/meps/0003-provider-compilation-contract.md)
     — defines how the canonical model compiles to provider payloads. Each
     adapter ships a machine-readable **capability manifest** declaring a
     **lowering action** per construct (`native` / `approximate` / `emulate` /
@@ -51,12 +51,12 @@ once Phase 1 ships, see [`spec/teps/`](./spec/teps/).
     per ADR-0008. Grounded in a cited survey of LLVM, glTF, Terraform,
     OpenTelemetry, Style Dictionary, Pandoc, and SQLAlchemy. Status: provisional.
 
-    **The three foundational TEPs (0001–0003) now define the complete semantic
+    **The three foundational MEPs (0001–0003) now define the complete semantic
     model:** aesthetic intent composes, inherits, and compiles to provider-ready
     requests.
   - **Conformance suite** in [`spec/compliance/`](./spec/compliance/): 21
     language-agnostic JSON vectors (+ `vector.schema.json` meta-schema)
-    covering the normative behaviors of all three foundational TEPs —
+    covering the normative behaviors of all three foundational MEPs —
     deep/scalar/type-mismatch merge, the three list strategies,
     `$unset`/`$revert`, the precedence chain, single inheritance,
     multi-level chains, the inheritance/composition seam, `$revert` and
@@ -64,11 +64,11 @@ once Phase 1 ships, see [`spec/teps/`](./spec/teps/).
     multiple-inheritance rejection, and the full compilation
     criticality × lowering-action rule table. Each vector verified during
     authoring against an independent reference oracle, the vector
-    meta-schema, and the Tessera primitive schemas. This is the
+    meta-schema, and the Mosvera primitive schemas. This is the
     cross-language correctness contract ADR-0007 requires; the Phase 2
     runtime will be the first implementation checked against it.
   - **v0.1 JSON Schemas** in [`spec/schemas/`](./spec/schemas/) encoding the
-    three TEPs + ADR-0005 naming: `common` (shared `$defs`), `composition`,
+    three MEPs + ADR-0005 naming: `common` (shared `$defs`), `composition`,
     `template`, `modifier`, `palette`, and `capability-manifest`. JSON Schema
     2020-12 dialect, URN-style `$id`s, snake_case enforcement, `$`-directives
     (`$extends`/`$unset`/`$revert`) permitted and unknown `$`-keys rejected.
@@ -78,9 +78,22 @@ once Phase 1 ships, see [`spec/teps/`](./spec/teps/).
     missing-required documents rejected; capability manifest requires a `note`
     on `approximate`/`emulate` mappings).
 
-- **Naming status.** "Tessera" marked as an internal working codename;
-  public-facing name deferred to Phase 6 after brand-collision research
-  found the name unacquirable. See README and CLAUDE.md notices.
+- **Project named: Mosvera.** The project was renamed from its original
+  working name "Tessera" to **Mosvera**, selected through a full
+  brand-availability process (web search for commercial collisions +
+  domains + GitHub org + npm scope + social handles). "Tessera" was
+  unusable for an open standard — every relevant domain and the GitHub
+  org were taken and the word is a brand across many industries.
+  "Mosvera" is clean across `.com`/`.io`/`.dev`/`.org`, the GitHub org,
+  the npm scope, and Bluesky, with no commercial brand collision. The
+  rename touched the whole repo: prose, schema `$id` URNs
+  (`urn:tessera:` → `urn:mosvera:`), and the enhancement-proposal series
+  (**TEP → MEP**, `spec/teps/` → `spec/meps/`, vector field `tep` →
+  `mep`). The project remains in quiet incubation; only the name is now
+  settled. Recorded in
+  [ADR-0009](./docs/decisions/0009-project-name-selection.md), which also
+  documents the methodology lesson: run the full availability process
+  before building on a name, not a domain DNS lookup after the fact.
 
 - **Phase 0b — Foundation deliverables.** Standing up the repository
   per [ADR-0002](./docs/decisions/0002-top-level-repository-layout.md):
@@ -91,7 +104,7 @@ once Phase 1 ships, see [`spec/teps/`](./spec/teps/).
   - Dual licensing per [ADR-0001](./docs/decisions/0001-license-choice.md):
     root `LICENSE` (Apache-2.0), and `LICENSES/` directory with the
     full Apache-2.0 and CC-BY-4.0 texts per REUSE convention.
-  - Scaffold directories with stub READMEs: `spec/`, `spec/teps/`,
+  - Scaffold directories with stub READMEs: `spec/`, `spec/meps/`,
     `spec/schemas/`, `spec/specification/`, `spec/compliance/`,
     `runtime/`, `mcp/`, `providers/`, `examples/`, `docs/`,
     `docs/guides/`, `docs/strategy/`.
@@ -107,7 +120,7 @@ once Phase 1 ships, see [`spec/teps/`](./spec/teps/).
   - [ADR-0002](./docs/decisions/0002-top-level-repository-layout.md)
     — Top-level repository layout.
   - [ADR-0003](./docs/decisions/0003-rfc-and-proposal-format.md) —
-    RFC / specification proposal format (TEPs + ADRs).
+    RFC / specification proposal format (MEPs + ADRs).
   - [ADR-0004](./docs/decisions/0004-governance.md) — Pre-public
     and first-release governance.
   - [ADR-0005](./docs/decisions/0005-schema-naming-conventions.md)
@@ -134,5 +147,5 @@ once Phase 1 ships, see [`spec/teps/`](./spec/teps/).
 ---
 
 The `[Unreleased]` section captures work since the most recent
-release tag. Once Tessera ships its first release, entries will
+release tag. Once Mosvera ships its first release, entries will
 graduate into dated, semver-tagged sections.
