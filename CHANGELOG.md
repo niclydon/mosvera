@@ -17,6 +17,21 @@ once Phase 1 ships, see [`spec/teps/`](./spec/teps/).
 
 ### Added
 
+- **Phase 1 — Specification Genesis (in progress).** First specification
+  proposal:
+  - [TEP-0001: Composition Semantics](./spec/teps/0001-composition-semantics.md)
+    — defines the core merge algebra (deep-merge object model, schema-declared
+    keyed list merging via `merge_by`, `$unset`/`$revert` directives), the
+    total precedence chain (base → ordered modifiers → inline overrides),
+    mandatory DAG/cycle detection for references, and the determinism +
+    legibility guarantees. Grounded in a cited survey of CSS cascade, JSON
+    Merge Patch (RFC 7396), JSON Patch (RFC 6902), Kubernetes Strategic Merge
+    Patch, DTCG, Tailwind, Sass, and Terraform. Status: provisional.
+
+- **Naming status.** "Tessera" marked as an internal working codename;
+  public-facing name deferred to Phase 6 after brand-collision research
+  found the name unacquirable. See README and CLAUDE.md notices.
+
 - **Phase 0b — Foundation deliverables.** Standing up the repository
   per [ADR-0002](./docs/decisions/0002-top-level-repository-layout.md):
   - Root-level `MANIFESTO.md`, `ROADMAP.md`, `GLOSSARY.md`, `README.md`.
