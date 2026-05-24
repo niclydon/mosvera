@@ -67,7 +67,9 @@ for the full Phase 1 plan.
 |-----|-------|--------|
 | [0001](./0001-composition-semantics.md) | Composition Semantics | provisional |
 | [0002](./0002-inheritance-rules.md) | Inheritance Rules | provisional |
+| [0003](./0003-provider-compilation-contract.md) | Provider Compilation Contract | provisional |
 
-Planned (Phase 1):
-
-- **TEP-0003** — Provider Compilation Contract (canonical model → provider payloads)
+The three foundational TEPs above define the full semantic model: how
+aesthetic intent composes (0001), inherits (0002), and compiles to
+provider payloads (0003). Together they take a declaration of aesthetic
+intent all the way to a provider-ready request.

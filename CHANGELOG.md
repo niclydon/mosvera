@@ -37,6 +37,23 @@ once Phase 1 ships, see [`spec/teps/`](./spec/teps/).
     survey of C3/Python MRO, Jinja2/Twig/JS prototype chains, Scala/Ruby/PHP
     traits, JSON Schema `allOf`, CUE unification, Dhall, and the
     composition-over-inheritance doctrine. Status: provisional.
+  - [TEP-0003: Provider Compilation Contract](./spec/teps/0003-provider-compilation-contract.md)
+    — defines how the canonical model compiles to provider payloads. Each
+    adapter ships a machine-readable **capability manifest** declaring a
+    **lowering action** per construct (`native` / `approximate` / `emulate` /
+    `unsupported`); every canonical construct carries a **criticality**
+    (`required` / `optional`). Compilation rule: `required` + `unsupported`
+    → hard error before any provider call; everything lossy → compile +
+    structured warning; **loss is never silent**. Determinism boundary at the
+    payload-emission line (compilation deterministic; generation not).
+    Provenance map traces payload fields back to canonical constructs. Worked
+    example: one composition compiling to both OpenAI gpt-image-1 and FLUX.2-pro
+    per ADR-0008. Grounded in a cited survey of LLVM, glTF, Terraform,
+    OpenTelemetry, Style Dictionary, Pandoc, and SQLAlchemy. Status: provisional.
+
+    **The three foundational TEPs (0001–0003) now define the complete semantic
+    model:** aesthetic intent composes, inherits, and compiles to provider-ready
+    requests.
 
 - **Naming status.** "Tessera" marked as an internal working codename;
   public-facing name deferred to Phase 6 after brand-collision research
