@@ -1,5 +1,6 @@
 .DS_Store
 .remember/
+.local/
 node_modules/
 dist/
 build/

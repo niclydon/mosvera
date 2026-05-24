@@ -280,4 +280,29 @@ Documentation formats follow open-source norms:
 - `docs/ROADMAP.md` is the public-facing phased roadmap.
 
 Personal narrative-style documentation patterns are explicitly out of scope
-for this repo per Doctrine 1.
+for the public-facing repo per Doctrine 1.
+
+### Private working layer (gitignored)
+
+Contributors may keep a private working layer for their own continuity and
+tooling integrations:
+
+```text
+.local/
+.local/docs/
+.local/docs/narrative/
+```
+
+The `.local/` tree is gitignored and never reaches the public remote. It is
+a safe place for:
+
+- Per-contributor narrative documentation (e.g., long-form documentary-style
+  writeups used by personal tooling).
+- Scratch notes, exploration logs, or private context that would violate
+  Doctrine 1 if committed.
+- Local-only integrations with private knowledge systems.
+
+Nothing in `.local/` is authoritative. The canonical record remains the
+committed `CHANGELOG.md`, ADRs, RFCs, and ROADMAP. If a finding from a
+private narrative doc matters to the project, it gets restated in
+public-first voice and committed to the appropriate canonical location.
