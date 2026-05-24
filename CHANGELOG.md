@@ -17,8 +17,8 @@ once Phase 1 ships, see [`spec/teps/`](./spec/teps/).
 
 ### Added
 
-- **Phase 1 — Specification Genesis (in progress).** First specification
-  proposal:
+- **Phase 1 — Specification Genesis (in progress).** Specification
+  proposals:
   - [TEP-0001: Composition Semantics](./spec/teps/0001-composition-semantics.md)
     — defines the core merge algebra (deep-merge object model, schema-declared
     keyed list merging via `merge_by`, `$unset`/`$revert` directives), the
@@ -27,6 +27,16 @@ once Phase 1 ships, see [`spec/teps/`](./spec/teps/).
     legibility guarantees. Grounded in a cited survey of CSS cascade, JSON
     Merge Patch (RFC 7396), JSON Patch (RFC 6902), Kubernetes Strategic Merge
     Patch, DTCG, Tailwind, Sass, and Terraform. Status: provisional.
+  - [TEP-0002: Inheritance Rules](./spec/teps/0002-inheritance-rules.md)
+    — defines the `$extends` mechanism as **single inheritance** (one parent),
+    resolved as a linear ancestor chain folded with TEP-0001's `merge` (child
+    wins). Extends cycle detection to the inheritance graph. Unifies
+    inheritance + composition into one total precedence order
+    (`ancestors → self → modifiers → overrides`). Multiple inheritance + C3
+    linearization reserved as a gated future possibility. Grounded in a cited
+    survey of C3/Python MRO, Jinja2/Twig/JS prototype chains, Scala/Ruby/PHP
+    traits, JSON Schema `allOf`, CUE unification, Dhall, and the
+    composition-over-inheritance doctrine. Status: provisional.
 
 - **Naming status.** "Tessera" marked as an internal working codename;
   public-facing name deferred to Phase 6 after brand-collision research

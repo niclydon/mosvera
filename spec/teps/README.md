@@ -66,8 +66,8 @@ for the full Phase 1 plan.
 | TEP | Title | Status |
 |-----|-------|--------|
 | [0001](./0001-composition-semantics.md) | Composition Semantics | provisional |
+| [0002](./0002-inheritance-rules.md) | Inheritance Rules | provisional |
 
 Planned (Phase 1):
 
-- **TEP-0002** — Inheritance Rules (templates extending templates; reuses the merge operation from TEP-0001)
 - **TEP-0003** — Provider Compilation Contract (canonical model → provider payloads)
