@@ -32,6 +32,15 @@ once Phase 1 ships, see [`spec/meps/`](./spec/meps/).
   produced during vector authoring — the ADR-0007 cross-language contract.
   Tooling: TypeScript + vitest; semantic core has no runtime dependencies so
   the committed Python port is a translation.
+  - **Parser + validator boundary modules.** `parse` (JSON/YAML/object →
+    document, binds `yaml`) and `createValidator` (validates documents
+    against the canonical [`spec/schemas/`](./spec/schemas/) via `ajv`
+    2020-12). These are boundary bindings, deliberately outside the
+    zero-dependency semantic core — each language port swaps in its native
+    JSON Schema validator. The validator agrees with `ajv` on every ADR-0005
+    enforcement case that Python `jsonschema` rejected during schema
+    authoring (cross-validator agreement). 15 added unit tests; 36 total
+    runtime tests green under strict typecheck.
 
 
 - **Phase 1 — Specification Genesis (in progress).** Specification

@@ -37,15 +37,32 @@ committed Python port is a translation rather than a rewrite (ADR-0007).
 | [`src/types.ts`](./src/types.ts) | Shared types and `ResolutionError`. |
 | [`src/index.ts`](./src/index.ts) | Public API. |
 
-Deferred: a `parser`/`validator` layer (JSON Schema validation of input
-documents against [`spec/schemas/`](../spec/schemas/)) — the conformance suite
-exercises the semantic core, which does not require schema validation to run.
+### Boundary modules
+
+These sit at the system boundary and bind to external libraries; they are
+**not** part of the portable semantic core. Each language port replaces these
+bindings with that language's native equivalents.
+
+| Module | Responsibility | Binds to |
+|--------|---------------|----------|
+| [`src/parser.ts`](./src/parser.ts) | Load a document from JSON/YAML source or an object. | `yaml` |
+| [`src/validator.ts`](./src/validator.ts) | Validate documents against the canonical schemas in [`spec/schemas/`](../spec/schemas/) (ADR-0005 naming, MEP directives). | `ajv` (JSON Schema 2020-12) |
+
+## Dependencies
+
+- **Semantic core** (`merge`/`resolve`/`compose`/`compile`): **zero runtime
+  dependencies**, pure functions — this is what the committed Python port
+  translates.
+- **Boundary modules** (`parser`/`validator`): depend on `yaml` and `ajv`.
+  These are per-language bindings, not core logic; the portable artifacts they
+  bind to (the YAML/JSON formats and the JSON Schemas) are language-neutral.
 
 ## Status
 
-Phase 2 (in progress). The semantic core is implemented and **passes all 21
-conformance vectors** in [`spec/compliance/`](../spec/compliance/) plus a
-strict typecheck. Run `npm test` and `npm run typecheck`.
+Phase 2. The semantic core **passes all 21 conformance vectors** in
+[`spec/compliance/`](../spec/compliance/); the parser and validator add 15
+unit tests (36 total), all green under a strict typecheck. Run `npm test`
+and `npm run typecheck`.
 
 This is independent cross-implementation agreement: the conformance vectors
 were authored and verified against a separate reference oracle, and this TS
