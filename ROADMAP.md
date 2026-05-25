@@ -16,12 +16,14 @@ For the project's operating doctrines, see
 
 ## Status
 
-Phases 0, 1, and 2 are **complete** (as of 2026-05-24). Phase 0 (doctrine +
+Phases 0, 1, 2, and 3 are **complete** (as of 2026-05-25). Phase 0 (doctrine +
 foundation: 6 doctrines, 10 ADRs), Phase 1 (spec genesis: MEP-0001/0002/0003,
-six v0.1 schemas, 21 conformance vectors), and Phase 2 (reference runtime:
-semantic core + parser + validator, 36 tests green). The project name
-(**Mosvera**) and namespace are settled. Still private incubation, no public
-claims; **Phase 3 — MCP surface** is next.
+six v0.1 schemas, 21 conformance vectors), Phase 2 (reference runtime:
+semantic core + parser + validator, 38 tests green), and Phase 3 (MCP surface:
+`@mosvera/mcp` stdio server, five tools, `cinematic-editorial` worked example,
+MEP-0004 + ADR-0011, 74 total tests green). The project name (**Mosvera**) and
+namespace are settled. Still private incubation, no public claims;
+**Phase 4 — Provider Adapters** is next.
 
 ## Phases
 
@@ -101,7 +103,7 @@ semantic logic stays as pure functions, separable from TS-idiomatic
 glue, so the Python port is a translation rather than a rewrite. No
 clever TS-only patterns in the semantic core.
 
-### Phase 3 — MCP Surface
+### Phase 3 — MCP Surface (complete)
 
 Expose Phase 2 runtime capabilities as a strict MCP server. Aligns
 Mosvera with AI-native orchestration from day one.

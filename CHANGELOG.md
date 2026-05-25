@@ -17,6 +17,58 @@ once Phase 1 ships, see [`spec/meps/`](./spec/meps/).
 
 ### Added
 
+- **Phase 3 — MCP Surface (complete).** The `@mosvera/mcp` package
+  ([`mcp/`](./mcp/)) exposes the Phase 2 runtime as a stdio MCP server
+  via the TypeScript MCP SDK. It shares types with `@mosvera/runtime`
+  through the npm workspace root (`package.json`), so both packages
+  operate against a single set of schema and runtime types without
+  duplication. Five tools, each with strict JSON Schema input definitions
+  and clear structured errors:
+  - `list_templates` — enumerate templates in the loaded registry.
+  - `resolve_composition` — walk the inheritance chain and produce the
+    resolved canonical model.
+  - `get_palette` — retrieve a palette document from the registry.
+  - `validate_schema` — validate an arbitrary document against a named
+    Mosvera schema.
+  - `compile_generation` — apply the MEP-0003 criticality × lowering-action
+    rule engine against a supplied capability manifest and return the
+    compilation decision (contract pass, structured warnings, or hard error)
+    plus the canonical model. Makes **no** provider HTTP call; the
+    Phase-4/provider boundary is respected (compilation is deterministic;
+    generation is not).
+  - **Merge-strategy resolution.** A new `deriveStrategies` runtime helper
+    derives per-field merge strategies from `x-mosvera-merge` schema
+    annotations. The MCP layer composes a three-layer strategy model:
+    schema defaults ⊕ project-level `merge-strategies.json` ⊕ per-call
+    inline overrides. The precedence order matches MEP-0001 intent.
+  - **Filesystem registry loader + inline override.** On startup the server
+    loads an aesthetic-system project directory (default:
+    `spec/examples/cinematic-editorial/`) with on-load schema validation,
+    so every tool call operates against a pre-validated registry. Tools also
+    accept an inline `registry` argument merged per-collection by `id`,
+    supporting ephemeral overrides without touching the filesystem state.
+  - **`unknown_reference` pre-flight.** A registry-level pre-flight check
+    emits a clear `unknown_reference` error before any resolution attempt
+    when a reference target is absent. This is a MCP-layer guard only; the
+    runtime's normative error set (the 21 conformance vectors) is untouched
+    — no new conformance vectors are introduced.
+  - **`cinematic-editorial` worked example.** `spec/examples/cinematic-editorial/`
+    ships a complete aesthetic system: a base template and a
+    noir-extends-base template, golden-hour and high-contrast modifiers, a
+    palette, a full composition, `merge-strategies.json`, and an illustrative
+    capability manifest. This also closes the Phase-1 "one worked aesthetic
+    system in `spec/examples/`" gap that was deferred when Phase 1 shipped.
+  - **Docs: MEP-0004 + ADR-0011.**
+    [MEP-0004](./spec/meps/0004-mcp-tool-contract.md) (MCP Tool Contract,
+    status Draft/Provisional) specifies the normative contract for each tool.
+    [ADR-0011](./docs/decisions/0011-mcp-surface-design.md) records the
+    design decisions for the MCP surface (stdio-first, HTTP/SSE deferred,
+    inline-override pattern, pre-flight guard placement). stdio transport is
+    first; HTTP/SSE is deferred until external integrators request it.
+  - **Test totals: 74, all green.** Runtime: **38** tests (including all 21
+    conformance vectors). MCP: **36** tests. Both packages typecheck clean
+    under strict TypeScript.
+
 - **Namespace secured + schema `$id`s rooted at the domain.** Registered
   `mosvera.com`, `mosvera.dev`, `mosvera.org` — `mosvera.dev` is the
   canonical home. Schema `$id`s switched from interim URNs
