@@ -1,0 +1,11 @@
+{
+  "$schema": "https://mosvera.dev/schema/0.1/capability-manifest",
+  "provider": "illustrative-image",
+  "adapter_version": "0.0.0-illustrative",
+  "constructs": {
+    "medium": { "lowering_action": "native" },
+    "lighting": { "lowering_action": "approximate", "note": "ILLUSTRATIVE ONLY — not a real provider. lighting scheme/mood folded into a prompt phrase." },
+    "color_grade": { "lowering_action": "approximate", "note": "ILLUSTRATIVE ONLY — contrast/saturation folded into prompt adjectives." },
+    "lights": { "lowering_action": "emulate", "note": "ILLUSTRATIVE ONLY — named lights emulated via descriptive prompt clauses." }
+  }
+}

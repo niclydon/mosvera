@@ -1,0 +1,18 @@
+<!--
+SPDX-License-Identifier: CC-BY-4.0
+-->
+
+# Example: Cinematic Editorial
+
+A worked Mosvera aesthetic system expressed entirely in schema-valid documents.
+It demonstrates single inheritance (`noir` extends `cinematic-editorial-base`),
+modifier composition (`golden-hour`, `high-contrast`), an inline override, and a
+project-level `merge-strategies.json` declaring that the open aesthetic field
+`lights` merges by the `name` key (MEP-0001 `merge_by`).
+
+`manifests/illustrative-image.manifest.json` is an **illustrative** capability
+manifest used only to exercise the MEP-0003 compilation contract end-to-end. It
+is NOT a real provider adapter — those arrive in Phase 4.
+
+This directory is the default registry for the reference MCP server
+(`npm --workspace @mosvera/mcp start`).
