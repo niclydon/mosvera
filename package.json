@@ -1,0 +1,6 @@
+{
+  "name": "mosvera-monorepo",
+  "private": true,
+  "type": "module",
+  "workspaces": ["runtime", "mcp"]
+}
