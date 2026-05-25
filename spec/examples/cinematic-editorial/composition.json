@@ -1,0 +1,7 @@
+{
+  "$schema": "https://mosvera.dev/schema/0.1/composition",
+  "id": "editorial-noir-golden",
+  "base": "noir",
+  "modifiers": ["golden-hour", "high-contrast"],
+  "overrides": { "medium": "cinematic" }
+}
