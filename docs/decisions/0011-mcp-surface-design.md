@@ -188,8 +188,9 @@ palette `$extends`. It remains a clearly tracked follow-on.
 [MEP-0004](../../spec/meps/0004-mcp-tool-contract.md) carries status
 `Draft/Provisional` rather than `Provisional` or `Accepted`.
 
-**Rationale.** The tool contracts are implemented and tested (36 green tests
-across runtime + mcp), but external integrators have not yet exercised them.
+**Rationale.** The tool contracts are implemented and tested (runtime: 38
+tests, including the 21 conformance vectors in `spec/compliance/`; mcp: 36
+tests; all green), but external integrators have not yet exercised them.
 Freezing the interface before real usage data exists would be premature.
 `Draft/Provisional` signals: the contracts are the intended normative target
 and are consistent with the implementation, but they may be revised if
@@ -246,8 +247,9 @@ contract layer.
   handle unresolved palettes appropriately for their use case.
 - `compile_generation` consumers who need an actual provider payload MUST
   wait for Phase 4.
-- The Phase-3 conformance count is 36 (21 runtime + 15 MCP). New tests added
-  in subsequent phases MUST not break the existing 36.
+- The Phase-3 test totals are: runtime 38 (including the 21 conformance
+  vectors in `spec/compliance/`) and MCP 36 — 74 in total. New tests added in
+  subsequent phases MUST NOT break these.
 
 ## Sources
 

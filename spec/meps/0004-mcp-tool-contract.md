@@ -325,20 +325,26 @@ is the contract decision; real provider payload emission is Phase 4.
 ### Registry source model
 
 An aesthetic-system **project directory** provides the default registry for
-all tool calls. At startup, the server loads:
+all tool calls. At startup, the server reads every document file in the
+directory, classifies each by its `$schema` identifier (with a filename-prefix
+fallback of `template.*`, `modifier.*`, `palette.*`, and `*.manifest.*`),
+validates it against the corresponding schema kind, and indexes it by its own
+`id` field. The document `id` — not any segment of the filename — is the
+registry key. Specifically, the server loads:
 
-- All files matching `template.<id>.json` as the template collection.
-- All files matching `modifier.<id>.json` as the modifier collection.
-- All files matching `palette.<id>.json` as the palette collection.
-- All files matching `manifests/<id>.manifest.json` as the manifest
-  collection.
+- Template documents into the template collection, keyed by `id`.
+- Modifier documents into the modifier collection, keyed by `id`.
+- Palette documents into the palette collection, keyed by `id`.
+- Capability manifests (conventionally under a `manifests/` subdirectory) into
+  the manifest collection, keyed by `provider`.
 - The file `merge-strategies.json` at the directory root, if present, as the
   project-level strategy declarations.
 
-A conforming server MUST load these files at startup and hold the result in
-memory for the lifetime of the server. Per-call `registry` arguments MUST be
-merged on top of the loaded collections, keyed by document `id`; inline
-entries take precedence over loaded files.
+A conforming server MUST validate each document on load and fail loudly,
+naming the offending file, if any document is invalid. It MUST hold the loaded
+result in memory for the lifetime of the server. Per-call `registry` arguments
+MUST be merged on top of the loaded collections, keyed by document `id`;
+inline entries take precedence over loaded files.
 
 The default project directory for the reference implementation is
 `spec/examples/cinematic-editorial/` (resolved relative to the server
