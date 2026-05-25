@@ -16,8 +16,12 @@ For the project's operating doctrines, see
 
 ## Status
 
-Currently in **Phase 0b — Foundation deliverables**. Private incubation,
-no public claims.
+Phases 0, 1, and 2 are **complete** (as of 2026-05-24). Phase 0 (doctrine +
+foundation: 6 doctrines, 10 ADRs), Phase 1 (spec genesis: MEP-0001/0002/0003,
+six v0.1 schemas, 21 conformance vectors), and Phase 2 (reference runtime:
+semantic core + parser + validator, 36 tests green). The project name
+(**Mosvera**) and namespace are settled. Still private incubation, no public
+claims; **Phase 3 — MCP surface** is next.
 
 ## Phases
 
@@ -31,7 +35,7 @@ Outputs:
 - Eight ADRs in `docs/decisions/` (0001–0008)
 - Gitignored private working layer under `.local/`
 
-### Phase 0b — Foundation deliverables (in progress)
+### Phase 0b — Foundation deliverables (complete)
 
 Scaffolding the repository per [ADR-0002](./docs/decisions/0002-top-level-repository-layout.md)
 and standing up the governance, license, and contribution surface per
@@ -49,7 +53,7 @@ Outputs:
 - `spec/meps/` with the MEP template and process README per
   [ADR-0003](./docs/decisions/0003-rfc-and-proposal-format.md)
 
-### Phase 1 — Specification Genesis
+### Phase 1 — Specification Genesis (complete)
 
 The specification is Mosvera's long-term center of gravity. Phase 1
 defines the primitives, the inheritance and composition semantics,
@@ -77,7 +81,7 @@ Specification must validate against itself (meta-schema check). DTCG
 compatibility at color-token export boundary is a target, per
 [ADR-0006](./docs/decisions/0006-prior-art-survey.md).
 
-### Phase 2 — Reference Runtime (TypeScript)
+### Phase 2 — Reference Runtime (TypeScript) (complete)
 
 Smallest runtime that exercises the Phase 1 spec end-to-end: parse,
 resolve inheritance, merge modifiers, compose primitives, validate
