@@ -40,7 +40,7 @@ entries take precedence over the loaded file.
 | `resolve_composition` | `composition` | `registry`, `merge_strategies` | `{ canonical }` |
 | `get_palette` | `name` | `registry` | `{ palette }` |
 | `validate_schema` | `document`, `kind` | — | `{ valid, errors }` |
-| `compile_generation` | `composition`, `provider` | `registry`, `manifest`, `criticality`, `merge_strategies` | `{ status, warnings?, canonical }` |
+| `compile_generation` | `composition`, `provider` | `registry`, `manifest`, `criticality`, `merge_strategies`, `emit` | `{ status, warnings?, canonical }` or `{ status, canonical, emission }` when `emit: true` |
 
 All inputs and outputs carry strict JSON schemas; the server rejects malformed
 calls before any runtime work is done. Documents may be passed as parsed
@@ -85,7 +85,14 @@ algebra defined in [MEP-0001](../spec/meps/0001-composition-semantics.md).
   "composition": {
     "base": "noir",
     "modifiers": ["golden-hour", "high-contrast"],
-    "overrides": { "medium": "cinematic" }
+    "overrides": {
+      "subject": "a lighthouse on a basalt cliff at dusk",
+      "medium": "cinematic",
+      "palette": { "accent": "#c8943f" },
+      "aspect_ratio": "3:2",
+      "quality": "high",
+      "safety": "standard"
+    }
   },
   "registry": { … },
   "merge_strategies": { "lights": { "strategy": "merge_by", "key": "name" } }
@@ -191,28 +198,46 @@ call** with `valid: false`; it is not an error result.
 
 Resolves a composition, then applies the
 [MEP-0003](../spec/meps/0003-provider-compilation-contract.md) compilation
-contract rule engine against the named provider's capability manifest.
+contract rule engine against the named provider's capability manifest. When
+`emit: true`, the default server context registers the Phase 4 OpenAI and
+FLUX adapters and returns deterministic provider payload emission.
 
-**Phase-3 boundary:** this tool returns the contract decision (lowering
-actions, warnings, errors) plus the canonical model. **No provider HTTP call
-is made.** Real provider payload emission is deferred to Phase 4.
+No provider HTTP call is made. `compile_generation` stops at the deterministic
+compile/emit boundary; adapter `execute()` is outside the MCP tool.
 
 **Input**
 
 ```json
 {
-  "composition": { "base": "noir", "modifiers": ["golden-hour", "high-contrast"], "overrides": { "medium": "cinematic" } },
+  "composition": {
+    "base": "noir",
+    "modifiers": ["golden-hour", "high-contrast"],
+    "overrides": {
+      "subject": "a lighthouse on a basalt cliff at dusk",
+      "medium": "cinematic",
+      "palette": { "accent": "#c8943f" },
+      "aspect_ratio": "3:2",
+      "quality": "high",
+      "safety": "standard"
+    }
+  },
   "provider": "illustrative-image",
   "registry": { … },
   "manifest": { … },
   "criticality": { "color_temperature": "required" },
-  "merge_strategies": { … }
+  "merge_strategies": { … },
+  "emit": false
 }
 ```
 
 `manifest` overrides the manifest loaded from the registry for the named
 provider. `criticality` maps construct names to `"required"` or `"optional"`;
-unmarked constructs are treated as optional.
+unmarked constructs are treated as optional. `emit` defaults to `false`.
+
+Built-in Phase 4 provider ids:
+
+- `openai-gpt-image-1`
+- `bfl-flux-2-pro`
 
 **Output — compiled**
 
@@ -223,9 +248,28 @@ unmarked constructs are treated as optional.
     { "construct": "color_grade", "action": "approximate" },
     { "construct": "color_temperature", "action": "unsupported" },
     { "construct": "lighting", "action": "approximate" },
-    { "construct": "lights", "action": "emulate" }
+    { "construct": "lights", "action": "emulate" },
+    { "construct": "palette", "action": "approximate" },
+    { "construct": "safety", "action": "unsupported" }
   ],
   "canonical": { … }
+}
+```
+
+**Output — emitted**
+
+When `emit: true`, the compiled response carries the adapter emission:
+
+```json
+{
+  "status": "compiled",
+  "canonical": { … },
+  "emission": {
+    "payload": { "prompt": "…", "size": "1536x1024" },
+    "prompt": "…",
+    "warnings": [ … ],
+    "provenance": { … }
+  }
 }
 ```
 

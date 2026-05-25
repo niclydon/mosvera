@@ -17,6 +17,29 @@ once Phase 1 ships, see [`spec/meps/`](./spec/meps/).
 
 ### Added
 
+- **Phase 4 — Provider Adapters (implementation landed).** Added the
+  reference provider adapter stack under [`providers/`](./providers/):
+  - `@mosvera/provider-base` defines the Phase 4 adapter contract, lowering
+    table schema, pure clause assembly engine, provenance, `EmissionError`,
+    and optional `BaseAdapter`.
+  - `@mosvera/provider-openai` emits deterministic `gpt-image-1` payloads and
+    includes a manual `OPENAI_API_KEY` execution script.
+  - `@mosvera/provider-flux` emits deterministic BFL `flux-2-pro` payloads,
+    implements async polling execution with plain `fetch`, and treats
+    `quality` as `unsupported` because hosted `flux-2-pro` exposes no
+    quality knob. A Replicate-backed manual gallery runner is included for
+    environments with `REPLICATE_API_TOKEN` but no direct `BFL_API_KEY`.
+  - Added emission snapshots, assembler tests, cross-adapter structural tests,
+    and language-neutral vectors in [`spec/compliance/emission/`](./spec/compliance/emission/).
+  - `compile_generation` now accepts `emit: true` when the MCP context has an
+    adapter registry, returning payload, prompt, warnings, and provenance
+    without making a provider HTTP call. The reference MCP server registers
+    the Phase 4 OpenAI and FLUX adapters by default.
+  - The `cinematic-editorial` example now carries image-generation fields and
+    [`examples/cinematic-editorial/generated/metadata.json`](./examples/cinematic-editorial/generated/metadata.json)
+    records the deterministic OpenAI and FLUX payloads. The first generated
+    side-by-side image pair is checked in as `openai.png` and `flux.png`.
+
 - **Phase 3 — MCP Surface (complete).** The `@mosvera/mcp` package
   ([`mcp/`](./mcp/)) exposes the Phase 2 runtime as a stdio MCP server
   via the TypeScript MCP SDK. It shares types with `@mosvera/runtime`

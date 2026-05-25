@@ -48,6 +48,7 @@ describe("cinematic-editorial example integrity", () => {
     };
     const canonical = resolveComposition(read("composition.json"), registry, strategies);
     expect(canonical).toEqual({
+      subject: "a lighthouse on a basalt cliff at dusk",
       medium: "cinematic",
       lighting: { scheme: "three_point", mood: "warm" },
       lights: [
@@ -57,16 +58,25 @@ describe("cinematic-editorial example integrity", () => {
       ],
       color_grade: { contrast: "very_high", saturation: "desaturated" },
       color_temperature: "warm",
+      palette: { accent: "#c8943f" },
+      aspect_ratio: "3:2",
+      quality: "high",
+      safety: "standard",
     });
   });
 
   it("compiles against the illustrative manifest with the expected warnings", () => {
     const canonical: JsonObject = {
+      subject: "a lighthouse on a basalt cliff at dusk",
       medium: "cinematic",
       lighting: { scheme: "three_point", mood: "warm" },
       lights: [{ name: "key", power: 6 }],
       color_grade: { contrast: "very_high", saturation: "desaturated" },
       color_temperature: "warm",
+      palette: { accent: "#c8943f" },
+      aspect_ratio: "3:2",
+      quality: "high",
+      safety: "standard",
     };
     const manifest = read("manifests/illustrative-image.manifest.json") as unknown as CapabilityManifest;
     expect(compile(canonical, manifest, {})).toEqual({
@@ -76,6 +86,8 @@ describe("cinematic-editorial example integrity", () => {
         { construct: "color_temperature", action: "unsupported" },
         { construct: "lighting", action: "approximate" },
         { construct: "lights", action: "emulate" },
+        { construct: "palette", action: "approximate" },
+        { construct: "safety", action: "unsupported" },
       ],
     });
   });

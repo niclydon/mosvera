@@ -23,7 +23,9 @@ semantic core + parser + validator, 38 tests green), and Phase 3 (MCP surface:
 `@mosvera/mcp` stdio server, five tools, `cinematic-editorial` worked example,
 MEP-0004 + ADR-0011, 74 total tests green). The project name (**Mosvera**) and
 namespace are settled. Still private incubation, no public claims;
-**Phase 4 — Provider Adapters** is next.
+**Phase 4 — Provider Adapters** is complete locally: deterministic emissions,
+cross-adapter tests, MCP `emit: true`, manual execution scripts, and the first
+side-by-side generated image pair are checked in.
 
 ## Phases
 
@@ -121,7 +123,7 @@ Outputs in `mcp/`:
   ask
 - `mcp/examples/` — sample client calls demonstrating each tool
 
-### Phase 4 — Provider Adapters (multi-provider proof)
+### Phase 4 — Provider Adapters (complete)
 
 Two adapters from the start to prove the abstraction is real. Same
 composition object → two genuinely different execution surfaces.
@@ -129,18 +131,25 @@ Specifies the pairing locked in
 [ADR-0008](./docs/decisions/0008-provider-adapter-pairing.md).
 
 Outputs in `providers/`:
-- `providers/_base/` — shared adapter contract derived from the
-  provider compilation MEP
-- `providers/openai/` — `gpt-image-1` adapter (sync POST, enum-coded
-  quality, server-side moderation)
+- `providers/_base/` — shared adapter contract, lowering-table schema,
+  pure clause assembly engine, and optional `BaseAdapter`
+- `providers/openai/` — `gpt-image-1` adapter (sync SDK call, enum-coded
+  quality, `size`, `moderation`)
 - `providers/flux/` — `flux-2-pro` adapter via the BFL hosted API
-  (async polling, numeric `steps`+`guidance`, `safety_tolerance`
-  numeric)
+  (async polling, computed `width`/`height`, `safety_tolerance`; hosted
+  `pro` exposes no quality knob)
 - Compiler contract handles the divergence axes the two providers
-  surface: sync vs async transport, enum vs numeric quality, divergent
-  moderation models, different image-input semantics
-- Each adapter sits on top of the provider's official SDK to inherit
-  error semantics and retry behavior
+  surface: sync vs async transport, enum vs unsupported quality,
+  divergent moderation models, different image-input semantics
+- Snapshot-tested deterministic emission, cross-adapter structural tests,
+  and language-neutral emission vectors under `spec/compliance/emission/`
+- MCP `compile_generation` supports `emit: true` when a provider adapter is
+  registered, returning the emitted payload/prompt/warnings/provenance without
+  making a provider HTTP call; the reference MCP server registers the Phase 4
+  OpenAI and FLUX adapters by default
+- `examples/cinematic-editorial/` documents the shared prompt and emitted
+  payload metadata; `generated/openai.png` and `generated/flux.png` provide
+  the first side-by-side generated image pair
 
 ### Phase 5 — Examples + Open-weights Adapter
 

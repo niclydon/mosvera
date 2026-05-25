@@ -1,0 +1,66 @@
+{
+  "source_composition": "../../spec/examples/cinematic-editorial/composition.json",
+  "generated_at": "2026-05-25T21:13:56Z",
+  "note": "Deterministic emission metadata plus the first checked-in side-by-side generated image pair.",
+  "openai": {
+    "provider": "openai-gpt-image-1",
+    "image": {
+      "file": "openai.png",
+      "media_type": "image/png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 2425252
+    },
+    "payload": {
+      "model": "gpt-image-1",
+      "moderation": "auto",
+      "n": 1,
+      "output_format": "png",
+      "prompt": "a lighthouse on a basalt cliff at dusk, cinematic style, warm lighting, three-point lighting setup, key light at power 6, fill light at power 5, rim light at power 2, very high contrast, desaturated saturation, warm tones, accent color (#c8943f)",
+      "quality": "high",
+      "size": "1536x1024"
+    },
+    "warnings": [
+      { "construct": "color_grade.contrast", "action": "approximate" },
+      { "construct": "color_grade.saturation", "action": "approximate" },
+      { "construct": "color_temperature", "action": "approximate" },
+      { "construct": "lighting.mood", "action": "approximate" },
+      { "construct": "lighting.scheme", "action": "approximate" },
+      { "construct": "lights", "action": "emulate" },
+      { "construct": "medium", "action": "approximate" },
+      { "construct": "palette.accent", "action": "approximate" },
+      { "construct": "safety", "action": "approximate" }
+    ]
+  },
+  "flux": {
+    "provider": "bfl-flux-2-pro",
+    "transport": "replicate",
+    "replicate_model": "black-forest-labs/flux-2-pro",
+    "replicate_prediction_id": "g9vh6h8r3srmw0cyc3y82aa3qg",
+    "image": {
+      "file": "flux.png",
+      "media_type": "image/png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 2354306
+    },
+    "payload": {
+      "height": 1024,
+      "output_format": "png",
+      "prompt": "a lighthouse on a basalt cliff at dusk, cinematic style, warm lighting, three-point lighting setup, key light at power 6, fill light at power 5, rim light at power 2, very high contrast, desaturated saturation, warm tones, accent color (#c8943f)",
+      "safety_tolerance": 2,
+      "width": 1536
+    },
+    "warnings": [
+      { "construct": "color_grade.contrast", "action": "approximate" },
+      { "construct": "color_grade.saturation", "action": "approximate" },
+      { "construct": "color_temperature", "action": "approximate" },
+      { "construct": "lighting.mood", "action": "approximate" },
+      { "construct": "lighting.scheme", "action": "approximate" },
+      { "construct": "lights", "action": "emulate" },
+      { "construct": "medium", "action": "approximate" },
+      { "construct": "palette.accent", "action": "approximate" },
+      { "construct": "quality", "action": "unsupported" }
+    ]
+  }
+}

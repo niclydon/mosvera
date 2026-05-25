@@ -9,6 +9,8 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { fileURLToPath } from "node:url";
 import { z } from "zod";
 import { createValidator, deriveStrategies } from "@mosvera/runtime";
+import { fluxAdapter } from "@mosvera/provider-flux";
+import { openaiAdapter } from "@mosvera/provider-openai";
 import { loadRegistry } from "./registry/loader.ts";
 import { composeStrategies } from "./registry/strategies.ts";
 import { runListTemplates } from "./tools/list-templates.ts";
@@ -23,7 +25,15 @@ export function buildContext(registryDir: string): ToolContext {
   const validator = createValidator();
   const project = loadRegistry(registryDir, validator);
   const baseStrategies = composeStrategies(deriveStrategies(), project.strategies);
-  return { project, validator, baseStrategies };
+  return {
+    project,
+    validator,
+    baseStrategies,
+    adapters: {
+      [openaiAdapter.id]: openaiAdapter,
+      [fluxAdapter.id]: fluxAdapter,
+    },
+  };
 }
 
 function parseRegistryFlag(argv: string[]): string {
@@ -76,7 +86,7 @@ export function createServer(ctx: ToolContext): McpServer {
   server.registerTool(
     "compile_generation",
     {
-      description: "Resolve a composition then apply the MEP-0003 compilation contract against a provider capability manifest. Phase 3: returns the contract decision + canonical model; no provider call is made.",
+      description: "Resolve a composition then apply the MEP-0003 compilation contract against a provider capability manifest. With emit=true, returns the deterministic Phase 4 provider payload; no provider HTTP call is made.",
       inputSchema: {
         composition: docArg,
         provider: z.string(),
@@ -84,6 +94,7 @@ export function createServer(ctx: ToolContext): McpServer {
         manifest: z.record(z.any()).optional(),
         criticality: z.record(z.enum(["required", "optional"])).optional(),
         merge_strategies: z.record(z.any()).optional(),
+        emit: z.boolean().optional(),
       },
     },
     async (args) => ok(runCompileGeneration(ctx, args as never)),

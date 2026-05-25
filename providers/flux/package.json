@@ -1,0 +1,27 @@
+{
+  "name": "@mosvera/provider-flux",
+  "version": "0.1.0",
+  "description": "Mosvera provider adapter for BFL flux-2-pro.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "execute:manual": "tsx test/execute.manual.ts",
+    "execute:replicate": "tsx test/execute.replicate.manual.ts"
+  },
+  "dependencies": {
+    "@mosvera/runtime": "*",
+    "@mosvera/provider-base": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8",
+    "tsx": "^4.19.2",
+    "@types/node": "^22.10.2"
+  }
+}

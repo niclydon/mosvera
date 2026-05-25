@@ -287,17 +287,24 @@ safety: standard                                     # optional
 
 ### Compiled to BFL `flux-2-pro`
 
+> **Correction (ADR-0012, 2026-05-25).** The `steps` and `guidance`
+> parameters are not exposed on the `flux-2-pro` hosted API endpoint.
+> The `quality` construct is therefore `unsupported` (not `approximate`)
+> for this adapter. The compilation rule table handles this correctly:
+> `optional` + `unsupported` = warn + drop. See
+> [ADR-0012](../../docs/decisions/0012-adapter-emission-architecture.md)
+> for the corrected mapping.
+
 ```jsonc
 // payload (submitted async; adapter handles the polling URL)
 {
   "model": "flux-2-pro",
   "prompt": "a lighthouse on a basalt cliff at dusk, warm amber accent (#c0563a)",
   "width": 1536, "height": 1024,   // aspect_ratio 3:2 → native
-  "steps": 50, "guidance": 3.5,    // quality high → approximate (tuned profile)
   "safety_tolerance": 2            // safety standard → native (numeric knob)
 }
-// warnings: [ { construct: "quality", action: "approximate",
-//              detail: "mapped to steps=50, guidance=3.5 profile" } ]
+// warnings: [ { construct: "quality", action: "unsupported",
+//              detail: "flux-2-pro hosted API does not expose quality controls" } ]
 ```
 
 The same `subject`, `aspect_ratio`, and `palette.accent` (all `required`)

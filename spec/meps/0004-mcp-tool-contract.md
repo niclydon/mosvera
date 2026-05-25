@@ -271,7 +271,8 @@ cannot be parsed at all (e.g. malformed YAML/JSON string).
   "registry":        { "type": "object" },
   "manifest":        { "type": "object", "description": "Inline capability manifest; overrides the loaded manifest for this provider." },
   "criticality":     { "type": "object", "additionalProperties": { "enum": ["required", "optional"] }, "description": "Per-construct criticality override." },
-  "merge_strategies": { "type": "object" }
+  "merge_strategies": { "type": "object" },
+  "emit":             { "type": "boolean", "description": "When true, return deterministic adapter emission for a registered provider." }
 }
 ```
 
@@ -284,6 +285,24 @@ cannot be parsed at all (e.g. malformed YAML/JSON string).
   "status":   { "const": "compiled" },
   "warnings": { "type": "array", "items": { "construct": "string", "action": "string" } },
   "canonical": { "type": "object" }
+}
+```
+
+**Output schema — emitted**
+
+```json
+{
+  "status":   { "const": "compiled" },
+  "canonical": { "type": "object" },
+  "emission": {
+    "type": "object",
+    "properties": {
+      "payload": { "type": "object" },
+      "prompt": { "type": "string" },
+      "warnings": { "type": "array" },
+      "provenance": { "type": "object" }
+    }
+  }
 }
 ```
 
@@ -309,16 +328,23 @@ A conforming server MUST:
 1. Parse and validate `composition`.
 2. Pre-flight all references.
 3. Resolve the manifest: use `manifest` if supplied inline; otherwise look up
-   `provider` in the loaded project manifests. Return `unknown_provider` if
-   neither is available.
+   `provider` in the loaded project manifests, then in the registered adapter
+   manifest when available. Return `unknown_provider` if neither is available.
 4. Validate the resolved manifest against
    `https://mosvera.dev/schema/0.1/capability-manifest`.
 5. Resolve the composition to a canonical model.
 6. Apply the MEP-0003 compilation contract rule engine.
-7. Return the contract decision (compiled or error) plus the canonical model.
+7. If `emit` is false or absent, return the contract decision (compiled or
+   error) plus the canonical model.
+8. If `emit` is true, require a registered adapter for `provider`, call
+   `adapter.emit(canonical, { criticality })`, and return the deterministic
+   `EmissionResult` plus the canonical model.
 
-A conforming server MUST NOT make any provider HTTP call. The Phase-3 boundary
-is the contract decision; real provider payload emission is Phase 4.
+The reference server MUST register the Phase 4 adapters
+`openai-gpt-image-1` and `bfl-flux-2-pro` in its default context.
+
+A conforming server MUST NOT make any provider HTTP call. The tool boundary is
+deterministic compile/emit; provider execution remains outside MCP.
 
 ---
 
@@ -450,12 +476,10 @@ call-level error.
   and server logic means adding HTTP/SSE transport is an additive change that
   does not alter the tool contracts defined here.
 
-- **Phase-3 boundary in `compile_generation`.** The tool does not emit a real
-  provider payload, only the contract decision. Callers working toward actual
-  generation must defer to Phase 4. This boundary is explicit in the output
-  (`status: "compiled"` carries warnings and the canonical model, not a
-  provider API request). **Mitigation:** the canonical model returned is the
-  complete input to any Phase-4 adapter.
+- **Execution boundary in `compile_generation`.** The tool may emit a provider
+  payload when `emit: true`, but it never executes that payload. Callers
+  working toward actual generation still cross a separate adapter `execute()`
+  boundary. This keeps the MCP response deterministic and inspectable.
 
 ## Prior art and alternatives
 

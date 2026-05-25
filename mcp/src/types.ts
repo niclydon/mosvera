@@ -13,6 +13,7 @@ import type {
   Registry,
   Validator,
 } from "@mosvera/runtime";
+import type { EmissionResult, ProviderAdapter } from "@mosvera/provider-base";
 
 /** A loaded aesthetic-system "project" directory. */
 export interface LoadedProject {
@@ -28,6 +29,8 @@ export interface ToolContext {
   validator: Validator;
   /** schema-derived defaults composed with the project's strategies. */
   baseStrategies: MergeStrategies;
+  /** Optional Phase-4 provider adapters for deterministic payload emission. */
+  adapters?: Record<string, ProviderAdapter>;
 }
 
 /** Closed MCP-layer error taxonomy (D2/D7 in the design spec). */
@@ -56,10 +59,15 @@ export type CompileOk = {
   warnings: CompileWarning[];
   canonical: JsonObject;
 };
+export type CompileEmitOk = {
+  status: "compiled";
+  canonical: JsonObject;
+  emission: EmissionResult;
+};
 export type CompileHardError = {
   status: "error";
   error: "required_unsupported";
   construct: string;
   canonical: JsonObject;
 };
-export type CompileResultMcp = CompileOk | CompileHardError | ToolError;
+export type CompileResultMcp = CompileOk | CompileEmitOk | CompileHardError | ToolError;

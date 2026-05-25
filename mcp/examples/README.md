@@ -133,7 +133,14 @@ successful call result, not an error.
       "composition": {
         "base": "noir",
         "modifiers": ["golden-hour", "high-contrast"],
-        "overrides": { "medium": "cinematic" }
+        "overrides": {
+          "subject": "a lighthouse on a basalt cliff at dusk",
+          "medium": "cinematic",
+          "palette": { "accent": "#c8943f" },
+          "aspect_ratio": "3:2",
+          "quality": "high",
+          "safety": "standard"
+        }
       }
     }
   }
@@ -145,6 +152,7 @@ successful call result, not an error.
 ```json
 {
   "canonical": {
+    "subject": "a lighthouse on a basalt cliff at dusk",
     "medium": "cinematic",
     "lighting": {
       "scheme": "three_point",
@@ -159,7 +167,11 @@ successful call result, not an error.
       "contrast": "very_high",
       "saturation": "desaturated"
     },
-    "color_temperature": "warm"
+    "color_temperature": "warm",
+    "palette": { "accent": "#c8943f" },
+    "aspect_ratio": "3:2",
+    "quality": "high",
+    "safety": "standard"
   }
 }
 ```
@@ -170,8 +182,9 @@ Precedence chain (lowest to highest):
 2. `noir`
 3. `golden-hour` modifier
 4. `high-contrast` modifier
-5. `overrides` block — `medium: "cinematic"` replaces the template's
-   `"photographic"` value at the highest precedence tier.
+5. `overrides` block — adds the image-generation subject/provider-fit fields
+   and replaces the template's `"photographic"` medium with `"cinematic"` at
+   the highest precedence tier.
 
 `lights` is merged by the `name` key (declared in
 [`merge-strategies.json`](../../spec/examples/cinematic-editorial/merge-strategies.json)),
@@ -195,7 +208,14 @@ the whole list.
       "composition": {
         "base": "noir",
         "modifiers": ["golden-hour", "high-contrast"],
-        "overrides": { "medium": "cinematic" }
+        "overrides": {
+          "subject": "a lighthouse on a basalt cliff at dusk",
+          "medium": "cinematic",
+          "palette": { "accent": "#c8943f" },
+          "aspect_ratio": "3:2",
+          "quality": "high",
+          "safety": "standard"
+        }
       },
       "provider": "illustrative-image"
     }
@@ -212,9 +232,12 @@ the whole list.
     { "construct": "color_grade",     "action": "approximate" },
     { "construct": "color_temperature", "action": "unsupported" },
     { "construct": "lighting",        "action": "approximate" },
-    { "construct": "lights",          "action": "emulate" }
+    { "construct": "lights",          "action": "emulate" },
+    { "construct": "palette",         "action": "approximate" },
+    { "construct": "safety",          "action": "unsupported" }
   ],
   "canonical": {
+    "subject": "a lighthouse on a basalt cliff at dusk",
     "medium": "cinematic",
     "lighting": {
       "scheme": "three_point",
@@ -229,7 +252,11 @@ the whole list.
       "contrast": "very_high",
       "saturation": "desaturated"
     },
-    "color_temperature": "warm"
+    "color_temperature": "warm",
+    "palette": { "accent": "#c8943f" },
+    "aspect_ratio": "3:2",
+    "quality": "high",
+    "safety": "standard"
   }
 }
 ```
@@ -245,11 +272,12 @@ fulfill it. Because `color_temperature` was not passed as `required` in
 `criticality`, the call compiles with a warning rather than returning
 `status: "error"`.
 
-**Phase-3 boundary:** no provider HTTP call was made. The `status: "compiled"`
-result contains the MEP-0003 contract decision (lowering actions, warnings)
-and the canonical model. Real provider payload emission arrives in Phase 4.
+No provider HTTP call was made. The `status: "compiled"` result contains the
+MEP-0003 contract decision (lowering actions, warnings) and the canonical
+model. With a registered Phase 4 adapter, callers may pass `emit: true` to
+receive the deterministic provider payload.
 
 The `illustrative-image` provider is an **illustrative** capability manifest
 included solely to exercise the compilation contract end-to-end. It is not a
-real provider adapter. Real adapters (OpenAI gpt-image-1, FLUX.2) arrive in
-Phase 4 per [ADR-0008](../../docs/decisions/0008-provider-adapter-pairing.md).
+real provider adapter. Real adapters live under
+[`providers/`](../../providers/).

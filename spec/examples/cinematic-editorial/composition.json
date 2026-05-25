@@ -3,5 +3,12 @@
   "id": "editorial-noir-golden",
   "base": "noir",
   "modifiers": ["golden-hour", "high-contrast"],
-  "overrides": { "medium": "cinematic" }
+  "overrides": {
+    "subject": "a lighthouse on a basalt cliff at dusk",
+    "medium": "cinematic",
+    "palette": { "accent": "#c8943f" },
+    "aspect_ratio": "3:2",
+    "quality": "high",
+    "safety": "standard"
+  }
 }

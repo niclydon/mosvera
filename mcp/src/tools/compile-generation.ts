@@ -2,9 +2,9 @@
 //
 // compile_generation tool handler. Resolves a composition, then runs the
 // MEP-0003 compilation contract (compile) against a provider capability
-// manifest sourced inline or from the loaded registry. PHASE 3 BOUNDARY: no
-// provider HTTP call is made; the result is the contract decision plus the
-// canonical model. Real provider payload emission arrives in Phase 4.
+// manifest sourced inline, from the loaded registry, or from an injected Phase
+// 4 adapter. When emit=true and an adapter is available, returns the
+// deterministic provider payload emission. No provider HTTP call is made.
 
 import {
   compile,
@@ -16,6 +16,7 @@ import {
   type MergeStrategies,
   type Registry,
 } from "@mosvera/runtime";
+import { EmissionError } from "@mosvera/provider-base";
 import { invalidDocument, isResolutionError, mapResolutionError, toolError } from "../errors.ts";
 import { collectMissingReferences } from "../registry/preflight.ts";
 import { composeStrategies, mergeRegistry } from "../registry/strategies.ts";
@@ -28,6 +29,7 @@ export interface CompileArgs {
   manifest?: CapabilityManifest;
   criticality?: Record<string, Criticality>;
   merge_strategies?: MergeStrategies;
+  emit?: boolean;
 }
 
 export function runCompileGeneration(ctx: ToolContext, args: CompileArgs): CompileResultMcp {
@@ -48,7 +50,8 @@ export function runCompileGeneration(ctx: ToolContext, args: CompileArgs): Compi
     return toolError("unknown_reference", { missing } as unknown as JsonObject);
   }
 
-  const manifest = args.manifest ?? ctx.project.manifests[args.provider];
+  const adapter = ctx.adapters?.[args.provider];
+  const manifest = args.manifest ?? ctx.project.manifests[args.provider] ?? adapter?.manifest();
   if (manifest === undefined) {
     return toolError("unknown_provider", { provider: args.provider } as unknown as JsonObject);
   }
@@ -68,5 +71,20 @@ export function runCompileGeneration(ctx: ToolContext, args: CompileArgs): Compi
   if (result.status === "error") {
     return { status: "error", error: result.error, construct: result.construct, canonical };
   }
+
+  if (args.emit === true) {
+    if (adapter === undefined) {
+      return toolError("unknown_provider", { provider: args.provider, adapter: "missing" } as unknown as JsonObject);
+    }
+    try {
+      return { status: "compiled", canonical, emission: adapter.emit(canonical, { criticality: args.criticality ?? {} }) };
+    } catch (e) {
+      if (e instanceof EmissionError) {
+        return { status: "error", error: e.error, construct: e.construct, canonical };
+      }
+      throw e;
+    }
+  }
+
   return { status: "compiled", warnings: result.warnings, canonical };
 }

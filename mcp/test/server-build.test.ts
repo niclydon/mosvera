@@ -3,6 +3,7 @@ import { describe, it, expect } from "vitest";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildContext } from "../src/server.ts";
+import { runCompileGeneration } from "../src/tools/compile-generation.ts";
 import { runListTemplates } from "../src/tools/list-templates.ts";
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -17,5 +18,26 @@ describe("buildContext", () => {
     });
     const names = runListTemplates(ctx, {}).map((t) => t.name).sort();
     expect(names).toEqual(["cinematic-editorial-base", "noir"]);
+  });
+
+  it("registers Phase 4 adapters for normal compile_generation emit use", () => {
+    const ctx = buildContext(example);
+    expect(Object.keys(ctx.adapters ?? {}).sort()).toEqual(["bfl-flux-2-pro", "openai-gpt-image-1"]);
+
+    const res = runCompileGeneration(ctx, {
+      composition: { base: "noir", modifiers: ["golden-hour", "high-contrast"], overrides: { medium: "cinematic" } },
+      provider: "openai-gpt-image-1",
+      emit: true,
+    });
+
+    expect(res).toMatchObject({
+      status: "compiled",
+      emission: {
+        payload: {
+          model: "gpt-image-1",
+          output_format: "png",
+        },
+      },
+    });
   });
 });

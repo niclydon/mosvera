@@ -40,7 +40,9 @@ Per [`ROADMAP.md`](../ROADMAP.md#phase-5--examples--open-weights-adapter),
 the initial example set covers a deliberately diverse range of
 aesthetic intent so the spec's coverage is testable:
 
-- `cinematic-editorial/` — long-form magazine / film-still aesthetic
+- [`cinematic-editorial/`](./cinematic-editorial/) — long-form magazine /
+  film-still aesthetic with deterministic Phase 4 payloads for OpenAI
+  `gpt-image-1` and BFL `flux-2-pro`
 - `dashboard-minimalism/` — clean, information-dense UI-adjacent
 - `documentary-realism/` — naturalistic, hand-held, lived-in
 
