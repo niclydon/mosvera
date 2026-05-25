@@ -53,3 +53,4 @@ Required sections:
 | [0007](./0007-reference-runtime-language.md) | Reference runtime language | Accepted |
 | [0008](./0008-provider-adapter-pairing.md) | Phase 4 provider adapter pairing | Accepted |
 | [0009](./0009-project-name-selection.md) | Project name selection — Mosvera | Accepted |
+| [0010](./0010-schema-id-scheme.md) | Schema `$id` scheme — https rooted at canonical domain | Accepted |

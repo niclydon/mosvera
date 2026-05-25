@@ -21,9 +21,11 @@ runtimes.
   and unknown `$`-prefixed keys are rejected.
 - **Allowed characters** in field names: `[a-z][a-z0-9_]*`. No
   hyphens, no uppercase, no dots.
-- **`$id` scheme:** URN-style (`urn:mosvera:schema:0.1:<name>`),
-  domain-independent (no dependency on a registered domain).
-  Cross-schema references use these URNs.
+- **`$id` scheme:** https rooted at the canonical domain —
+  `https://mosvera.dev/schema/0.1/<name>` (see
+  [ADR-0010](../../docs/decisions/0010-schema-id-scheme.md)). A stable
+  namespace identifier; it need not be dereferenceable. Cross-schema
+  references use these `$id`s.
 - **License:** Apache-2.0 (schemas ship inside conforming runtimes
   and therefore use the code license, not the documentation license)
   per [ADR-0001](../../docs/decisions/0001-license-choice.md).

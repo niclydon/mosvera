@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:mosvera:schema:0.1:compliance-vector",
+  "$id": "https://mosvera.dev/schema/0.1/compliance-vector",
   "title": "Mosvera Conformance Vector",
   "description": "A single language-agnostic conformance test case. A conforming runtime MUST produce the expected result for every vector. SPDX-License-Identifier: CC-BY-4.0.",
   "type": "object",

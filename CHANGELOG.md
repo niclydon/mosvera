@@ -17,6 +17,17 @@ once Phase 1 ships, see [`spec/meps/`](./spec/meps/).
 
 ### Added
 
+- **Namespace secured + schema `$id`s rooted at the domain.** Registered
+  `mosvera.com`, `mosvera.dev`, `mosvera.org` — `mosvera.dev` is the
+  canonical home. Schema `$id`s switched from interim URNs
+  (`urn:mosvera:schema:0.1:*`) to https rooted at the domain
+  (`https://mosvera.dev/schema/0.1/*`), the comparable-class convention,
+  now that a domain is owned. Clean prefix substitution across the six
+  primitive schemas, the conformance vector meta-schema, and the runtime
+  validator; re-verified (schemas meta-valid, cross-refs resolve in both
+  ajv and Python jsonschema, 36 runtime tests green). Recorded in
+  [ADR-0010](./docs/decisions/0010-schema-id-scheme.md).
+
 - **Phase 2 — Reference runtime (in progress).** The TypeScript reference
   runtime ([`runtime/`](./runtime/)), per
   [ADR-0007](./docs/decisions/0007-reference-runtime-language.md). A pure,

@@ -46,11 +46,11 @@ const SCHEMA_FILES = [
 ];
 
 const KIND_TO_ID: Record<DocumentKind, string> = {
-  composition: "urn:mosvera:schema:0.1:composition",
-  template: "urn:mosvera:schema:0.1:template",
-  modifier: "urn:mosvera:schema:0.1:modifier",
-  palette: "urn:mosvera:schema:0.1:palette",
-  "capability-manifest": "urn:mosvera:schema:0.1:capability-manifest",
+  composition: "https://mosvera.dev/schema/0.1/composition",
+  template: "https://mosvera.dev/schema/0.1/template",
+  modifier: "https://mosvera.dev/schema/0.1/modifier",
+  palette: "https://mosvera.dev/schema/0.1/palette",
+  "capability-manifest": "https://mosvera.dev/schema/0.1/capability-manifest",
 };
 
 function defaultSchemaDir(): string {

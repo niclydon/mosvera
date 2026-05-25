@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:mosvera:schema:0.1:common",
+  "$id": "https://mosvera.dev/schema/0.1/common",
   "title": "Mosvera Common Definitions",
-  "description": "Shared definitions used across Mosvera v0.1 schemas. SPDX-License-Identifier: Apache-2.0. URN-style $id is domain-independent (no dependency on a registered domain).",
+  "description": "Shared definitions used across Mosvera v0.1 schemas. SPDX-License-Identifier: Apache-2.0. $id is rooted at the canonical domain (https://mosvera.dev/schema/0.1/); it is a stable namespace identifier and need not be dereferenceable.",
   "$defs": {
     "field_name": {
       "description": "A snake_case aesthetic field name per ADR-0005: ASCII lowercase, digits, underscore; must start with a letter. No hyphens, no uppercase, no dots, no leading $.",

@@ -4,15 +4,17 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # Mosvera
 
-> **Name selected: Mosvera.** Chosen through a full brand-availability
-> process (web search for commercial collisions + domains + GitHub org +
-> npm scope + social handles, per Doctrines 5 and 6). Mosvera is clean
-> across `.com`, `.io`, `.dev`, `.org`, the GitHub org, the npm scope,
-> and Bluesky, with no commercial brand collision in any vertical. The
-> project remains in **quiet incubation** — public launch is deferred to
-> Phase 6 — but the name is settled. See
-> [ADR-0009](./docs/decisions/0009-project-name-selection.md) for the
-> full selection record.
+> **Name: Mosvera.** Selected through a full brand-availability process
+> (web search for commercial collisions + domains + GitHub org + npm scope
+> + social handles, per Doctrines 5 and 6), with no commercial brand
+> collision in any vertical. Registered domains: **`mosvera.com`**,
+> **`mosvera.dev`**, **`mosvera.org`** — with **`mosvera.dev` as the
+> canonical home** (`.com` and `.org` redirect to it). Schema `$id`s are
+> rooted there (`https://mosvera.dev/schema/0.1/…`). The project remains in
+> **quiet incubation** — public launch is deferred to Phase 6 — but the
+> name and namespace are settled. See
+> [ADR-0009](./docs/decisions/0009-project-name-selection.md) (name) and
+> [ADR-0010](./docs/decisions/0010-schema-id-scheme.md) (`$id` scheme).
 
 **A declarative runtime for aesthetic intent in AI-native systems.**
 
