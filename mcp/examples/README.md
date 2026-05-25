@@ -274,7 +274,7 @@ fulfill it. Because `color_temperature` was not passed as `required` in
 
 No provider HTTP call was made. The `status: "compiled"` result contains the
 MEP-0003 contract decision (lowering actions, warnings) and the canonical
-model. With a registered Phase 4 adapter, callers may pass `emit: true` to
+model. With a registered provider adapter, callers may pass `emit: true` to
 receive the deterministic provider payload.
 
 The `illustrative-image` provider is an **illustrative** capability manifest

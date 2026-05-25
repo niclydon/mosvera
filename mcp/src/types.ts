@@ -29,7 +29,7 @@ export interface ToolContext {
   validator: Validator;
   /** schema-derived defaults composed with the project's strategies. */
   baseStrategies: MergeStrategies;
-  /** Optional Phase-4 provider adapters for deterministic payload emission. */
+  /** Optional provider adapters for deterministic payload emission. */
   adapters?: Record<string, ProviderAdapter>;
 }
 

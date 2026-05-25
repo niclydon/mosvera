@@ -14,13 +14,14 @@ The Phase 4 architecture is recorded in
 provider pairing is recorded in
 [ADR-0008](../docs/decisions/0008-provider-adapter-pairing.md).
 
-## Phase 4 Reference Set
+## Reference Set
 
 | Package | Provider | Surface signal |
 |---------|----------|----------------|
 | [`_base/`](./_base/) | Shared contract | Adapter interface, lowering table schema, pure clause assembly, `BaseAdapter`. |
 | [`openai/`](./openai/) | OpenAI `gpt-image-1` | Sync SDK call, enum-coded `quality`, `moderation`, `size` enum. |
 | [`flux/`](./flux/) | BFL `flux-2-pro` | Async polling URL, computed `width` / `height`, `safety_tolerance`; `quality` is unsupported on hosted `pro`. |
+| [`sdxl/`](./sdxl/) | SDXL via Replicate | Open-weights aggregator surface, computed `width` / `height`, approximate `quality` via sampling controls, adapter-local negative prompt/refiner config; `safety` is unsupported. |
 
 The deterministic boundary is `emit()`: same canonical composition, adapter,
 and manifest produce byte-identical payloads. `execute()` is the
@@ -35,15 +36,15 @@ npm test --workspaces
 npm run test:providers
 ```
 
-Workspace tests cover the shared assembler and both adapter emission
+Workspace tests cover the shared assembler and adapter emission
 snapshots. `providers/test/` covers cross-adapter structural equivalence and
 the language-neutral vectors in `spec/compliance/emission/`.
 
-## Phase 5 Community Adapter
+## Phase 5 Open-Weights Adapter
 
 `sdxl/` — Stable Diffusion XL via [Replicate](https://replicate.com) lands in
-Phase 5 per ADR-0008, introducing the open-weights / community-aggregator
-axis.
+Phase 5 per ADR-0008 and ADR-0013, introducing the open-weights /
+community-aggregator axis.
 
 ## Phase 8 Motion Adapter
 
@@ -74,6 +75,7 @@ When the maintainer pool is open to provider contributions, the path is:
 | `_base/` | Shared adapter contract and emission engine. |
 | `openai/` | OpenAI `gpt-image-1` adapter, tests, and manual execution script. |
 | `flux/` | BFL `flux-2-pro` adapter, tests, and manual execution script. |
+| `sdxl/` | SDXL via Replicate adapter, tests, and manual execution script. |
 | `test/` | Cross-adapter and emission-vector tests. |
 
 ## License

@@ -34,24 +34,33 @@ provider adapters available at the example's release time**. An
 example that only compiles to one provider is not a valid Mosvera
 example.
 
-## Planned examples (Phase 5)
+## Phase 5 Example Set
 
-Per [`ROADMAP.md`](../ROADMAP.md#phase-5--examples--open-weights-adapter),
-the initial example set covers a deliberately diverse range of
-aesthetic intent so the spec's coverage is testable:
+The initial example set covers a deliberately diverse range of aesthetic
+intent so the spec's coverage is testable:
 
 - [`cinematic-editorial/`](./cinematic-editorial/) — long-form magazine /
-  film-still aesthetic with deterministic Phase 4 payloads for OpenAI
-  `gpt-image-1` and BFL `flux-2-pro`
-- `dashboard-minimalism/` — clean, information-dense UI-adjacent
-- `documentary-realism/` — naturalistic, hand-held, lived-in
+  film-still aesthetic with checked-in OpenAI, FLUX, and SDXL images
+- [`dashboard-minimalism/`](./dashboard-minimalism/) — clean, information-dense
+  UI-adjacent imagery with checked-in OpenAI, FLUX, and SDXL images
+- [`documentary-realism/`](./documentary-realism/) — naturalistic,
+  observational imagery with checked-in OpenAI, FLUX, and SDXL images
 
-Additional examples will be welcome from community contributors
-after Phase 5 ships.
+| Construct | Cinematic Editorial | Dashboard Minimalism | Documentary Realism |
+|-----------|---------------------|----------------------|---------------------|
+| `medium` | `cinematic` | `digital_illustration` | `photographic` |
+| `lighting.scheme` | `three_point` | `flat` | `natural` |
+| `lighting.mood` | `warm` | `neutral` | `observational` |
+| `color_grade` | `very_high` / `desaturated` | `medium` / `muted` | `low` / `natural` |
+| `palette.accent` | warm amber `#c8943f` | corporate blue `#8ab4f8` | none |
+
+Additional examples will be welcome from community contributors after Phase 5
+ships.
 
 ## Status
 
-Phase 0b. Scaffold only. Examples land in Phase 5.
+Phase 5 examples are present with generated image artifacts and deterministic
+payload metadata for all three reference image adapters.
 
 ## License
 

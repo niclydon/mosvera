@@ -54,3 +54,6 @@ Required sections:
 | [0008](./0008-provider-adapter-pairing.md) | Phase 4 provider adapter pairing | Accepted |
 | [0009](./0009-project-name-selection.md) | Project name selection — Mosvera | Accepted |
 | [0010](./0010-schema-id-scheme.md) | Schema `$id` scheme — https rooted at canonical domain | Accepted |
+| [0011](./0011-mcp-surface-design.md) | MCP surface design | Accepted |
+| [0012](./0012-adapter-emission-architecture.md) | Adapter emission architecture | Accepted |
+| [0013](./0013-sdxl-adapter-surface.md) | SDXL adapter surface | Accepted |

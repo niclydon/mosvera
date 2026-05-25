@@ -17,6 +17,7 @@
     "@mosvera/provider-base": "*",
     "@mosvera/provider-flux": "*",
     "@mosvera/provider-openai": "*",
+    "@mosvera/provider-sdxl": "*",
     "@modelcontextprotocol/sdk": "^1.27.0",
     "zod": "^3.24.1"
   },

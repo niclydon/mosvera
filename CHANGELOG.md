@@ -17,6 +17,25 @@ once Phase 1 ships, see [`spec/meps/`](./spec/meps/).
 
 ### Added
 
+- **Phase 5 — Examples + Open-weights Adapter (implementation tranche).**
+  Added the SDXL Replicate adapter and expanded the example corpus:
+  - `@mosvera/provider-sdxl` emits deterministic `sdxl-replicate` payloads,
+    executes through the official Replicate JavaScript client when
+    `REPLICATE_API_TOKEN` is present, and keeps negative prompt, scheduler,
+    seed, and refiner settings as adapter configuration per
+    [ADR-0013](./docs/decisions/0013-sdxl-adapter-surface.md).
+  - Added SDXL emission snapshots, two SDXL language-neutral emission vectors,
+    and three-way cross-adapter structural tests for OpenAI, FLUX, and SDXL.
+  - The reference MCP server now registers `sdxl-replicate` for
+    `compile_generation` with `emit: true`.
+  - Added `dashboard-minimalism` and `documentary-realism` worked systems
+    under [`spec/examples/`](./spec/examples/) plus gallery metadata under
+    [`examples/`](./examples/). Both compile, emit, and generate through all
+    three adapters.
+  - Updated the cinematic-editorial gallery with the SDXL payload and generated
+    SDXL image. Phase 5 now has OpenAI, FLUX, and SDXL gallery images for all
+    three worked examples.
+
 - **Phase 4 — Provider Adapters (implementation landed).** Added the
   reference provider adapter stack under [`providers/`](./providers/):
   - `@mosvera/provider-base` defines the Phase 4 adapter contract, lowering

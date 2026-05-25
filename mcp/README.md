@@ -199,8 +199,8 @@ call** with `valid: false`; it is not an error result.
 Resolves a composition, then applies the
 [MEP-0003](../spec/meps/0003-provider-compilation-contract.md) compilation
 contract rule engine against the named provider's capability manifest. When
-`emit: true`, the default server context registers the Phase 4 OpenAI and
-FLUX adapters and returns deterministic provider payload emission.
+`emit: true`, the default server context registers the reference OpenAI, FLUX,
+and SDXL adapters and returns deterministic provider payload emission.
 
 No provider HTTP call is made. `compile_generation` stops at the deterministic
 compile/emit boundary; adapter `execute()` is outside the MCP tool.
@@ -234,10 +234,11 @@ compile/emit boundary; adapter `execute()` is outside the MCP tool.
 provider. `criticality` maps construct names to `"required"` or `"optional"`;
 unmarked constructs are treated as optional. `emit` defaults to `false`.
 
-Built-in Phase 4 provider ids:
+Built-in reference provider ids:
 
 - `openai-gpt-image-1`
 - `bfl-flux-2-pro`
+- `sdxl-replicate`
 
 **Output — compiled**
 

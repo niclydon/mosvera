@@ -20,6 +20,10 @@ function describeLights(value: unknown): string {
     .join(", ");
 }
 
+function humanizeValue(value: unknown): string {
+  return String(value).replaceAll("_", " ");
+}
+
 function sortedPayload(input: ProviderPayload): ProviderPayload {
   const out: ProviderPayload = {};
   for (const key of Object.keys(input).sort()) out[key] = input[key];
@@ -49,7 +53,7 @@ export class OpenAIAdapter extends BaseAdapter {
   }
 
   computeRegistry(): ComputeRegistry {
-    return { describe_lights: describeLights };
+    return { describe_lights: describeLights, humanize_value: humanizeValue };
   }
 
   buildPayload(parameters: ProviderPayload, prompt: string): ProviderPayload {

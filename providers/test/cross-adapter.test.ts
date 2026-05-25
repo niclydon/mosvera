@@ -2,6 +2,7 @@
 import { describe, expect, it } from "vitest";
 import { fluxAdapter } from "../flux/src/index.ts";
 import { openaiAdapter } from "../openai/src/index.ts";
+import { sdxlAdapter } from "../sdxl/src/index.ts";
 
 const fixtures = [
   {
@@ -50,31 +51,50 @@ describe("cross-adapter emission", () => {
     it(`keeps structural prompt equivalence for ${fixture.name}`, () => {
       const openai = openaiAdapter.emit(fixture.canonical);
       const flux = fluxAdapter.emit(fixture.canonical);
+      const sdxl = sdxlAdapter.emit(fixture.canonical);
 
       expect(openai.prompt).toContain(String(fixture.canonical.subject));
       expect(flux.prompt).toContain(String(fixture.canonical.subject));
+      expect(sdxl.prompt).toContain(String(fixture.canonical.subject));
       for (const clause of fixture.expectedClauses) {
         expect(openai.prompt).toContain(clause);
         expect(flux.prompt).toContain(clause);
+        expect(sdxl.prompt).toContain(clause);
       }
     });
   }
 
-  it("documents the only required manifest divergence in Phase 4 fixtures", () => {
+  it("documents required manifest divergences across the image adapters", () => {
     const openai = openaiAdapter.manifest();
     const flux = fluxAdapter.manifest();
+    const sdxl = sdxlAdapter.manifest();
     expect(openai.constructs.quality?.lowering_action).toBe("native");
     expect(flux.constructs.quality?.lowering_action).toBe("unsupported");
+    expect(sdxl.constructs.quality?.lowering_action).toBe("approximate");
+    expect(openai.constructs.safety?.lowering_action).toBe("approximate");
+    expect(flux.constructs.safety?.lowering_action).toBe("native");
+    expect(sdxl.constructs.safety?.lowering_action).toBe("unsupported");
   });
 
   it("emits structurally valid MEP-0003 warnings", () => {
     const canonical = fixtures[1]!.canonical;
-    const emissions = [openaiAdapter.emit(canonical), fluxAdapter.emit(canonical)];
+    const emissions = [openaiAdapter.emit(canonical), fluxAdapter.emit(canonical), sdxlAdapter.emit(canonical)];
     for (const emission of emissions) {
       for (const warning of emission.warnings) {
         expect(typeof warning.construct).toBe("string");
         expect(VALID_WARNING_ACTIONS.has(warning.action)).toBe(true);
       }
     }
+  });
+
+  it("keeps SDXL negative prompts adapter-local", () => {
+    const canonical = fixtures[0]!.canonical;
+    const openai = openaiAdapter.emit(canonical);
+    const flux = fluxAdapter.emit(canonical);
+    const sdxl = sdxlAdapter.emit(canonical);
+
+    expect(openai.payload).not.toHaveProperty("negative_prompt");
+    expect(flux.payload).not.toHaveProperty("negative_prompt");
+    expect(sdxl.payload).toHaveProperty("negative_prompt");
   });
 });

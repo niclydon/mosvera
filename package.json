@@ -2,7 +2,7 @@
   "name": "mosvera-monorepo",
   "private": true,
   "type": "module",
-  "workspaces": ["runtime", "mcp", "providers/_base", "providers/openai", "providers/flux"],
+  "workspaces": ["runtime", "mcp", "providers/_base", "providers/openai", "providers/flux", "providers/sdxl"],
   "scripts": {
     "test:providers": "vitest run providers/test",
     "typecheck": "npm run typecheck --workspaces"

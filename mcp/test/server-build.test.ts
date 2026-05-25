@@ -20,9 +20,9 @@ describe("buildContext", () => {
     expect(names).toEqual(["cinematic-editorial-base", "noir"]);
   });
 
-  it("registers Phase 4 adapters for normal compile_generation emit use", () => {
+  it("registers reference adapters for normal compile_generation emit use", () => {
     const ctx = buildContext(example);
-    expect(Object.keys(ctx.adapters ?? {}).sort()).toEqual(["bfl-flux-2-pro", "openai-gpt-image-1"]);
+    expect(Object.keys(ctx.adapters ?? {}).sort()).toEqual(["bfl-flux-2-pro", "openai-gpt-image-1", "sdxl-replicate"]);
 
     const res = runCompileGeneration(ctx, {
       composition: { base: "noir", modifiers: ["golden-hour", "high-contrast"], overrides: { medium: "cinematic" } },

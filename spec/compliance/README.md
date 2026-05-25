@@ -41,7 +41,7 @@ The **canonical model** is the merge of each precedence layer's
 content and do not appear in it. Compilation vectors assert the
 contract *outcome* (compile vs error, and the warning set), not exact
 provider payloads — exact payloads embody adapter-specific rendering
-and are golden-tested with the adapters in Phase 4.
+and are golden-tested with the reference adapters.
 
 Runtimes consume these JSON cases directly. There is no host-language
 code in this directory — the entire suite is the language-neutral

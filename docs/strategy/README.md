@@ -10,6 +10,7 @@ incubation posture, and eventual ecosystem trajectory.
 | File | Purpose |
 |------|---------|
 | [`strategic-plan.md`](./strategic-plan.md) | The original strategic ecosystem plan that informed Mosvera's repository structure, naming strategy, and incubation sequence. |
+| [`phase-5-manifesto-validation.md`](./phase-5-manifesto-validation.md) | Post-Phase 5 check against the manifesto claims, including the remaining live-image evidence gap and Phase 6 vocabulary pressure. |
 
 ## Relationship to other documents
 

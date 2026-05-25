@@ -14,7 +14,7 @@ includes the Phase 4 image-generation fields (`subject`, `aspect_ratio`,
 
 `manifests/illustrative-image.manifest.json` is an **illustrative** capability
 manifest used only to exercise the MEP-0003 compilation contract end-to-end. It
-is NOT a real provider adapter. The real Phase 4 adapters live under
+is NOT a real provider adapter. The real reference adapters live under
 [`providers/`](../../../providers/).
 
 This directory is the default registry for the reference MCP server

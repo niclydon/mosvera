@@ -37,6 +37,10 @@ function describeLights(value: unknown): string {
     .join(", ");
 }
 
+function humanizeValue(value: unknown): string {
+  return String(value).replaceAll("_", " ");
+}
+
 function aspectSize(value: unknown): { width: number; height: number } | undefined {
   return typeof value === "string" ? ASPECT_SIZES[value] : undefined;
 }
@@ -97,6 +101,7 @@ export class FluxAdapter extends BaseAdapter {
   computeRegistry(): ComputeRegistry {
     return {
       describe_lights: describeLights,
+      humanize_value: humanizeValue,
       aspect_width(value) {
         return aspectSize(value)?.width;
       },

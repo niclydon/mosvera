@@ -40,9 +40,10 @@ For the project's operating doctrines, see
 
 ## Status
 
-**Phase 0b — Foundation deliverables.** Currently in quiet
-incubation. No public release. No external dependencies. The
-abstraction is being defined before public exposure freezes it.
+**Quiet incubation.** Phases 0-4 are complete. Phase 5 has landed the SDXL
+adapter, three example systems, and deterministic three-provider emissions;
+live gallery image generation remains provider-token gated. No public release.
+The abstraction is being defined before public exposure freezes it.
 
 The full status of each surface is in
 [`ROADMAP.md`](./ROADMAP.md#phases). The decisions that shaped the
@@ -54,10 +55,10 @@ provider pairing — are recorded as ADRs in
 
 | Directory | What it is | Status |
 |-----------|------------|--------|
-| [`spec/`](./spec/) | The Mosvera specification — schemas, RFCs (MEPs), prose, conformance vectors. Long-term center of gravity. | Phase 0b scaffold |
+| [`spec/`](./spec/) | The Mosvera specification — schemas, MEPs, prose, conformance vectors. Long-term center of gravity. | Phases 1-5 |
 | [`runtime/`](./runtime/) | Reference runtime (TypeScript first; Python committed). Parses, resolves, merges, composes, validates, compiles. | Phase 2 |
 | [`mcp/`](./mcp/) | MCP server exposing the runtime's operations as standardized tools. | Phase 3 |
-| [`providers/`](./providers/) | Provider adapters — OpenAI and FLUX at Phase 4, more by community thereafter. | Phase 4 |
+| [`providers/`](./providers/) | Provider adapters — OpenAI, FLUX, and SDXL via Replicate. | Phase 5 |
 | [`examples/`](./examples/) | End-to-end aesthetic systems demonstrating composition + provider portability. | Phase 5 |
 | [`docs/`](./docs/) | Narrative documentation, decision records, strategy. | Phase 0b ongoing |
 

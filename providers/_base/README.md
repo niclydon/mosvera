@@ -4,12 +4,12 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # @mosvera/provider-base
 
-Shared infrastructure for Phase 4 provider adapters.
+Shared infrastructure for Mosvera provider adapters.
 
 This package contains no provider-specific logic. It defines the adapter
 interface from ADR-0012, the lowering-table data model, the pure clause
-assembly engine, and the optional `BaseAdapter` class used by the OpenAI and
-FLUX reference adapters.
+assembly engine, and the optional `BaseAdapter` class used by the reference
+adapters.
 
 ## Contract
 

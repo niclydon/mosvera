@@ -25,7 +25,13 @@ MEP-0004 + ADR-0011, 74 total tests green). The project name (**Mosvera**) and
 namespace are settled. Still private incubation, no public claims;
 **Phase 4 — Provider Adapters** is complete locally: deterministic emissions,
 cross-adapter tests, MCP `emit: true`, manual execution scripts, and the first
-side-by-side generated image pair are checked in.
+side-by-side generated image pair are checked in. **Phase 5 implementation is
+partially landed**: the SDXL adapter, ADR-0013, three example systems,
+three-provider deterministic emissions, MCP adapter registration, and docs are
+present. Live Phase 5 gallery images have been generated for all three example
+systems.
+Current local verification: 119 tests green across runtime, MCP, provider
+workspaces, and cross-provider vectors.
 
 ## Phases
 
@@ -145,8 +151,8 @@ Outputs in `providers/`:
   and language-neutral emission vectors under `spec/compliance/emission/`
 - MCP `compile_generation` supports `emit: true` when a provider adapter is
   registered, returning the emitted payload/prompt/warnings/provenance without
-  making a provider HTTP call; the reference MCP server registers the Phase 4
-  OpenAI and FLUX adapters by default
+  making a provider HTTP call; the reference MCP server registered OpenAI and
+  FLUX by default in Phase 4 and adds SDXL in Phase 5
 - `examples/cinematic-editorial/` documents the shared prompt and emitted
   payload metadata; `generated/openai.png` and `generated/flux.png` provide
   the first side-by-side generated image pair
@@ -154,18 +160,21 @@ Outputs in `providers/`:
 ### Phase 5 — Examples + Open-weights Adapter
 
 Adoption happens through worked examples. Each example must
-demonstrate composition + portability across both Phase 4 adapters.
+demonstrate composition + portability across the reference image adapters.
 Adds the open-weights axis via SDXL.
 
 Outputs in `examples/` and `providers/`:
-- `examples/cinematic-editorial/`
-- `examples/dashboard-minimalism/`
-- `examples/documentary-realism/`
+- `examples/cinematic-editorial/` — checked-in OpenAI, FLUX, and SDXL images
+- `examples/dashboard-minimalism/` — deterministic OpenAI, FLUX, and SDXL
+  emissions and checked-in generated images
+- `examples/documentary-realism/` — deterministic OpenAI, FLUX, and SDXL
+  emissions and checked-in generated images
 - Each example: a Mosvera composition file, a README explaining the
   aesthetic intent, and rendered outputs from at least two providers
   showing the abstraction holds
-- `providers/sdxl/` — SDXL via Replicate, the first community
-  adapter (per ADR-0008 staging)
+- `providers/sdxl/` — SDXL via Replicate, the first open-weights /
+  aggregator adapter (per ADR-0008 staging), with the surface decision
+  recorded in ADR-0013
 
 ### Phase 6 — Public Unlock (gated, not scheduled)
 
@@ -213,7 +222,7 @@ marketing. The roadmap states what's planned, not what's claimed.
   in Phase 7 is committed-to, but it is not in the README until it
   ships.
 - No foundation hosting claimed before it is signed.
-- No provider adapters claimed beyond OpenAI + FLUX until they ship.
+- No provider adapters claimed beyond OpenAI + FLUX + SDXL until they ship.
 
 ## Living document
 

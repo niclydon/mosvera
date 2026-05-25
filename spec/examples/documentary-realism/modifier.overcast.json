@@ -1,0 +1,7 @@
+{
+  "$schema": "https://mosvera.dev/schema/0.1/modifier",
+  "id": "overcast",
+  "lighting": { "scheme": "natural", "mood": "observational" },
+  "color_grade": { "contrast": "low", "saturation": "natural" },
+  "color_temperature": "cool"
+}

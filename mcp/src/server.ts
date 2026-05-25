@@ -11,6 +11,7 @@ import { z } from "zod";
 import { createValidator, deriveStrategies } from "@mosvera/runtime";
 import { fluxAdapter } from "@mosvera/provider-flux";
 import { openaiAdapter } from "@mosvera/provider-openai";
+import { sdxlAdapter } from "@mosvera/provider-sdxl";
 import { loadRegistry } from "./registry/loader.ts";
 import { composeStrategies } from "./registry/strategies.ts";
 import { runListTemplates } from "./tools/list-templates.ts";
@@ -32,6 +33,7 @@ export function buildContext(registryDir: string): ToolContext {
     adapters: {
       [openaiAdapter.id]: openaiAdapter,
       [fluxAdapter.id]: fluxAdapter,
+      [sdxlAdapter.id]: sdxlAdapter,
     },
   };
 }
@@ -86,7 +88,7 @@ export function createServer(ctx: ToolContext): McpServer {
   server.registerTool(
     "compile_generation",
     {
-      description: "Resolve a composition then apply the MEP-0003 compilation contract against a provider capability manifest. With emit=true, returns the deterministic Phase 4 provider payload; no provider HTTP call is made.",
+      description: "Resolve a composition then apply the MEP-0003 compilation contract against a provider capability manifest. With emit=true, returns the deterministic provider payload; no provider HTTP call is made.",
       inputSchema: {
         composition: docArg,
         provider: z.string(),

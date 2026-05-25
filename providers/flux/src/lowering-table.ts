@@ -14,7 +14,7 @@ export const fluxLoweringTable: LoweringTable = {
     {
       construct: "medium",
       action: "approximate",
-      prompt_clause: { template: "{value} style", order: 10 },
+      prompt_clause: { template: "{value} style", order: 10, transform: "computed", compute_fn: "humanize_value" },
     },
     {
       construct: "lighting.mood",

@@ -13,6 +13,7 @@ import {
   type MergeStrategies,
   type Registry,
 } from "@mosvera/runtime";
+import { loadRegistry } from "../src/registry/loader.ts";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const exDir = join(here, "..", "..", "spec", "examples", "cinematic-editorial");
@@ -91,4 +92,43 @@ describe("cinematic-editorial example integrity", () => {
       ],
     });
   });
+});
+
+describe("Phase 5 example integrity", () => {
+  const cases = [
+    {
+      name: "dashboard-minimalism",
+      expected: {
+        medium: "digital_illustration",
+        lighting: { scheme: "flat", mood: "neutral" },
+        color_grade: { contrast: "medium", saturation: "muted" },
+      },
+    },
+    {
+      name: "documentary-realism",
+      expected: {
+        medium: "photographic",
+        lighting: { scheme: "natural", mood: "observational" },
+        color_grade: { contrast: "low", saturation: "natural" },
+      },
+    },
+  ] as const;
+
+  for (const c of cases) {
+    it(`${c.name} resolves and compiles against all Phase 5 manifests`, () => {
+      const dir = join(here, "..", "..", "spec", "examples", c.name);
+      const project = loadRegistry(dir);
+      const composition = JSON.parse(readFileSync(join(dir, "composition.json"), "utf8")) as JsonObject;
+      const canonical = resolveComposition(composition, project.registry, {
+        ...deriveStrategies(),
+        ...project.strategies,
+      });
+
+      expect(canonical).toMatchObject(c.expected);
+      expect(Object.keys(project.manifests).sort()).toEqual(["bfl-flux-2-pro", "openai-gpt-image-1", "sdxl-replicate"]);
+      for (const manifest of Object.values(project.manifests)) {
+        expect(compile(canonical, manifest, {}).status).toBe("compiled");
+      }
+    });
+  }
 });

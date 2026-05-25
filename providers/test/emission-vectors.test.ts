@@ -5,6 +5,7 @@ import { describe, expect, it } from "vitest";
 import type { JsonObject } from "@mosvera/runtime";
 import { fluxAdapter } from "../flux/src/index.ts";
 import { openaiAdapter } from "../openai/src/index.ts";
+import { sdxlAdapter } from "../sdxl/src/index.ts";
 
 interface EmissionVector {
   id: string;
@@ -18,6 +19,7 @@ interface EmissionVector {
 const adapters = {
   "openai-gpt-image-1": openaiAdapter,
   "bfl-flux-2-pro": fluxAdapter,
+  "sdxl-replicate": sdxlAdapter,
 };
 
 const vectorDir = join(process.cwd(), "spec", "compliance", "emission");
