@@ -1,0 +1,25 @@
+{
+  "name": "@mosvera/mcp",
+  "version": "0.1.0",
+  "description": "Reference MCP server for Mosvera. Exposes the runtime's resolve/compile/validate capabilities as strict MCP tools over stdio.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "exports": { ".": "./src/index.ts" },
+  "scripts": {
+    "start": "tsx src/server.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@mosvera/runtime": "*",
+    "@modelcontextprotocol/sdk": "^1.27.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8",
+    "tsx": "^4.19.2",
+    "@types/node": "^22.10.2"
+  }
+}
