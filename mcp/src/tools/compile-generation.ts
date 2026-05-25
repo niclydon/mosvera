@@ -35,7 +35,8 @@ export function runCompileGeneration(ctx: ToolContext, args: CompileArgs): Compi
   try {
     composition = parse(args.composition);
   } catch (e) {
-    return toolError("invalid_document", e instanceof Error ? e.message : String(e));
+    const message = e instanceof Error ? e.message : String(e);
+    return invalidDocument([{ path: "", message: `parse error: ${message}` }]);
   }
 
   const cv = ctx.validator.validate(composition, "composition");

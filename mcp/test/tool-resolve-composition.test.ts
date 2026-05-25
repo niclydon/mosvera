@@ -45,4 +45,9 @@ describe("resolve_composition", () => {
     const res = runResolveComposition(c, { composition: { base: "a" } });
     expect(res).toEqual({ error: "inheritance_cycle" });
   });
+
+  it("returns invalid_document with an errors array (not a bare string) for unparseable input", () => {
+    const res = runResolveComposition(ctx(), { composition: "::: not yaml :::" });
+    expect(res).toMatchObject({ error: "invalid_document", detail: { errors: [{ path: "" }] } });
+  });
 });

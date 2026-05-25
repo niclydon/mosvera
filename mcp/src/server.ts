@@ -6,6 +6,7 @@
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { fileURLToPath } from "node:url";
 import { z } from "zod";
 import { createValidator, deriveStrategies } from "@mosvera/runtime";
 import { loadRegistry } from "./registry/loader.ts";
@@ -30,9 +31,9 @@ function parseRegistryFlag(argv: string[]): string {
   if (i !== -1 && argv[i + 1] !== undefined) return argv[i + 1]!;
   // Resolve relative to this file's location (mcp/src/) so the default path works
   // regardless of the working directory the server is launched from.
-  // mcp/src/ -> ../.. -> repo root -> spec/examples/cinematic-editorial
-  const here = new URL(".", import.meta.url).pathname;
-  return `${here}../../spec/examples/cinematic-editorial`;
+  // mcp/src/ -> ../.. -> repo root -> spec/examples/cinematic-editorial.
+  // fileURLToPath (not URL.pathname) so paths with spaces/reserved chars decode.
+  return fileURLToPath(new URL("../../spec/examples/cinematic-editorial", import.meta.url));
 }
 
 const docArg = z.union([z.string(), z.record(z.any())]);
