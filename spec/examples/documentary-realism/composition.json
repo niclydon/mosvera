@@ -1,5 +1,5 @@
 {
-  "$schema": "https://mosvera.dev/schema/0.1/composition",
+  "$schema": "https://mosvera.io/schema/0.1/composition",
   "id": "street-documentary-overcast",
   "base": "documentary-realism-base",
   "modifiers": ["overcast"],

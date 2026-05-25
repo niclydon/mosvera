@@ -21,11 +21,11 @@ import {
 import type { LoadedProject } from "../types.ts";
 
 const ID_TO_KIND: Record<string, DocumentKind> = {
-  "https://mosvera.dev/schema/0.1/template": "template",
-  "https://mosvera.dev/schema/0.1/modifier": "modifier",
-  "https://mosvera.dev/schema/0.1/palette": "palette",
-  "https://mosvera.dev/schema/0.1/composition": "composition",
-  "https://mosvera.dev/schema/0.1/capability-manifest": "capability-manifest",
+  "https://mosvera.io/schema/0.1/template": "template",
+  "https://mosvera.io/schema/0.1/modifier": "modifier",
+  "https://mosvera.io/schema/0.1/palette": "palette",
+  "https://mosvera.io/schema/0.1/composition": "composition",
+  "https://mosvera.io/schema/0.1/capability-manifest": "capability-manifest",
 };
 
 const DOC_EXT = /\.(json|ya?ml)$/i;

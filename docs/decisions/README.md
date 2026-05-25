@@ -29,7 +29,7 @@ Required sections:
 
 - **Status** — `Accepted`, `Superseded by ADR-NNNN`, `Deprecated`, etc.
 - **Date** — ISO 8601 date of acceptance.
-- **Doctrines invoked** — which of the five Primary Doctrines from
+- **Doctrines invoked** — which of the six Primary Doctrines from
   [`CLAUDE.md`](../../CLAUDE.md#primary-doctrines) drove the decision.
 - **Context** — what's at stake and why a decision is needed.
 - **Research** — what comparable projects and standards actually do, with
@@ -53,7 +53,8 @@ Required sections:
 | [0007](./0007-reference-runtime-language.md) | Reference runtime language | Accepted |
 | [0008](./0008-provider-adapter-pairing.md) | Phase 4 provider adapter pairing | Accepted |
 | [0009](./0009-project-name-selection.md) | Project name selection — Mosvera | Accepted |
-| [0010](./0010-schema-id-scheme.md) | Schema `$id` scheme — https rooted at canonical domain | Accepted |
+| [0010](./0010-schema-id-scheme.md) | Schema `$id` scheme — https rooted at canonical domain | Superseded by ADR-0014 |
 | [0011](./0011-mcp-surface-design.md) | MCP surface design | Accepted |
 | [0012](./0012-adapter-emission-architecture.md) | Adapter emission architecture | Accepted |
 | [0013](./0013-sdxl-adapter-surface.md) | SDXL adapter surface | Accepted |
+| [0014](./0014-canonical-public-domain.md) | Canonical public domain | Accepted |

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://mosvera.dev/schema/0.1/composition",
+  "$schema": "https://mosvera.io/schema/0.1/composition",
   "id": "editorial-noir-golden",
   "base": "noir",
   "modifiers": ["golden-hour", "high-contrast"],

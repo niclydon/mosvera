@@ -17,6 +17,26 @@ once Phase 1 ships, see [`spec/meps/`](./spec/meps/).
 
 ### Added
 
+- **Phase 6 — Public Unlock (package and contribution prep).** Prepared the
+  local repository for public publication:
+  - Public npm packages now build to `dist/` with JavaScript, source maps, and
+    declaration files. Package manifests include repository metadata, keywords,
+    public publish config, Node engine constraints, and `prepublishOnly`
+    verification.
+  - `@mosvera/runtime` bundles the canonical schemas into its published
+    artifact so `createValidator()` and `deriveStrategies()` work outside the
+    monorepo.
+  - `@mosvera/mcp` exposes a built `mosvera-mcp` binary and bundles the
+    `cinematic-editorial` registry as its default example for published use.
+  - Added GitHub Actions for CI and manual npm publication, plus issue
+    templates for bugs, documentation, MEP proposals, and provider requests.
+  - Updated the canonical public domain to `mosvera.io` per
+    [ADR-0014](./docs/decisions/0014-canonical-public-domain.md); v0.1 schema
+    `$id`, `$schema`, and `$ref` values now use
+    `https://mosvera.io/schema/0.1/...`.
+  - Updated the public MEP submission process, security policy, and
+    contributing guidance for the Phase 6 public-unlock path.
+
 - **Phase 5 — Examples + Open-weights Adapter (implementation tranche).**
   Added the SDXL Replicate adapter and expanded the example corpus:
   - `@mosvera/provider-sdxl` emits deterministic `sdxl-replicate` payloads,
@@ -112,10 +132,10 @@ once Phase 1 ships, see [`spec/meps/`](./spec/meps/).
     under strict TypeScript.
 
 - **Namespace secured + schema `$id`s rooted at the domain.** Registered
-  `mosvera.com`, `mosvera.dev`, `mosvera.org` — `mosvera.dev` is the
+  `mosvera.com`, `mosvera.io`, `mosvera.org` — `mosvera.io` is the
   canonical home. Schema `$id`s switched from interim URNs
   (`urn:mosvera:schema:0.1:*`) to https rooted at the domain
-  (`https://mosvera.dev/schema/0.1/*`), the comparable-class convention,
+  (`https://mosvera.io/schema/0.1/*`), the comparable-class convention,
   now that a domain is owned. Clean prefix substitution across the six
   primitive schemas, the conformance vector meta-schema, and the runtime
   validator; re-verified (schemas meta-valid, cross-refs resolve in both

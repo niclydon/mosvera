@@ -1,5 +1,5 @@
 {
-  "$schema": "https://mosvera.dev/schema/0.1/capability-manifest",
+  "$schema": "https://mosvera.io/schema/0.1/capability-manifest",
   "provider": "openai-gpt-image-1",
   "adapter_version": "0.1.0",
   "constructs": {

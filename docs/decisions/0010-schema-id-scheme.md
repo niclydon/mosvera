@@ -1,6 +1,6 @@
 # ADR-0010: Schema `$id` Scheme — https rooted at the canonical domain
 
-**Status:** Accepted
+**Status:** Superseded by ADR-0014
 **Date:** 2026-05-24
 **Doctrines invoked:** Comparable-class framing, Adoption-over-convenience
 

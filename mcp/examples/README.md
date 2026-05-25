@@ -67,7 +67,7 @@ the wire.
 ```json
 {
   "palette": {
-    "$schema": "https://mosvera.dev/schema/0.1/palette",
+    "$schema": "https://mosvera.io/schema/0.1/palette",
     "id": "editorial-warm",
     "roles": {
       "background": "#1a1410",
@@ -97,7 +97,7 @@ absent.
     "name": "validate_schema",
     "arguments": {
       "document": {
-        "$schema": "https://mosvera.dev/schema/0.1/template",
+        "$schema": "https://mosvera.io/schema/0.1/template",
         "id": "t",
         "medium": "photographic"
       },

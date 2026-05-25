@@ -1,5 +1,5 @@
 {
-  "$schema": "https://mosvera.dev/schema/0.1/template",
+  "$schema": "https://mosvera.io/schema/0.1/template",
   "id": "cinematic-editorial-base",
   "medium": "photographic",
   "lighting": { "scheme": "three_point", "mood": "neutral" },

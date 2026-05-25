@@ -167,7 +167,7 @@ See Error taxonomy.
 
 A conforming server MUST:
 
-1. Parse and validate `composition` against `https://mosvera.dev/schema/0.1/composition`.
+1. Parse and validate `composition` against `https://mosvera.io/schema/0.1/composition`.
 2. Pre-flight all references (`base`, `modifiers` entries) in the effective
    registry; return `unknown_reference` if any are absent.
 3. Invoke the runtime composition resolver (MEP-0001) with the composed
@@ -252,7 +252,7 @@ Both properties are required.
 
 A conforming server MUST validate the document against the JSON schema
 identified by `kind`, mapped to the canonical schema URI
-`https://mosvera.dev/schema/0.1/<kind>`. A validation failure MUST be
+`https://mosvera.io/schema/0.1/<kind>`. A validation failure MUST be
 returned as `{ "valid": false, "errors": [...] }` — a successful call result.
 The server MUST NOT return an error response for a structurally invalid
 document; `invalid_document` errors are reserved for cases where the document
@@ -331,7 +331,7 @@ A conforming server MUST:
    `provider` in the loaded project manifests, then in the registered adapter
    manifest when available. Return `unknown_provider` if neither is available.
 4. Validate the resolved manifest against
-   `https://mosvera.dev/schema/0.1/capability-manifest`.
+   `https://mosvera.io/schema/0.1/capability-manifest`.
 5. Resolve the composition to a canonical model.
 6. Apply the MEP-0003 compilation contract rule engine.
 7. If `emit` is false or absent, return the contract decision (compiled or

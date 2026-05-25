@@ -7,7 +7,7 @@ const v = createValidator();
 
 describe("validate_schema", () => {
   it("returns valid:true for a well-formed template", () => {
-    const doc = { $schema: "https://mosvera.dev/schema/0.1/template", id: "t", medium: "photographic" };
+    const doc = { $schema: "https://mosvera.io/schema/0.1/template", id: "t", medium: "photographic" };
     expect(runValidateSchema(v, { document: doc, kind: "template" })).toEqual({ valid: true, errors: [] });
   });
 

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://mosvera.dev/schema/0.1/capability-manifest",
+  "$schema": "https://mosvera.io/schema/0.1/capability-manifest",
   "provider": "illustrative-image",
   "adapter_version": "0.0.0-illustrative",
   "constructs": {

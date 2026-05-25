@@ -9,7 +9,7 @@
 // validator (e.g. Python `jsonschema`). The portable artifacts are the schemas
 // themselves; the validator is a thin per-language binding over them.
 
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import Ajv2020, { type ValidateFunction } from "ajv/dist/2020.js";
@@ -46,24 +46,25 @@ const SCHEMA_FILES = [
 ];
 
 const KIND_TO_ID: Record<DocumentKind, string> = {
-  composition: "https://mosvera.dev/schema/0.1/composition",
-  template: "https://mosvera.dev/schema/0.1/template",
-  modifier: "https://mosvera.dev/schema/0.1/modifier",
-  palette: "https://mosvera.dev/schema/0.1/palette",
-  "capability-manifest": "https://mosvera.dev/schema/0.1/capability-manifest",
+  composition: "https://mosvera.io/schema/0.1/composition",
+  template: "https://mosvera.io/schema/0.1/template",
+  modifier: "https://mosvera.io/schema/0.1/modifier",
+  palette: "https://mosvera.io/schema/0.1/palette",
+  "capability-manifest": "https://mosvera.io/schema/0.1/capability-manifest",
 };
 
 function defaultSchemaDir(): string {
-  // runtime/src/validator.ts -> repo-root/spec/schemas
   const here = dirname(fileURLToPath(import.meta.url));
+  const packaged = join(here, "schemas");
+  if (existsSync(packaged)) return packaged;
+  // runtime/src/validator.ts -> repo-root/spec/schemas during monorepo development.
   return join(here, "..", "..", "spec", "schemas");
 }
 
 /**
  * Create a validator backed by the canonical schemas. By default it loads
- * them from `spec/schemas/` relative to this module; pass `schemaDir` to
- * override (e.g. once schemas ship as a published package after the repo
- * split per ADR-0002).
+ * bundled package schemas when available, falling back to `spec/schemas/`
+ * during monorepo development. Pass `schemaDir` to override either path.
  */
 export function createValidator(schemaDir: string = defaultSchemaDir()): Validator {
   // strict:false so the runtime tolerates the `x-mosvera-merge` schema

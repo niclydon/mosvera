@@ -9,19 +9,18 @@ becoming one.
 
 ## Active maintainers
 
-Mosvera is in quiet incubation with a single active maintainer. The
-target governance model at the first public release (1.0) is a small
-Technical Committee — see
+Mosvera is in Phase 6 public-unlock preparation with a single active
+maintainer. The target governance model at the first stable public release
+(1.0) is a small Technical Committee — see
 [`GOVERNANCE.md`](./GOVERNANCE.md#target-model-at-10) and
 [ADR-0004](./docs/decisions/0004-governance.md).
 
 | Maintainer | GitHub | Scope | Since |
 |------------|--------|-------|-------|
-| _Sole maintainer; will be listed when the project goes public_ | — | All | 2026-05 |
+| Founding maintainer | — | All | 2026-05 |
 
-The maintainer's identity is intentionally not listed in this
-private incubation phase. At public unlock (Phase 6 in
-[`ROADMAP.md`](./ROADMAP.md)), this table will be filled in.
+The public repository split will replace the placeholder with the
+maintainer's public GitHub identity.
 
 ## Becoming a maintainer
 
@@ -72,7 +71,7 @@ Once the project has a Technical Committee (post-1.0), the
 inactivity rules will be formalized in alignment with the OTel TC
 attendance pattern — see
 [`GOVERNANCE.md`](./GOVERNANCE.md#target-model-at-10). During
-incubation, inactivity is handled informally: a maintainer who
+the single-maintainer phase, inactivity is handled informally: a maintainer who
 becomes unreachable for an extended period may be moved to an
 "emeritus" status by the remaining maintainers, with the option to
 return on request.

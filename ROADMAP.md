@@ -16,20 +16,24 @@ For the project's operating doctrines, see
 
 ## Status
 
-Phases 0, 1, 2, and 3 are **complete** (as of 2026-05-25). Phase 0 (doctrine +
-foundation: 6 doctrines, 10 ADRs), Phase 1 (spec genesis: MEP-0001/0002/0003,
-six v0.1 schemas, 21 conformance vectors), Phase 2 (reference runtime:
-semantic core + parser + validator, 38 tests green), and Phase 3 (MCP surface:
-`@mosvera/mcp` stdio server, five tools, `cinematic-editorial` worked example,
-MEP-0004 + ADR-0011, 74 total tests green). The project name (**Mosvera**) and
-namespace are settled. Still private incubation, no public claims;
-**Phase 4 — Provider Adapters** is complete locally: deterministic emissions,
-cross-adapter tests, MCP `emit: true`, manual execution scripts, and the first
-side-by-side generated image pair are checked in. **Phase 5 implementation is
-partially landed**: the SDXL adapter, ADR-0013, three example systems,
-three-provider deterministic emissions, MCP adapter registration, and docs are
-present. Live Phase 5 gallery images have been generated for all three example
-systems.
+Phases 0-5 are **complete** (as of 2026-05-25). Phase 0 established doctrine
+and ADRs. Phase 1 defined the v0.1 schema and conformance vector foundation.
+Phase 2 shipped the TypeScript reference runtime. Phase 3 shipped the stdio
+MCP surface. Phase 4 shipped OpenAI and FLUX provider adapters. Phase 5
+shipped the SDXL adapter, ADR-0013, three example systems, three-provider
+deterministic emissions, MCP adapter registration, and checked-in gallery
+images for all three example systems.
+
+Phase 6 is now **in progress**. Local package publishing readiness is in
+place: every public package builds to `dist/`, `@mosvera/runtime` bundles the
+canonical schemas, `@mosvera/mcp` bundles a default example registry, GitHub CI
+and manual npm publish workflows are present, and the public issue/PR template
+surface is staged. The GitHub organization and `mosvera.io` holding page are
+live, with `.com`, `.org`, and `.dev` redirecting to `.io`. External
+publication is not yet claimed complete until the public repo split, npm
+packages, `mosvera.io` schema hosting, and "Infrastructure-as-Style" essay
+are live and verified.
+
 Current local verification: 119 tests green across runtime, MCP, provider
 workspaces, and cross-provider vectors.
 
@@ -176,20 +180,23 @@ Outputs in `examples/` and `providers/`:
   aggregator adapter (per ADR-0008 staging), with the surface decision
   recorded in ADR-0013
 
-### Phase 6 — Public Unlock (gated, not scheduled)
+### Phase 6 — Public Unlock (in progress)
 
-Triggered when Phases 1–5 feel durable, not on a date. The strategic
+Triggered now that Phases 1-5 are durable enough to expose. The strategic
 plan's Phase 2/3 sequence.
 
 Outputs:
-- Namespace acquisition (`mosvera` GitHub org, `mosvera.dev`,
-  `mosvera.ai`)
+- Namespace acquisition: `github.com/mosvera` exists; `mosvera.io` is live;
+  `mosvera.com`, `mosvera.org`, and `mosvera.dev` redirect to `.io`
 - Manifesto publication on a separate public surface ("Infrastructure-
   as-Style")
 - Transfer this repo (or split) into `github.com/mosvera/spec` first
   as the public flagship
 - `runtime`, `mcp`, `providers`, `examples` follow as separate repos
   per the eventual split signaled in ADR-0002
+- Publish `@mosvera/runtime`, `@mosvera/mcp`, `@mosvera/provider-base`,
+  `@mosvera/provider-openai`, `@mosvera/provider-flux`, and
+  `@mosvera/provider-sdxl` to npm as installable JavaScript packages
 - Open MEP process — `spec/meps/` becomes externally contributable
 - Governance transition: BDFL → small Technical Committee per
   [ADR-0004](./docs/decisions/0004-governance.md)

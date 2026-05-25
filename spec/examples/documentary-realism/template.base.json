@@ -1,5 +1,5 @@
 {
-  "$schema": "https://mosvera.dev/schema/0.1/template",
+  "$schema": "https://mosvera.io/schema/0.1/template",
   "id": "documentary-realism-base",
   "medium": "photographic",
   "lighting": { "scheme": "natural", "mood": "observational" },

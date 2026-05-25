@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // SPDX-License-Identifier: Apache-2.0
 //
 // Reference MCP server bootstrap (stdio). Thin wiring only: load the project,
@@ -6,6 +7,7 @@
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { z } from "zod";
 import { createValidator, deriveStrategies } from "@mosvera/runtime";
@@ -41,10 +43,10 @@ export function buildContext(registryDir: string): ToolContext {
 function parseRegistryFlag(argv: string[]): string {
   const i = argv.indexOf("--registry");
   if (i !== -1 && argv[i + 1] !== undefined) return argv[i + 1]!;
-  // Resolve relative to this file's location (mcp/src/) so the default path works
+  const packaged = fileURLToPath(new URL("./examples/cinematic-editorial", import.meta.url));
+  if (existsSync(packaged)) return packaged;
+  // Resolve relative to this file's location so the monorepo default path works
   // regardless of the working directory the server is launched from.
-  // mcp/src/ -> ../.. -> repo root -> spec/examples/cinematic-editorial.
-  // fileURLToPath (not URL.pathname) so paths with spaces/reserved chars decode.
   return fileURLToPath(new URL("../../spec/examples/cinematic-editorial", import.meta.url));
 }
 

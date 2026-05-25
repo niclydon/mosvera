@@ -9,7 +9,7 @@
 // BOUNDARY module: it reads schema files, like the validator. Each language
 // port reimplements it over the same portable schemas.
 
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { MergeStrategies, MergeStrategy } from "./types.ts";
@@ -25,6 +25,8 @@ const SCHEMA_FILES = [
 
 function defaultSchemaDir(): string {
   const here = dirname(fileURLToPath(import.meta.url));
+  const packaged = join(here, "schemas");
+  if (existsSync(packaged)) return packaged;
   return join(here, "..", "..", "spec", "schemas");
 }
 
@@ -51,8 +53,8 @@ function collect(node: unknown, out: MergeStrategies): void {
 
 /**
  * Derive list-merge strategies from the canonical schemas' `x-mosvera-merge`
- * annotations. Defaults to the repo's `spec/schemas/`; pass `schemaDir` to
- * override (e.g. once schemas ship as a published package).
+ * annotations. Defaults to bundled package schemas when available, falling
+ * back to the repo's `spec/schemas/`; pass `schemaDir` to override.
  */
 export function deriveStrategies(schemaDir: string = defaultSchemaDir()): MergeStrategies {
   const out: MergeStrategies = {};

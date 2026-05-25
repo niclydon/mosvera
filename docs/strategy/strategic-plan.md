@@ -2,16 +2,25 @@
 
 ## Namespace Strategy
 
-Acquire and secure:
+Secured:
 
 - github.com/mosvera
+- mosvera.io
+
+Redirects to `mosvera.io`:
+
+- mosvera.com
+- mosvera.org
 - mosvera.dev
+
+Optional future defensive registrations:
+
 - mosvera.ai
 - mosvera.run (optional)
 
 The namespace itself matters enormously if this evolves into a real ecosystem or standard.
 
-The recommendation is to secure the namespace early, even before public launch, because infrastructure-grade names disappear quickly once concepts start resonating.
+The recommendation was to secure the namespace early, even before public launch, because infrastructure-grade names disappear quickly once concepts start resonating.
 
 However:
 

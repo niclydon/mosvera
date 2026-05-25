@@ -11,8 +11,8 @@ function ctx(): ToolContext {
         templates: {},
         modifiers: {},
         palettes: {
-          warm: { $schema: "https://mosvera.dev/schema/0.1/palette", id: "warm", roles: { accent: "#c8943f" } },
-          child: { $schema: "https://mosvera.dev/schema/0.1/palette", id: "child", $extends: "warm", roles: { accent: "#fff" } },
+          warm: { $schema: "https://mosvera.io/schema/0.1/palette", id: "warm", roles: { accent: "#c8943f" } },
+          child: { $schema: "https://mosvera.io/schema/0.1/palette", id: "child", $extends: "warm", roles: { accent: "#fff" } },
         },
       },
       manifests: {},
@@ -26,7 +26,7 @@ function ctx(): ToolContext {
 describe("get_palette", () => {
   it("returns the stored palette by name", () => {
     expect(runGetPalette(ctx(), { name: "warm" })).toEqual({
-      palette: { $schema: "https://mosvera.dev/schema/0.1/palette", id: "warm", roles: { accent: "#c8943f" } },
+      palette: { $schema: "https://mosvera.io/schema/0.1/palette", id: "warm", roles: { accent: "#c8943f" } },
     });
   });
 

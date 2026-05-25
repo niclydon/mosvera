@@ -22,8 +22,8 @@ runtimes.
 - **Allowed characters** in field names: `[a-z][a-z0-9_]*`. No
   hyphens, no uppercase, no dots.
 - **`$id` scheme:** https rooted at the canonical domain —
-  `https://mosvera.dev/schema/0.1/<name>` (see
-  [ADR-0010](../../docs/decisions/0010-schema-id-scheme.md)). A stable
+  `https://mosvera.io/schema/0.1/<name>` (see
+  [ADR-0014](../../docs/decisions/0014-canonical-public-domain.md)). A stable
   namespace identifier; it need not be dereferenceable. Cross-schema
   references use these `$id`s.
 - **License:** Apache-2.0 (schemas ship inside conforming runtimes

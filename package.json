@@ -2,14 +2,25 @@
   "name": "mosvera-monorepo",
   "private": true,
   "type": "module",
-  "workspaces": ["runtime", "mcp", "providers/_base", "providers/openai", "providers/flux", "providers/sdxl"],
+  "workspaces": [
+    "runtime",
+    "providers/_base",
+    "providers/openai",
+    "providers/flux",
+    "providers/sdxl",
+    "mcp"
+  ],
   "scripts": {
+    "build": "npm run build --workspaces",
+    "ci": "npm run build && npm run typecheck && npm run test:workspaces && npm run test:providers",
     "test:providers": "vitest run providers/test",
+    "test:workspaces": "npm run test --workspaces",
+    "test": "npm run build && npm run test:workspaces && npm run test:providers",
     "typecheck": "npm run typecheck --workspaces"
   },
   "devDependencies": {
     "typescript": "^5.7.2",
-    "vitest": "^2.1.8",
+    "vitest": "^4.1.7",
     "@types/node": "^22.10.2"
   }
 }

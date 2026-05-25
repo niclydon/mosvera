@@ -1,5 +1,5 @@
 {
-  "$schema": "https://mosvera.dev/schema/0.1/palette",
+  "$schema": "https://mosvera.io/schema/0.1/palette",
   "id": "editorial-warm",
   "roles": {
     "background": "#1a1410",

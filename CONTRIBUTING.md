@@ -4,9 +4,10 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # Contributing to Mosvera
 
-Thanks for your interest. Mosvera is in quiet incubation — small,
-focused, and deliberately careful about freezing abstractions before
-they are correct — but contributions are welcome.
+Thanks for your interest. Mosvera is in Phase 6 public-unlock
+preparation: the core surfaces are implemented, but the project is
+still careful about freezing abstractions before external feedback has
+tested them. Contributions are welcome.
 
 Before contributing, please read:
 
@@ -58,7 +59,7 @@ A pre-merge check will reject unsigned commits.
 
 ### Follow the doctrines
 
-Mosvera operates under five [Primary Doctrines](./CLAUDE.md#primary-doctrines).
+Mosvera operates under six [Primary Doctrines](./CLAUDE.md#primary-doctrines).
 The two most likely to affect contributions:
 
 - **Doctrine 1 (Public-first).** Mosvera is built for strangers. No
@@ -90,9 +91,9 @@ The two most likely to affect contributions:
 
 ### Review
 
-During incubation, the maintainer reviews all PRs. As the
-maintainer pool grows, reviewer expectations will firm up via
-[ADR](./docs/decisions/) updates to GOVERNANCE.md.
+During the single-maintainer phase, the maintainer reviews all PRs in
+public. As the maintainer pool grows, reviewer expectations will firm
+up via [ADR](./docs/decisions/) updates to GOVERNANCE.md.
 
 ## Coding conventions
 
@@ -136,9 +137,9 @@ neutral, unhyped. Avoid marketing voice in any committed file.
 
 ## Where to ask questions
 
-During incubation, GitHub Discussions (when enabled) is the
-primary venue. Specific questions about MEP review or ADR scope
-can be raised on the relevant PR or issue.
+GitHub Discussions is the preferred public venue once enabled. Specific
+questions about MEP review or ADR scope can be raised on the relevant
+PR or issue.
 
 ## License
 

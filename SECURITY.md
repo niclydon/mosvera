@@ -4,23 +4,18 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # Security Policy
 
-Mosvera is in quiet incubation and has not yet produced executable
-code, network surfaces, or processed external data. Once the
-reference runtime (Phase 2) and MCP server (Phase 3) land, this
-policy describes how to report vulnerabilities and what response to
-expect.
+Mosvera includes a TypeScript reference runtime, a stdio MCP server,
+and in-tree provider adapters. This policy describes how to report
+vulnerabilities and what response to expect.
 
 ## Reporting a vulnerability
 
 **Do not open a public GitHub issue for security vulnerabilities.**
 
-During the current incubation phase, the project does not yet
-expose a public security contact. A dedicated security contact
-will be established before the reference runtime ships (Phase 2 in
-[`ROADMAP.md`](./ROADMAP.md)) and listed here. Once published, the
-preferred channel will be GitHub's
+Once the public repositories are live, the preferred channel is GitHub's
 [private vulnerability reporting](https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing-information-about-vulnerabilities/privately-reporting-a-security-vulnerability)
-mechanism on this repository.
+mechanism on the affected repository. Until then, report through the
+private channel used to receive access to the repository.
 
 When you report, please include:
 
@@ -32,8 +27,6 @@ When you report, please include:
 - Whether you intend to disclose publicly, and on what timeline.
 
 ## What to expect
-
-Once a security contact is published:
 
 - **Acknowledgment** within 5 business days of receiving the
   report.
@@ -78,10 +71,12 @@ Out of scope:
 
 ## Supported versions
 
-Mosvera does not yet have released versions. Once the
-specification reaches 1.0, this section will list the supported
-specification and runtime versions and their security-fix windows
-in alignment with the project's [governance model](./GOVERNANCE.md).
+Mosvera does not yet have a stable 1.0 release. Before 1.0, supported
+versions are the latest published `0.x` packages and the default branch
+of each public repository. Once the specification reaches 1.0, this
+section will list supported specification and runtime versions and their
+security-fix windows in alignment with the project's
+[governance model](./GOVERNANCE.md).
 
 ## Hardening
 

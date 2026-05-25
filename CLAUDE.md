@@ -8,8 +8,11 @@ Guidance for Claude and other coding agents working in this repository.
 > not just a domain DNS check, which was the methodology failure that
 > sank the earlier "Tessera" name). Mosvera is clean across
 > `.com`/`.io`/`.dev`/`.org`, the GitHub org, the npm scope, and Bluesky,
-> with no commercial brand collision. The name is settled; the project
-> remains in quiet incubation with public launch deferred to Phase 6. See
+> with no commercial brand collision. `mosvera.io` is the canonical public
+> domain; `.com`, `.org`, and `.dev` redirect there. The name is settled;
+> Phase 6 public unlock is the active launch track, but agents must not claim
+> repo split, npm publication, schema hosting, or launch essays are complete
+> until those external steps have been verified. See
 > [ADR-0009](./docs/decisions/0009-project-name-selection.md).
 
 ---
@@ -172,13 +175,13 @@ incubation, eventual repository split, namespace strategy, and ecosystem
 positioning. ADRs under `docs/decisions/` record the research-grounded
 choices behind every structural decision in the repo.
 
-## Incubation Posture
+## Public Project Posture
 
-Assume Mosvera is in quiet incubation unless explicitly told otherwise.
-
-The goal is to discover the abstraction correctly before public exposure
-freezes weak concepts too early. Do not add launch copy, marketing pages,
-public-roadmap claims, or hype-oriented positioning by default.
+Assume Mosvera is moving through Phase 6 public unlock, not private
+incubation. The discipline from incubation still applies: public copy must
+be precise, implementation-backed, and clear about limitations. Do not add
+hype-oriented positioning, adoption claims, foundation claims, or external
+publication claims unless they are true and currently verified.
 
 Work should prioritize:
 

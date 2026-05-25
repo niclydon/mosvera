@@ -22,14 +22,14 @@ do not claim a Technical Steering Committee that does not exist; we
 do not claim a multi-vendor maintainer pool that does not exist; we
 do not claim foundation hosting that we have not pursued.
 
-This posture matches the pre-public phase of essentially every
-comparable open-standard project — GraphQL before the Linux
-Foundation donation, Python under Guido, the Linux kernel under
-Linus, CloudEvents before CNCF sandbox status.
+This posture matches the earliest public phase of many comparable
+open-standard projects: a clearly named maintainer, written decision
+processes, and explicit criteria for adding more maintainers as real
+contributors arrive.
 
 ## Decision-making process
 
-During incubation:
+During the single-maintainer phase:
 
 - **Repository-architecture decisions** (license, layout, naming,
   governance changes) are recorded as
@@ -39,9 +39,10 @@ During incubation:
 - **Specification changes** go through the
   [Mosvera Enhancement Proposal (MEP)](./spec/meps/) process defined
   in [ADR-0003](./docs/decisions/0003-rfc-and-proposal-format.md).
-  MEPs require at minimum 2 maintainer approvals during incubation
-  (raising to 4 once the maintainer pool exceeds 4), with a 7-day
-  Final Comment Period before merge.
+  MEPs are reviewed publicly by the maintainer. Once the maintainer pool
+  has at least 2 active maintainers, MEPs require 2 maintainer approvals
+  (raising to 4 once the maintainer pool exceeds 4), with a 7-day Final
+  Comment Period before merge.
 - **Provider adapter additions** are subject to the exclusion policy
   in [ADR-0008](./docs/decisions/0008-provider-adapter-pairing.md):
   no adapters against unofficial or reverse-engineered APIs.
@@ -109,11 +110,11 @@ TC has 5 or more members).
 
 ## Foundation evaluation
 
-Mosvera will evaluate foundation hosting at the 1.0 milestone, **not
-before**, and the evaluation is gated on having at least one external
-provider implementation in production. Vendor-neutrality has to be
-true before it is claimed — premature foundation hosting locks in
-governance theater that the project has not yet earned.
+Mosvera begins foundation-hosting evaluation during Phase 6 as a research
+exercise only. Donation remains gated on having at least one external
+provider implementation in production. Vendor-neutrality has to be true
+before it is claimed — premature foundation hosting locks in governance
+theater that the project has not yet earned.
 
 Candidate foundations (in alphabetical order):
 
@@ -138,7 +139,6 @@ ADRs rather than rewriting them; the historical record stays intact.
 - That Mosvera is foundation-hosted or seeking hosting imminently.
 - That there is a multi-vendor maintainer pool today.
 
-Honesty about the incubation reality is itself a credibility signal.
-This document is structured so that any reader can see where the
-project is now and where it intends to go, without being misled
-about either.
+Honesty about the current reality is itself a credibility signal. This
+document is structured so that any reader can see where the project is now
+and where it intends to go, without being misled about either.

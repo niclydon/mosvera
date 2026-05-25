@@ -130,7 +130,7 @@ Returns a named palette's semantic color roles.
 ```json
 {
   "palette": {
-    "$schema": "https://mosvera.dev/schema/0.1/palette",
+    "$schema": "https://mosvera.io/schema/0.1/palette",
     "id": "editorial-warm",
     "roles": {
       "background": "#1a1410",
@@ -160,14 +160,14 @@ minor (design decision D4; see [ADR-0011](../docs/decisions/0011-mcp-surface-des
 ### `validate_schema`
 
 Validates a Mosvera document against the published JSON schemas
-(`https://mosvera.dev/schema/0.1/…`). A validation failure is a **successful
+(`https://mosvera.io/schema/0.1/…`). A validation failure is a **successful
 call** with `valid: false`; it is not an error result.
 
 **Input**
 
 ```json
 {
-  "document": { "$schema": "https://mosvera.dev/schema/0.1/template", "id": "t", "medium": "photographic" },
+  "document": { "$schema": "https://mosvera.io/schema/0.1/template", "id": "t", "medium": "photographic" },
   "kind": "template"
 }
 ```
