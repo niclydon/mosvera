@@ -12,6 +12,7 @@ export { resolveTemplate } from "./resolve.ts";
 export { resolveComposition } from "./compose.ts";
 export { compile } from "./compile.ts";
 export { parse } from "./parser.ts";
+export { deriveStrategies } from "./strategies.ts";
 export { createValidator } from "./validator.ts";
 export type { DocumentKind, Validator, ValidationResult, ValidationIssue } from "./validator.ts";
 export { ResolutionError } from "./types.ts";
