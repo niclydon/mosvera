@@ -393,3 +393,37 @@ Apache-2.0 per
 This directory is the seed of a future standalone repository at
 `github.com/mosvera/mcp` per
 [ADR-0002](../docs/decisions/0002-top-level-repository-layout.md).
+
+---
+
+## Integration with AI agent platforms and MCP hosts
+
+Mosvera's MCP server (stdio transport) is designed as a composable primitive
+for AI-native orchestration surfaces: coding agents, copilots, automated
+pipelines, and similar systems that already speak MCP. 
+
+Hosts register the server locally (no network service). Example registration
+for a typical MCP-capable agent host (exact keys host-specific; see your
+host's MCP docs):
+
+```json
+{
+  "mcpServers": {
+    "mosvera": {
+      "command": "npx",
+      "args": ["-y", "@mosvera/mcp@latest"]
+      // or "command": "node", "args": ["/path/to/@mosvera/mcp/dist/server.js"]
+    }
+  }
+}
+```
+
+Once registered, the five tools (`list_templates`, `resolve_composition`,
+`get_palette`, `validate_schema`, `compile_generation`) become available to
+the agent for aesthetic intent resolution and provider-targeted compilation.
+See the tool reference above and [`mcp/examples/README.md`](./examples/README.md)
+for transcript examples.
+
+This surface is deliberately narrow, schema-strict, and provider-neutral so
+it can participate in larger agent graphs without hidden side effects or
+prompt leakage. Provider execution remains outside the MCP boundary.
