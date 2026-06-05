@@ -1,6 +1,21 @@
 {
   "name": "mosvera-monorepo",
   "private": true,
+  "homepage": "https://mosvera.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mosvera/spec.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mosvera/spec/issues"
+  },
+  "keywords": [
+    "mosvera",
+    "aesthetic-infrastructure",
+    "ai-native",
+    "monorepo",
+    "open-standard"
+  ],
   "type": "module",
   "workspaces": [
     "runtime",

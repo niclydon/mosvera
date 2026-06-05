@@ -4,11 +4,14 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # docs/guides/
 
-How-to guides and concept guides for Mosvera. Content lands as the
-runtime, MCP server, and provider adapters ship — there's nothing
-useful to guide a reader through until those exist.
+How-to guides and concept guides for Mosvera. The reference runtime
+(Phase 2), MCP server (Phase 3), and provider adapters for OpenAI + FLUX
++ SDXL (Phases 4-5) have shipped; worked examples with deterministic
+three-provider emissions and checked-in renders are present under
+`examples/`. Guide content will be added as the public-unlock (Phase 6)
+progresses and external adoption surfaces grow.
 
-## Planned guides (post-Phase-4)
+## Planned guides
 
 - **Authoring an aesthetic template** — concepts, primitives, the
   composition file format.
