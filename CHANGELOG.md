@@ -37,6 +37,18 @@ once Phase 1 ships, see [`spec/meps/`](./spec/meps/).
   - Updated the public MEP submission process, security policy, and
     contributing guidance for the Phase 6 public-unlock path.
 
+- **Phase 6 hygiene follow-ups (contained).** Hardened the
+  `runtime/scripts/copy-schemas.mjs` and `mcp/scripts/copy-example-registry.mjs`
+  with `existsSync` guards and actionable error messages (ensures reliable
+  `prepublishOnly` bundling of schemas and default registry for published
+  packages). Completed root `package.json` with `homepage`, `repository`,
+  `bugs`, and `keywords` for npm publish metadata completeness (aligning
+  with workspace manifests). Updated `docs/guides/README.md` intro and
+  section header to accurately reflect shipped Phases 2–5 (runtime, MCP,
+  providers + examples) per Doctrine 6 (academic-grade documentation) and
+  Doctrine 1 (public-first accuracy). See prior branch
+  `fix/phase6-hygiene-followup` for the originating investigation.
+
 - **Phase 5 — Examples + Open-weights Adapter (implementation tranche).**
   Added the SDXL Replicate adapter and expanded the example corpus:
   - `@mosvera/provider-sdxl` emits deterministic `sdxl-replicate` payloads,
