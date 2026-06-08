@@ -14,6 +14,7 @@ import { createValidator, deriveStrategies } from "@mosvera/runtime";
 import { fluxAdapter } from "@mosvera/provider-flux";
 import { openaiAdapter } from "@mosvera/provider-openai";
 import { sdxlAdapter } from "@mosvera/provider-sdxl";
+import { loadExpressionOverlay, type ExpressionOverlay } from "./expression-overlay.ts";
 import { loadRegistry } from "./registry/loader.ts";
 import { composeStrategies } from "./registry/strategies.ts";
 import { runListTemplates } from "./tools/list-templates.ts";
@@ -24,11 +25,11 @@ import { runCompileGeneration } from "./tools/compile-generation.ts";
 import type { ToolContext } from "./types.ts";
 
 /** Load a project directory into a fully-formed tool context. */
-export function buildContext(registryDir: string): ToolContext {
+export function buildContext(registryDir: string, expressionOverlay?: ExpressionOverlay): ToolContext {
   const validator = createValidator();
   const project = loadRegistry(registryDir, validator);
   const baseStrategies = composeStrategies(deriveStrategies(), project.strategies);
-  return {
+  const ctx: ToolContext = {
     project,
     validator,
     baseStrategies,
@@ -38,6 +39,8 @@ export function buildContext(registryDir: string): ToolContext {
       [sdxlAdapter.id]: sdxlAdapter,
     },
   };
+  if (expressionOverlay !== undefined) ctx.expressionOverlay = expressionOverlay;
+  return ctx;
 }
 
 function parseRegistryFlag(argv: string[]): string {
@@ -48,6 +51,12 @@ function parseRegistryFlag(argv: string[]): string {
   // Resolve relative to this file's location so the monorepo default path works
   // regardless of the working directory the server is launched from.
   return fileURLToPath(new URL("../../spec/examples/cinematic-editorial", import.meta.url));
+}
+
+function parseExpressionOverlayFlag(argv: string[]): string | undefined {
+  const i = argv.indexOf("--expression-overlay");
+  if (i !== -1 && argv[i + 1] !== undefined) return argv[i + 1]!;
+  return undefined;
 }
 
 const docArg = z.union([z.string(), z.record(z.any())]);
@@ -108,7 +117,9 @@ export function createServer(ctx: ToolContext): McpServer {
 }
 
 async function main(): Promise<void> {
-  const ctx = buildContext(parseRegistryFlag(process.argv.slice(2)));
+  const argv = process.argv.slice(2);
+  const overlayPath = parseExpressionOverlayFlag(argv);
+  const ctx = buildContext(parseRegistryFlag(argv), overlayPath === undefined ? undefined : loadExpressionOverlay(overlayPath));
   const server = createServer(ctx);
   await server.connect(new StdioServerTransport());
 }

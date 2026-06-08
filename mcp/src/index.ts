@@ -6,6 +6,7 @@
 export { loadRegistry } from "./registry/loader.ts";
 export { composeStrategies, mergeRegistry } from "./registry/strategies.ts";
 export { collectMissingReferences } from "./registry/preflight.ts";
+export { parseExpressionOverlay, loadExpressionOverlay } from "./expression-overlay.ts";
 export { runListTemplates } from "./tools/list-templates.ts";
 export { runResolveComposition } from "./tools/resolve-composition.ts";
 export { runGetPalette } from "./tools/get-palette.ts";

@@ -11,6 +11,7 @@ const manifest: CapabilityManifest = {
   constructs: {
     medium: { lowering_action: "native" },
     color_temperature: { lowering_action: "approximate", note: "mapped to a warmth prompt phrase" },
+    style_note: { lowering_action: "native" },
   },
 };
 
@@ -90,6 +91,28 @@ describe("compile_generation", () => {
     expect(res).toEqual({
       status: "compiled",
       canonical: { medium: "photographic" },
+      emission: {
+        payload: { prompt: "photographic", provider: "demo" },
+        prompt: "photographic",
+        warnings: [],
+        provenance: {
+          prompt: { canonical_construct: "medium", lowering_action: "native", source_value: "photographic" },
+        },
+      },
+    });
+  });
+
+  it("applies a local expression overlay before compile and emit", () => {
+    const base = ctx();
+    base.expressionOverlay = {
+      canonical: { style_note: "synthetic overlay guidance" },
+      criticality: { style_note: "optional" },
+    };
+
+    const res = runCompileGeneration(base, { composition: { base: "base_t" }, provider: "demo", emit: true });
+    expect(res).toEqual({
+      status: "compiled",
+      canonical: { medium: "photographic", style_note: "synthetic overlay guidance" },
       emission: {
         payload: { prompt: "photographic", provider: "demo" },
         prompt: "photographic",
