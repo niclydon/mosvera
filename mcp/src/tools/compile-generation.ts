@@ -8,6 +8,7 @@
 
 import {
   compile,
+  merge,
   parse,
   resolveComposition,
   type CapabilityManifest,
@@ -58,7 +59,8 @@ export function runCompileGeneration(ctx: ToolContext, args: CompileArgs): Compi
   const mv = ctx.validator.validate(manifest, "capability-manifest");
   if (!mv.valid) return invalidDocument(mv.errors);
 
-  const strategies = composeStrategies(ctx.baseStrategies, args.merge_strategies);
+  const overlay = ctx.expressionOverlay;
+  const strategies = composeStrategies(composeStrategies(ctx.baseStrategies, overlay?.merge_strategies), args.merge_strategies);
   let canonical: JsonObject;
   try {
     canonical = resolveComposition(composition, registry, strategies);
@@ -67,7 +69,11 @@ export function runCompileGeneration(ctx: ToolContext, args: CompileArgs): Compi
     throw e;
   }
 
-  const result = compile(canonical, manifest, args.criticality ?? {});
+  if (overlay?.canonical !== undefined) canonical = merge(canonical, overlay.canonical, strategies);
+
+  const criticality = { ...(overlay?.criticality ?? {}), ...(args.criticality ?? {}) };
+
+  const result = compile(canonical, manifest, criticality);
   if (result.status === "error") {
     return { status: "error", error: result.error, construct: result.construct, canonical };
   }
@@ -77,7 +83,7 @@ export function runCompileGeneration(ctx: ToolContext, args: CompileArgs): Compi
       return toolError("unknown_provider", { provider: args.provider, adapter: "missing" } as unknown as JsonObject);
     }
     try {
-      return { status: "compiled", canonical, emission: adapter.emit(canonical, { criticality: args.criticality ?? {} }) };
+      return { status: "compiled", canonical, emission: adapter.emit(canonical, { criticality }) };
     } catch (e) {
       if (e instanceof EmissionError) {
         return { status: "error", error: e.error, construct: e.construct, canonical };

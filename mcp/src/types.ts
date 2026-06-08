@@ -14,6 +14,7 @@ import type {
   Validator,
 } from "@mosvera/runtime";
 import type { EmissionResult, ProviderAdapter } from "@mosvera/provider-base";
+import type { ExpressionOverlay } from "./expression-overlay.ts";
 
 /** A loaded aesthetic-system "project" directory. */
 export interface LoadedProject {
@@ -29,6 +30,8 @@ export interface ToolContext {
   validator: Validator;
   /** schema-derived defaults composed with the project's strategies. */
   baseStrategies: MergeStrategies;
+  /** Optional private runtime overlay supplied locally at startup. */
+  expressionOverlay?: ExpressionOverlay;
   /** Optional provider adapters for deterministic payload emission. */
   adapters?: Record<string, ProviderAdapter>;
 }

@@ -15,3 +15,5 @@ __pycache__/
 venv/
 .idea/
 .vscode/
+.private-runs/
+tmp/private-runs/

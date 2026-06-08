@@ -23,12 +23,35 @@ npm --workspace @mosvera/mcp start
 
 # Custom registry directory
 npm --workspace @mosvera/mcp start -- --registry path/to/my-aesthetic-system/
+
+# Optional local expression overlay JSON supplied at runtime
+npm --workspace @mosvera/mcp start -- --expression-overlay local-expression-overlay.json
 ```
 
 The server loads an aesthetic-system **project directory** (the registry) at
 startup. Every tool also accepts an inline `registry` argument that is merged
 on top of the loaded project per-collection, keyed by document `id`; inline
 entries take precedence over the loaded file.
+
+Mosvera can optionally read a local expression overlay JSON at runtime with
+`--expression-overlay <local-json-file>`. This file is treated as local/private
+caller input and is not part of a Mosvera registry. The public-safe overlay
+shape is:
+
+```json
+{
+  "canonical": { "construct_name": "generic guidance" },
+  "criticality": { "construct_name": "optional" },
+  "merge_strategies": {}
+}
+```
+
+All keys are optional. `canonical` is merged onto the resolved canonical model
+before `compile_generation` compiles or emits. `criticality` and
+`merge_strategies` are composed with the tool call's own arguments, with the
+tool call taking precedence. Shape validation errors describe only the invalid
+field; the server does not print overlay contents. Keep runtime outputs in a
+local ignored directory such as `.private-runs/` or `tmp/private-runs/`.
 
 ---
 
