@@ -59,8 +59,8 @@ function parseExpressionOverlayFlag(argv: string[]): string | undefined {
   return undefined;
 }
 
-const docArg = z.union([z.string(), z.record(z.any())]);
-const registryArg = z.record(z.any()).optional();
+const docArg = z.union([z.string(), z.record(z.string(), z.any())]);
+const registryArg = z.record(z.string(), z.any()).optional();
 const ok = (data: unknown) => ({ content: [{ type: "text" as const, text: JSON.stringify(data) }] });
 
 export function createServer(ctx: ToolContext): McpServer {
@@ -76,7 +76,7 @@ export function createServer(ctx: ToolContext): McpServer {
     "resolve_composition",
     {
       description: "Resolve a composition (base + ordered modifiers + overrides) to its canonical aesthetic model.",
-      inputSchema: { composition: docArg, registry: registryArg, merge_strategies: z.record(z.any()).optional() },
+      inputSchema: { composition: docArg, registry: registryArg, merge_strategies: z.record(z.string(), z.any()).optional() },
     },
     async (args) => ok(runResolveComposition(ctx, args as never)),
   );
@@ -104,9 +104,9 @@ export function createServer(ctx: ToolContext): McpServer {
         composition: docArg,
         provider: z.string(),
         registry: registryArg,
-        manifest: z.record(z.any()).optional(),
-        criticality: z.record(z.enum(["required", "optional"])).optional(),
-        merge_strategies: z.record(z.any()).optional(),
+        manifest: z.record(z.string(), z.any()).optional(),
+        criticality: z.record(z.string(), z.enum(["required", "optional"])).optional(),
+        merge_strategies: z.record(z.string(), z.any()).optional(),
         emit: z.boolean().optional(),
       },
     },
