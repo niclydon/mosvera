@@ -50,7 +50,7 @@
   "dependencies": {
     "@mosvera/runtime": "^0.1.0",
     "@mosvera/provider-base": "^0.1.0",
-    "openai": "^7.34.0"
+    "openai": "^7.45.1"
   },
   "devDependencies": {
     "typescript": "^7.0.2",
